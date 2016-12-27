@@ -1,0 +1,42 @@
+:root {
+  font-size: 10px; }
+
+@media only screen and (max-width: 1280px) {
+  :root {
+    font-size: 0.8vw; 
+	} 
+}
+@media only screen and (max-width: 1080px) {
+  :root {
+    font-size: 7.9px; 
+	} 
+}
+@font-face {
+  font-family: 'OSR';
+  src: url('../fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'OSL';
+  src: url('../fonts/OpenSans-Light.ttf');
+}
+
+@font-face {
+  font-family: 'OSB';
+  src: url('../fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'OSEB';
+  src: url('../fonts/OpenSans-ExtraBold.ttf');
+}
+body{
+	width: 100%;
+	height: 100%;
+}
+.svg_all{
+	display: none;
+}
+
+@import "partials/single_message";
+@import "partials/all_message";
