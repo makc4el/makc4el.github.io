@@ -1,22 +1,17 @@
 header#header
+	a.header_logo(href="/")
+		img(src="images/logo.png")
 	.container
-			a.header_logo(href="/")
-					img.header_logo-img(src="images/logo.png")
-			ul.header_menu-list
-				li.header_menu-item
-						a.hader_menu-link(href="#") Home
-				li.header_menu-item
-					a.hader_menu-link(href="#") Pricing
-				li.header_menu-item
-					a.hader_menu-link(href="#") FAQ
-				li.header_menu-item
-					a.hader_menu-link(href="#") API
-				li.header_menu-item
-					a.hader_menu-link(href="#") Email
-				li.header_menu-item
-					a.hader_menu-link(href="#") Settings
-				li.header_menu-item
-					a.hader_menu-link(href="#") Logout
-			.heder_login-info
-				p.header_login-email jonyyug@gmail.com
-				p.header_login-status Free
+		.header_search_group
+			img.header_search-btn(src="images/icons/search.svg")
+			input(type="text",placeholder="Search country")
+		ul.header_login-list
+			li.header_login-item
+				a.header_login-link(href="#") LOG IN
+			li.header_login-item
+				a.header_login-link(href="#") SIGN UP
+		ul.header_lenguage_list
+			li.header_lenguage-item.header_lenguage-item_active
+				a.heder_lenguage-link(href="#") ENG
+			li.header_lenguage-item
+				a.heder_lenguage-link(href="#") ARAB

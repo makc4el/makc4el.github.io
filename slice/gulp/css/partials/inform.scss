@@ -1,0 +1,95 @@
+.inform_container{
+	text-align: center;
+	.container{
+		text-align: left;
+	}
+}
+.inform-title{
+	color: black;
+	font-family: 'Lato';
+	font-size: 1.6rem;
+	font-weight: 300;
+}
+.inform-input{
+    color: #9c94bf;
+    font-family: 'Lato';
+    font-size: 1.6rem;
+    font-weight: 300;
+    border: 1px solid #9c94bf;
+    margin-top: 1.3rem;
+    height: 5rem;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.inform-log_link{
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	font-family: 'Lato';
+	font-size: 1.4rem;
+	font-weight: 300;
+	background-image: linear-gradient(45deg, #e8359e 0%, #e73355 100%);
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	margin-top: 3rem;
+	line-height: 5rem;
+	position: relative;
+	padding-right: 2.3rem;
+	&:after{
+		text-align: center;
+		content: '';
+		position: absolute;
+		background: url(../images/icons/icon.svg) no-repeat center;
+		background-size: 100% auto;
+		width: 2rem;
+		height: 2rem;
+		top: 1.3rem;
+	}
+}
+.inform_item{
+	width: 32.5%;
+	height: 5rem;
+	vertical-align: top;
+	display: inline-block;
+	margin-right: 1.3%;
+	float: left;
+}
+.inform_container .booking_title{
+	margin-top: 3.6rem;
+	display: inline-block;
+}
+.inform_list{
+	display: inline-block;
+	width: 100%;
+	background: #fff;
+	padding: 2.7rem 1.6rem;
+	box-sizing: border-box;
+	padding-bottom: 6.1rem;
+}
+.sing_new{
+	color: #fff;
+	font-family: Lato;
+	font-size: 1.7rem;
+	font-weight: 300;
+	float: right;
+	margin-top: 4rem;
+	letter-spacing: -0.03rem;
+	padding-right: 0.4rem;
+	position: relative;
+	&:after{
+	    content: '';
+	    position: absolute;
+	    left: -2.6rem;
+	    top: -0.1rem;
+	    background: url(../images/profile.png) no-repeat center;
+	    background-size: 100% auto;
+	    width: 1.8rem;
+	    height: 2rem;
+	}
+}
+.inform_item-btn{
+    width: 27.3%;
+    margin-left: 1.4%;
+}
