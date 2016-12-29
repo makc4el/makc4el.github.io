@@ -1,11 +1,72 @@
-body{
-	background:url(../images/bg.jpg) no-repeat center;
-	background-size:cover;
-	width:100%;
-	height:100%;
-	position: fixed;
-	top:0;
-	left: 0;
-	bottom: 0;
-	right: 0;
+.inform_reg{
+	.inform_item{
+		margin-bottom: 6.5rem;
+	}
+	.inform_list{
+		padding-bottom: 0;
+	}
+	.inform-log_link:after{
+		width: 1.5rem;
+		height: 1.5rem;
+		top: 1.6rem;
+		margin-left: 0.6rem;
+	}
+	
 }
+.selectric{
+	    color: #9c94bf;
+	    font-family: 'Lato';
+	    font-size: 1.6rem;
+	    font-weight: 300;
+	    border: 1px solid #9c94bf;
+	    height: 5rem;
+	    width: 100%;
+	    border-radius: 0;
+	}
+	.selectric .label,.selectric-items li{
+		color: #9c94bf;
+		font-family: 'Lato';
+		font-size: 1.6rem;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+		margin: 0;
+		text-align: left;
+		width: 100%;
+		margin-top: 1rem;
+	}
+	.selectric-items li{
+		margin-top: 0;
+		&:hover{
+			background:#9c94bf;
+			color: #fff;
+		}
+	}
+	.selectric-hover .selectric,.selectric-focus .selectric{
+		background: none;
+	}
+	.left-bar-btn{
+	    position: absolute;
+	    right: 1.2rem;
+	    top: 50%;
+		transform: translateY(-50%);
+		img{
+			width: 2rem;
+		}
+	}
+	.cred_pass{
+		position: relative;
+		&:after{
+			content: '';
+			background: url(../images/icons/password.png) no-repeat center;
+			position: absolute;
+			height: 2rem;
+			width: 2rem;
+			background-size: auto 100%;
+			right: 1.5rem;
+			bottom: -1.3rem;
+		}
+		input{
+			padding-right: 2rem;
+			box-sizing: border-box;
+		}
+	}

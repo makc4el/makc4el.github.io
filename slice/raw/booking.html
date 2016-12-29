@@ -78,23 +78,72 @@
         </div>
       </div>
     </section>
-    <section class="inform_container">
+    <section class="pay_var">
       <div class="container">
-        <h1 class="booking_title">Your information</h1><a href="#" class="sing_new">Sign up new account</a>
-        <ul class="inform_list">
-          <li class="inform_item">
-            <p class="inform-title">Email</p>
-            <input type="text" placeholder="Enter your email address" class="inform-input"/>
+        <h1 class="pay_var-title">How would you like to pay?</h1>
+        <ul class="pay_var-list">
+          <li class="pay_var-item pay_var-item-now">
+            <div class="pay_var-block">
+              <input id="pay_now" type="checkbox"/>
+              <label for="pay_now" class="pay_var-label"></label>
+              <p class="pay_var-text">Pay now</p>
+            </div>
           </li>
-          <li class="inform_item">
-            <p class="inform-title">Password</p>
-            <input type="text" placeholder="Enter your password" class="inform-input"/>
+          <li class="pay_var-item pay_var-item-letter">
+            <div class="pay_var-block">
+              <input id="pay_letter" type="checkbox"/>
+              <label for="pay_letter" class="pay_var-label"></label>
+              <p class="pay_var-text">Pay later</p>
+              <p class="pay_var_text-date">Pay later on January 11, 2017</p>
+              <p class="pay_var_text-date pay_var_text-date_min">Your card must be valid until 01/2017 </p>
+            </div>
           </li>
-          <li class="inform_item inform_item-btn"><a href="#" class="inform-log_link">LOGIN</a></li>
         </ul>
       </div>
     </section>
-    <main id="main"></main>
+    <section class="inform_container booking_section-container">
+      <div class="container">
+        <h1 class="booking_title booking_container-title">All card information is fully encrypted, secure and protected</h1>
+        <div class="inform_list-container">
+          <p class="inform_block-title">We accept the folowing payment methods</p>
+          <ul class="inform_list">
+            <li class="inform_item inform_item-select">
+              <p class="inform-title">Select payment method</p>
+              <select value="Please, select one" class="inform-input_select-country">
+                <option value="UK">UK</option>
+                <option value="USA">USA</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+              </select>
+            </li>
+            <li class="inform_item cred_pass">
+              <p class="inform-title">Credit/debid card #</p>
+              <input type="text" placeholder="Enter your number card" class="inform-input"/>
+            </li>
+            <li class="inform_item inform_item-btn">
+              <p class="inform-title">Card holder name</p>
+              <input type="text" placeholder="Enter the name holder" class="inform-input"/>
+            </li>
+            <li class="inform_item data_inp inform_item-select">
+              <p class="inform-title">Explire date</p>
+              <select value="Select month" class="inform-input_select-country">
+                <option value="UK">UK</option>
+                <option value="USA">USA</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+              </select>
+            </li>
+            <li class="inform_item year_inp">
+              <p class="inform-title">|</p>
+              <input type="text" placeholder="Enter year" class="inform-input"/>
+            </li>
+            <li class="inform_item cred_pass secur_inp">
+              <p class="inform-title">Card security code</p>
+              <input type="text" placeholder="Enter the security code" class="inform-input"/>
+            </li>
+            <li class="inform_item inform_item-btn"><a href="#" class="inform-log_link">BOOK AND PAY NOW</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <script src="js/jquery_v3.js"></script>
     <script src="js/jquery.selectric.js"></script>
     <script src="js/script.js"></script>
