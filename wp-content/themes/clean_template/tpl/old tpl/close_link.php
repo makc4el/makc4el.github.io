@@ -1,0 +1,29 @@
+<?php
+    if(ICL_LANGUAGE_CODE=='en'){
+      $close_link=get_permalink(13);
+    }
+    if(ICL_LANGUAGE_CODE=='fr'){
+      $close_link=get_permalink(849);
+    }
+    if(ICL_LANGUAGE_CODE=='de'){
+      $close_link=get_permalink(852);
+    }
+    if(ICL_LANGUAGE_CODE=='it'){
+      $close_link=get_permalink(853);
+    }
+    if(ICL_LANGUAGE_CODE=='ru'){
+      $close_link=get_permalink(854);
+    }
+    if(ICL_LANGUAGE_CODE=='es'){
+      $close_link=get_permalink(855);
+    }
+    if(ICL_LANGUAGE_CODE=='pl'){
+      $close_link=get_permalink(856);
+    }
+    if(ICL_LANGUAGE_CODE=='zh-hans'){
+      $close_link=get_permalink(1025);
+    }
+    if(ICL_LANGUAGE_CODE=='ar'){
+      $close_link=get_permalink(1017);
+    }
+?>
