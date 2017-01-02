@@ -84,3 +84,21 @@ if ( function_exists('register_sidebar') ) {
 //  	 return $lang_term->slug;
 //  }
 //}
+
+
+function users_redirect(){
+	wp_redirect(site_url());
+
+	die();
+}
+if(!current_user_can('manage_options')){
+	add_action('admin_init','users_redirect');
+}
+
+//add_action( 'init', 'blockusers_init' );
+//function blockusers_init() {
+//	if ( !is_admin()) {
+//		wp_redirect( home_url() );
+//		exit;
+//	}
+//}
