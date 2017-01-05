@@ -45,7 +45,7 @@ body{
   left: 0;
   bottom: 0;
   right: 0;
-  overflow: scroll;
+  overflow:auto;
 }
 .svg_all{
 	display: none;
@@ -57,3 +57,6 @@ body{
 @import "partials/inform";
 @import "partials/registration";
 @import "partials/booking";
+@import "partials/package_about";
+@import "partials/package_chose";
+@import "partials/package_block";
