@@ -29,9 +29,15 @@
 //	'walker'          => '',
 //) );
 ?>
+<script>
+	var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
+	var path = "<?php echo get_template_directory_uri(); ?>/";
+	
+</script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery_v3.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.selectric.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/ajax.js"></script>
 <footer id="footer"></footer>
 <?php wp_footer();  ?>
 </body>

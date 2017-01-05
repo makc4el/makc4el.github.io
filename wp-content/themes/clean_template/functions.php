@@ -72,6 +72,7 @@ if ( function_exists('register_sidebar') ) {
 
 // Ban Update WP, plugins, themes
 //require_once('models/ban-update.php');
+
 //function return_term_lang_slug($slug, $taxonomy) {
 //  $curent_slug =  get_term_by('slug', $slug, $taxonomy);
 //  if(function_exists('icl_object_id') && !is_wp_error($curent_slug) ) {
@@ -102,3 +103,146 @@ if(!current_user_can('manage_options')){
 //		exit;
 //	}
 //}
+
+
+function registration_ajax(){
+//	echo json_encode($_POST['fields']) ;
+	$fname = $_POST['fields']['fname'];
+	$lname = $_POST['fields']['lname'];
+	$country = $_POST['fields']['country'];
+	$phone = $_POST['fields']['phone'];
+	$username = $_POST['fields']['username'];
+	$password = $_POST['fields']['password'];
+
+	custom_registration_function($fname, $lname, $country, $phone, $username );
+//	echo $password;
+	die();
+}
+
+function custom_registration_function($fname, $lname, $country, $phone, $username, $password) {
+
+	$registration_validation=registration_validation($fname, $lname, $country, $phone, $username, $password, $username,  $fname." ".$lname);
+
+	if(count($registration_validation)==0){
+		global $username, $password, $email, $first_name, $last_name, $nickname;
+		$first_name = 	sanitize_text_field($fname);
+		$last_name 	= 	sanitize_text_field($lname);
+		$country 	= 	sanitize_text_field($country);
+		$phone 		= 	sanitize_text_field($phone);
+		$username	= 	sanitize_user($username);
+		$password 	= 	esc_attr($password);
+		$email 		= 	$username;
+		$nickname 	= 	$first_name ." ".$last_name;
+
+		complete_registration($first_name, $last_name, $country, $phone, $username, $password, $email, $nickname);
+	}else{
+		echo json_encode($registration_validation) ;
+	}
+
+}
+
+
+
+
+
+
+function registration_validation( $first_name, $last_name, $country, $phone, $username, $password, $email, $nickname )  {
+	global $reg_errors;
+	$reg_errors = new WP_Error;
+
+	if ( strlen( $username ) < 4 ) {
+		$reg_errors->add('username_length', 'Username too short. At least 4 characters is required');
+	}
+
+	if ( username_exists( $username ) )
+		$reg_errors->add('user_name', 'Sorry, that username already exists!');
+
+	if ( !validate_username( $username ) ) {
+		$reg_errors->add('username_invalid', 'Sorry, the username you entered is not valid');
+	}
+
+	if ( !is_email( $email ) ) {
+		$reg_errors->add('email_invalid', 'Email is not valid');
+	}
+
+	if ( email_exists( $email ) ) {
+		$reg_errors->add('email', 'Email Already in use');
+	}
+
+	if ( is_wp_error( $reg_errors ) ) {
+		return $reg_errors->get_error_messages();
+//		foreach ($reg_errors->get_error_messages()  as $error ) {
+//			echo '<div>';
+//			echo '<strong>ERROR</strong>:';
+//			echo $error . '<br/>';
+//			echo '</div>';
+//		}
+	}
+}
+
+function complete_registration() {
+	global $reg_errors, $first_name, $last_name, $country, $phone, $username, $password, $email, $nickname;
+	if ( count($reg_errors->get_error_messages()) < 1 ) {
+		$userdata = array(
+			'user_login'	=> 	$username,
+			'user_email' 	=> 	$email,
+			'user_pass' 	=> 	$password,
+			'first_name' 	=> 	$first_name,
+			'last_name' 	=> 	$last_name,
+			'nickname' 		=> 	$nickname,
+		);
+		$user_id = wp_insert_user( $userdata );
+
+		if( ! is_wp_error( $user_id ) ) {
+			update_user_meta($user_id, 'country', $country);
+		}
+		if( ! is_wp_error( $user_id ) ) {
+			update_user_meta($user_id, 'phone', $phone);
+		}
+		echo 'Registration complete.';
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('wp_ajax_registration', 'registration_ajax');
+add_action('wp_ajax_nopriv_registration', 'registration_ajax');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
