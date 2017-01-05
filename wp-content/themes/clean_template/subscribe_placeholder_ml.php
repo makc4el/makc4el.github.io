@@ -1,0 +1,29 @@
+<?php
+    if(ICL_LANGUAGE_CODE=='en'){
+      dynamic_sidebar('location_en');
+    }
+    if(ICL_LANGUAGE_CODE=='fr'){
+      dynamic_sidebar('location_fr');
+    }
+    if(ICL_LANGUAGE_CODE=='de'){
+      dynamic_sidebar('location_de');
+    }
+    if(ICL_LANGUAGE_CODE=='it'){
+      dynamic_sidebar('location_it');
+    }
+    if(ICL_LANGUAGE_CODE=='ru'){
+      dynamic_sidebar('location_ru');
+    }
+    if(ICL_LANGUAGE_CODE=='es'){
+      dynamic_sidebar('location_es');
+    }
+    if(ICL_LANGUAGE_CODE=='pl'){
+      dynamic_sidebar('location_pl');
+    }
+    if(ICL_LANGUAGE_CODE=='zh-hans'){
+      dynamic_sidebar('location_zh-hans');
+    }
+    if(ICL_LANGUAGE_CODE=='ar'){
+      dynamic_sidebar('location_ar');
+    }
+?>
