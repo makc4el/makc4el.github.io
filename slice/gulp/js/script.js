@@ -19,4 +19,11 @@ $(document).ready(function(){
  	$( "#datepicker" ).datepicker();
  	$( "#spinner1" ).spinner();
  	$( "#spinner2" ).spinner();
+ 	$( "#slider" ).slider({
+		range: 'min', 
+		value:2,
+		min: 0,
+		max: 4,
+		step: 1
+  });
 })
