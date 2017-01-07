@@ -30,7 +30,7 @@
 //) );
 ?>
 <script>
-	var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
+	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 	var path = "<?php echo get_template_directory_uri(); ?>/";
 	
 </script>
