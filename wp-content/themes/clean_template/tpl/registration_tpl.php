@@ -14,7 +14,7 @@ Template Name: Registration
 		<a href="<?= get_permalink(2054) ?>" class="sing_new">Sign in to your account</a>
 
     <form action="<?=$_SERVER['REQUEST_URI']?>" method="post" name="registration">
-		<ul class="inform_list">
+		<ul id="main_ul" class="inform_list">
 			<li class="inform_item">
 				<p class="inform-title">
 					<?=get_field("text_first_name")?>
@@ -27,6 +27,7 @@ Template Name: Registration
 					class="inform-input" 
 					name="fname" 
 				>
+				<p id="error_firstname"></p>
 			</li>
 			
 			<li class="inform_item">
@@ -41,6 +42,7 @@ Template Name: Registration
 					class="inform-input" 
 					name="lname" 
 				>
+				<p id="error_lastname"></p>
 			</li>
 				
 			<li class="inform_item inform_item-btn inform_item-select">
@@ -66,6 +68,7 @@ Template Name: Registration
 					class="inform-input" 
 					name="phone" 
 				>
+				<p id="error_mobilenumber"></p>
 			</li>
 			
 			<li class="inform_item">
@@ -78,8 +81,9 @@ Template Name: Registration
 					type="text" 
 					placeholder="<?=get_field("placeholder_email")?>"
 					class="inform-input" 
-					name="username" 
+					name="email"
 				>
+				<p id="error_email"></p>
 			</li>
 			
 			<li class="inform_item">
@@ -92,9 +96,12 @@ Template Name: Registration
 					class="inform-input" 
 					name="password" 
 				>
+				<p id="error_password"></p>
 			</li>
-			<li id="submit" class="inform_item inform_item-btn"><a href="#" class="inform-log_link">CONTINUE</a></li>
-<!--			inform_item inform_item-btn"-->
+			<li id="submit_registration" class="inform_item inform_item-btn">
+				<a href="#" class="inform-log_link">CONTINUE</a>
+			</li>
+
 		</ul>
 	</form>
 		

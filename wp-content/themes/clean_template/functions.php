@@ -86,83 +86,58 @@ if ( function_exists('register_sidebar') ) {
 //  }
 //}
 
-
 function users_redirect(){
 	wp_redirect(site_url());
-
 	die();
 }
 if(!current_user_can('manage_options')){
 	add_action('admin_init','users_redirect');
 }
-
-//add_action( 'init', 'blockusers_init' );
-//function blockusers_init() {
-//	if ( !is_admin()) {
-//		wp_redirect( home_url() );
-//		exit;
-//	}
-//}
-
-
+////////////////////////////REGISTRATION///////////////////////////////////////////////////////////////////////////
 function registration_ajax(){
 //	echo json_encode($_POST['fields']) ;
+//	die();
 	$fname = $_POST['fields']['fname'];
 	$lname = $_POST['fields']['lname'];
 	$country = $_POST['fields']['country'];
 	$phone = $_POST['fields']['phone'];
-	$username = $_POST['fields']['username'];
+	$username = $_POST['fields']['fname'];
 	$password = $_POST['fields']['password'];
+	$email = $_POST['fields']['email'];
 
-	custom_registration_function($fname, $lname, $country, $phone, $username );
-//	echo $password;
+	custom_registration_function($fname, $lname, $country, $phone, $username, $password, $email );
 	die();
 }
 
-function custom_registration_function($fname, $lname, $country, $phone, $username, $password) {
-
-	$registration_validation=registration_validation($fname, $lname, $country, $phone, $username, $password, $username,  $fname." ".$lname);
-
+function custom_registration_function($fname, $lname, $country, $phone, $username, $password, $email) {
+	$registration_validation=registration_validation($username, $email);
 	if(count($registration_validation)==0){
-		global $username, $password, $email, $first_name, $last_name, $nickname;
-		$first_name = 	sanitize_text_field($fname);
-		$last_name 	= 	sanitize_text_field($lname);
+		$fname = 	sanitize_text_field($fname);
+		$lname 	= 	sanitize_text_field($lname);
 		$country 	= 	sanitize_text_field($country);
 		$phone 		= 	sanitize_text_field($phone);
 		$username	= 	sanitize_user($username);
 		$password 	= 	esc_attr($password);
-		$email 		= 	$username;
-		$nickname 	= 	$first_name ." ".$last_name;
-
-		complete_registration($first_name, $last_name, $country, $phone, $username, $password, $email, $nickname);
+		$nickname 	= 	$fname ." ".$lname;
+		complete_registration($registration_validation,$fname, $lname, $country, $phone, $username, $password, $nickname, $email);
 	}else{
 		echo json_encode($registration_validation) ;
 	}
-
 }
 
-
-
-
-
-
-function registration_validation( $first_name, $last_name, $country, $phone, $username, $password, $email, $nickname )  {
+function registration_validation( $username, $email )  {
 	global $reg_errors;
 	$reg_errors = new WP_Error;
 
-	if ( strlen( $username ) < 4 ) {
-		$reg_errors->add('username_length', 'Username too short. At least 4 characters is required');
-	}
-
 	if ( username_exists( $username ) )
-		$reg_errors->add('user_name', 'Sorry, that username already exists!');
+		$reg_errors->add('user_name', 'That username already exists!');
 
 	if ( !validate_username( $username ) ) {
-		$reg_errors->add('username_invalid', 'Sorry, the username you entered is not valid');
+		$reg_errors->add('username_invalid', 'The username you entered is not valid');
 	}
 
 	if ( !is_email( $email ) ) {
-		$reg_errors->add('email_invalid', 'Email is not valid');
+		$reg_errors->add('email_invalid', 'Email not valid');
 	}
 
 	if ( email_exists( $email ) ) {
@@ -171,24 +146,17 @@ function registration_validation( $first_name, $last_name, $country, $phone, $us
 
 	if ( is_wp_error( $reg_errors ) ) {
 		return $reg_errors->get_error_messages();
-//		foreach ($reg_errors->get_error_messages()  as $error ) {
-//			echo '<div>';
-//			echo '<strong>ERROR</strong>:';
-//			echo $error . '<br/>';
-//			echo '</div>';
-//		}
 	}
 }
 
-function complete_registration() {
-	global $reg_errors, $first_name, $last_name, $country, $phone, $username, $password, $email, $nickname;
-	if ( count($reg_errors->get_error_messages()) < 1 ) {
+function complete_registration($registration_validation, $fname, $lname, $country, $phone, $username, $password, $nickname, $email) {
+	if ( count($registration_validation) < 1 ) {
 		$userdata = array(
-			'user_login'	=> 	$username,
+			'user_login'	=> 	$fname,
 			'user_email' 	=> 	$email,
 			'user_pass' 	=> 	$password,
-			'first_name' 	=> 	$first_name,
-			'last_name' 	=> 	$last_name,
+			'first_name' 	=> 	$fname,
+			'last_name' 	=> 	$lname,
 			'nickname' 		=> 	$nickname,
 		);
 		$user_id = wp_insert_user( $userdata );
@@ -203,34 +171,37 @@ function complete_registration() {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 add_action('wp_ajax_registration', 'registration_ajax');
 add_action('wp_ajax_nopriv_registration', 'registration_ajax');
 
 
 
 
+////////////////////////////AUTHORIZATION///////////////////////////////////////////////////////////////////////////
+function myauthorization_callback(){
+//	echo json_encode($_POST['fields']) ;
+
+
+	$login = $_POST['fields']['login'];
+	$pwd = $_POST['fields']['pwd'];
+	$creds = array();
+	$creds['user_login'] = $login;
+	$creds['user_password'] = $pwd;
+	$creds['remember'] = false;
+
+	$user = wp_signon( $creds, false );
+
+	if ( is_wp_error($user) )
+//		echo $user->get_error_message();
+		echo 'Error incorrect username or password';
+	else
+		echo 'authorization complete.';
+//		echo json_encode($user);
+		wp_die();
+}
+
+add_action('wp_ajax_myauthorization', 'myauthorization_callback');
+add_action('wp_ajax_nopriv_myauthorization', 'myauthorization_callback');
 
 
 
