@@ -26,4 +26,10 @@ $(document).ready(function(){
 		max: 4,
 		step: 1
   });
+ 	$('.cart-img-list').owlCarousel({
+		loop:true,
+		items:1,
+		nav:true,
+		navText: ["",""]
+})
 })
