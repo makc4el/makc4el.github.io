@@ -14,22 +14,6 @@
     display: inline-block;
     margin-bottom: 2.2rem;
     position: relative;
-    &:after{
-	    content: '+';
-	    position: absolute;
-	    right: -4rem;
-	    top: 0rem;
-	    padding: 0.5rem;
-	    background: #e73361;
-	    color: #fff;
-	    border-radius: 50%;
-	    font-size: 1.6rem;
-	    width: 2.5rem;
-	    text-align: center;
-	    height: 2.5rem;
-	    line-height: 1.2rem;
-	    font-family: 'Lato';
-    }
 }
 .transfer_seats-container{
 	background: #fff;
@@ -117,5 +101,8 @@
 }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
 	box-shadow: none;
+}
+.package-log_link{
+	transition-duration: 0.3s;
 }
 /*#cecece*/
