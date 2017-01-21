@@ -205,6 +205,102 @@ add_action('wp_ajax_nopriv_myauthorization', 'myauthorization_callback');
 
 
 
+////////////////////////////////////////////SELECT CITY///////////////////////////////////////////////////////////////
+
+function selectcity_ajax(){
+	$city = $_POST['city'];
+	$post_page = get_permalink(2123);
+	$all_cities_and_tours = get_field('tours_and_sity', 2130);
+	foreach ($all_cities_and_tours as $k=>$v){
+		if($v['city']==$city){
+			array_unshift($v['tour'], $post_page);
+			echo json_encode($v['tour']);
+		}
+
+	}
+
+	wp_die();
+
+//	$login = $_POST['fields']['login'];
+
+}
+
+add_action('wp_ajax_selectcity', 'selectcity_ajax');
+add_action('wp_ajax_nopriv_selectcity', 'selectcity_ajax');
+
+
+////////////////////////////////////////////SHOW TOURS///////////////////////////////////////////////////////////////
+
+function show_tours_ajax(){
+	$tours_id = $_POST['tours_id'];
+
+	$args = array(
+		'numberposts' => -1,
+		'order'       => 'DESC',
+		'include'     => $tours_id,
+		'exclude'     => array(),
+		'post_type'   => 'post',
+	);
+
+	$posts = get_posts( $args );
+	foreach($posts as $post){ setup_postdata($post);
+		$id = $post->ID;
+		?>
+		<div class="cart_container">
+			<div class="cart_img-container">
+				<div class="cart-cost_conatiner">
+					<p class="cart-cost">
+						<?=get_field('price', $id)?>
+					</p>
+					<p class="cart-days">
+						<?=get_field('count_days', $id)?> DAYS
+					</p>
+				</div>
+				<div class="cart-img-list">
+					<?php foreach (get_field('images', $id) as $k=>$v){ ?>
+						<div class="owl-item"></div>
+						<div class="owl-item" style="background: url(<?=$v['image']?>) no-repeat center;background-size: cover;"></div>
+					<?php } ?>
+				</div>
+			</div>
+			<div class="cart_content-container">
+				<p class="cart-title">
+					<?=get_field('title', $id)?>
+				</p>
+				<p class="cart-star-text">
+					<?=get_field('description_after_title_preview', $id)?>
+				</p>
+				<div class="cart-star-container">
+					<?php $count_gold=get_field('rating_preview', $id); for($i=0; $i<5; $i++){ ?>
+						<span class="star-icon <?php if($i<$count_gold){ echo "star-gold";} ?>"></span>
+					<?php } ?>
+				</div>
+				<p class="cart-top cart-min-title">
+					<?=get_field('title_top_places_preview', $id)?>
+				</p>
+				<p class="cart-path">
+					<?=get_field('description_top_places_preview', $id)?>
+				</p>
+				<p class="cart-highloghts cart-min-title">
+					<?=get_field('title_top_highlightspreview', $id)?>
+				</p>
+				<p class="cart-path">
+					<?=get_field('description_top_highlightspreview', $id)?>
+				</p>
+				<a href="<?= get_permalink($id) ?>" class="cart-btn">view details</a>
+			</div>
+		</div>
+<?php
+	}
+	wp_reset_postdata(); // сброс
+//	echo json_encode($posts);
+	wp_die();
+
+}
+
+add_action('wp_ajax_show_tours', 'show_tours_ajax');
+add_action('wp_ajax_nopriv_show_tours', 'show_tours_ajax');
+
 
 
 
