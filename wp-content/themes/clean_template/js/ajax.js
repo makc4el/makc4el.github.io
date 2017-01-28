@@ -163,6 +163,28 @@ jQuery(function($){
         }
 
     });
+    //start PLANING
+    $("#start_planing").click(function (e) {
+        e.preventDefault();
+        localStorage.removeItem("id_package");
+        localStorage.setItem("id_package", id_package);
+        window.location = url_redirect_start_planing;
+        var data = {
+            'action': 'start_planing',
+            'id_package' : id_package
+        };
+        $.ajax({
+            url:ajaxurl, // обработчик
+            data:data, // данные
+            type:'POST', // тип запроса
+            success:function(data){
+                // console.log(data);
+            }
+        });
+
+
+
+    });
 
 
 });

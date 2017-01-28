@@ -55,6 +55,18 @@ if ( function_exists('register_sidebar') ) {
 // Ban Update WP, plugins, themes
 //require_once('models/ban-update.php');
 
+
+function register_my_session()
+{
+	if( !session_id() )
+	{
+		session_start();
+	}
+}
+
+add_action('init', 'register_my_session');
+
+
 ////////////////////////////REGISTRATION///////////////////////////////////////////////////////////////////////////
 function registration_ajax(){
 //	echo json_encode($_POST['fields']) ;
@@ -241,7 +253,7 @@ function show_tours_ajax(){
 				<p class="cart-path">
 					<?=get_field('description_top_highlightspreview', $id)?>
 				</p>
-				<a href="<?= get_permalink($id) ?>" class="cart-btn">view details</a>
+				<a href="<?= get_permalink($id) ?>" class="cart-btn view_tour">view details</a>
 			</div>
 		</div>
 <?php
@@ -255,8 +267,18 @@ add_action('wp_ajax_show_tours', 'show_tours_ajax');
 add_action('wp_ajax_nopriv_show_tours', 'show_tours_ajax');
 
 
+/////////////////////START PLANING//////////////////////////////////////////////
 
+add_action('wp_ajax_start_planing', 'start_planing');
+add_action('wp_ajax_nopriv_start_planing', 'start_planing');
+function start_planing() {
+	$id_package = intval( $_POST['id_package'] );
+	unset($_SESSION['id_package']);
+	$_SESSION['id_package']= $id_package;
 
+//	echo $_SESSION['id_package'];
+	wp_die();
+}
 
 
 

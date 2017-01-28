@@ -4,9 +4,6 @@ var tours_id = localStorage.getItem('tours_id');
 if(select_ocation && tours_id){
   $('#locations').val(select_ocation);
   tours_id = JSON.parse(localStorage.getItem("tours_id"));
-  console.log(tours_id);
-
-
 
   var data = {
     'action': 'show_tours',
@@ -26,10 +23,13 @@ if(select_ocation && tours_id){
       // window.location = redirect_to;
     }
   });
-  
+
   // show SHARE LINK
   $("#share_package").click(function (e) {
     e.preventDefault();
+
+    localStorage.removeItem("url_share");
+    localStorage.setItem("url_share", url_share);
 
     var share_links = $("#share_package").siblings();
     share_links.each(function () {
@@ -40,8 +40,7 @@ if(select_ocation && tours_id){
 
 
 
+
 }
-
-
 
 

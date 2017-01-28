@@ -1,4 +1,4 @@
-<? php
+<?php
 /*
 PostType Page Template: Tour
 Description: One tour
@@ -63,7 +63,9 @@ Description: One tour
 				<li class="package_item package_item-money">
 					<input type="text" value="$3200" readonly="readonly" class="package_item_text"/>
 				</li>
-				<li class="package_item package_item-btn"><a href="#" class="inform-log_link package-log_link">START PLANNING</a></li>
+				<li class="package_item package_item-btn">
+					<a href="" id="start_planing" class="inform-log_link package-log_link">START PLANNING</a>
+				</li>
 				<li class="package_item package_item-btn-share">
 					<a id="share_package" href="#" class="package-log_link">SHARE THIS PACKAGE</a>
 					<a style="display: none" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink()?>" class="package-log_link">
@@ -75,10 +77,10 @@ Description: One tour
 					<a style="display: none" target="_blank" href="https://plus.google.com/share?url=<?php echo get_permalink()?>" class="package-log_link">
 						SHARE THIS PACKAGE Google Plus
 					</a>
-					<a style="display: none" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo get_permalink()?>&title=<?=get_the_title()?>" class="package-log_link">
+					<a style="display: none" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo get_permalink()?>" class="package-log_link">
 						SHARE THIS PACKAGE LinkedIn
 					</a>
-					<a style="display: none" target="_blank" href="https://pinterest.com/pin/create/button/?url=URL_SHARE&media=<?php echo get_permalink()?>&description=<?=get_the_title()?>" class="package-log_link">
+					<a style="display: none" target="_blank" href="https://pinterest.com/pin/create/button/?url=URL_SHARE&media=<?php echo get_permalink()?>" class="package-log_link">
 						SHARE THIS PACKAGE Pinterest
 					</a>
 				</li>
@@ -132,4 +134,10 @@ Description: One tour
 		</div>
 	</section>
 </main>
+
+<script>
+	var url_share= "<?=get_permalink()?>";
+	var id_package = <?=get_the_ID()?>;
+	var url_redirect_start_planing ="<?=get_permalink(2169)?>";
+</script>
 <?php get_footer(); ?>
