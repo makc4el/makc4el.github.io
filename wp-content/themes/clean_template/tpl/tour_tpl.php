@@ -118,6 +118,7 @@ Description: One tour
 							<a href="#" class="view-link">
 								<?=get_field('title_view_details_about')?>
 							</a>
+
 						</div>
 						<div class="package_block-item-imgs">
 							<?php foreach (get_field('images') as $k=>$v){ ?>
