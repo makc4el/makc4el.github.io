@@ -26,9 +26,7 @@ if(select_ocation && tours_id){
       // window.location = redirect_to;
     }
   });
-
-
-
+  
   // show SHARE LINK
   $("#share_package").click(function (e) {
     e.preventDefault();
