@@ -64,7 +64,24 @@ Description: One tour
 					<input type="text" value="$3200" readonly="readonly" class="package_item_text"/>
 				</li>
 				<li class="package_item package_item-btn"><a href="#" class="inform-log_link package-log_link">START PLANNING</a></li>
-				<li class="package_item package_item-btn-share"><a href="#" class="package-log_link">SHARE THIS PACKAGE</a></li>
+				<li class="package_item package_item-btn-share">
+					<a id="share_package" href="#" class="package-log_link">SHARE THIS PACKAGE</a>
+					<a style="display: none" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink()?>" class="package-log_link">
+						SHARE THIS PACKAGE FACEBOOK
+					</a>
+					<a style="display: none" target="_blank" href="https://twitter.com/home?status=<?php echo get_permalink()?>" class="package-log_link">
+						SHARE THIS PACKAGE TWITTER
+					</a>
+					<a style="display: none" target="_blank" href="https://plus.google.com/share?url=<?php echo get_permalink()?>" class="package-log_link">
+						SHARE THIS PACKAGE Google Plus
+					</a>
+					<a style="display: none" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo get_permalink()?>&title=<?=get_the_title()?>" class="package-log_link">
+						SHARE THIS PACKAGE LinkedIn
+					</a>
+					<a style="display: none" target="_blank" href="https://pinterest.com/pin/create/button/?url=URL_SHARE&media=<?php echo get_permalink()?>&description=<?=get_the_title()?>" class="package-log_link">
+						SHARE THIS PACKAGE Pinterest
+					</a>
+				</li>
 			</ul>
 		</div>
 	</section>

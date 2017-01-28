@@ -24,7 +24,6 @@
 			<li class="inform_item">
 
 				<select name="city_and_tour" id="city_and_tour">
-					<?php print_r(get_field('tours_and_sity', 2130)); ?>
 						<option value="not">Select city</option>
 					<?php foreach (get_field('tours_and_sity', 2130) as $city){ ?>
 						<option value="<?= $city['city'] ?>"><?= $city['city'] ?></option>

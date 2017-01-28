@@ -34,7 +34,20 @@
 	var path = "<?php echo get_template_directory_uri(); ?>/";
 	
 </script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/jquery_v3.js"></script>
+<script type="text/javascript" >
+	jQuery(document).ready(function($) {
+		var data = {
+			action: 'my_action',
+			whatever: 1234
+		};
+
+		// 'ajaxurl' не определена во фронте, поэтому мы добавили её аналог с помощью wp_localize_script()
+		jQuery.post( ajaxurl, data, function(response) {
+			console.log('Получено с сервера: ' + response);
+		});
+	});
+</script>
+
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.selectric.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/ajax.js"></script>

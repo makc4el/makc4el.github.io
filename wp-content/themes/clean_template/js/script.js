@@ -29,6 +29,17 @@ if(select_ocation && tours_id){
 
 
 
+  // show SHARE LINK
+  $("#share_package").click(function (e) {
+    e.preventDefault();
+
+    var share_links = $("#share_package").siblings();
+    share_links.each(function () {
+      $( this ).toggle();
+    });
+  });
+
+
 
 
 }

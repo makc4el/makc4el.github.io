@@ -6,6 +6,7 @@
 	<meta name="description" content=""/>
 	<meta name="author" content="NikMax"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery_v3.js"></script>
 	<link href="<?php echo get_template_directory_uri(); ?>/css/reset.css" rel="stylesheet"/>
 	<link href="<?php echo get_template_directory_uri(); ?>/css/selectric.css" rel="stylesheet"/>
 	<link href="<?php echo get_template_directory_uri(); ?>/css/layout.css" rel="stylesheet"/>

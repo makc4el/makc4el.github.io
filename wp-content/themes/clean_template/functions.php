@@ -31,28 +31,12 @@ if ( function_exists('register_sidebar') ) {
 //FOR DOWNLOAD 
 //function enable_extended_upload ( $mime_types =array() ) {
 //	$mime_types['gz']  = 'application/x-gzip';
-//	$mime_types['zip']  = 'application/zip';
-//	$mime_types['rtf'] = 'application/rtf';
-//	$mime_types['ppt'] = 'application/mspowerpoint';
-//	$mime_types['ps'] = 'application/postscript';
-//	$mime_types['flv'] = 'video/x-flv';
-//	$mime_types['txt'] = 'text/plain';
-//	$mime_types['pdf'] = 'application/pdf';
-//	$mime_types['flv'] = 'video/x-flv';
-//	$mime_types['mp4'] = 'video/mp4';
-//	$mime_types['m3u8'] = 'application/x-mpegURL';
-//	$mime_types['ts'] = 'video/MP2T';
-//	$mime_types['3gp'] = 'video/3gpp';
-//	$mime_types['mov'] = 'video/quicktime';
-//	$mime_types['avi'] = 'video/x-msvideo';
-//	$mime_types['wmv'] = 'video/x-ms-wmv';
-//	unset( $mime_types['exe'] );
 //	unset( $mime_types['bin'] );
 //	return $mime_types;
 //}
 //add_filter('upload_mimes', 'enable_extended_upload');
 
-								//FOR CLEAN CACHE ONE POST
+//FOR CLEAN CACHE ONE POST
 //add_action( 'save_post', 'action_function_name_11', 10, 3 );
 //function action_function_name_11( $post_id, $post, $update ) {
 //	global $wpdb;
@@ -68,31 +52,9 @@ if ( function_exists('register_sidebar') ) {
 //   wp_deregister_script( 'jquery-migrate' );
 // }
 
-
-
 // Ban Update WP, plugins, themes
 //require_once('models/ban-update.php');
 
-//function return_term_lang_slug($slug, $taxonomy) {
-//  $curent_slug =  get_term_by('slug', $slug, $taxonomy);
-//  if(function_exists('icl_object_id') && !is_wp_error($curent_slug) ) {
-//    $id = icl_object_id($curent_slug->term_id,$taxonomy,true);
-//  } else {
-//    return $slug;
-//  }
-//  if ($id && !is_wp_error($id)) {
-//  	 $lang_term = get_term_by('id', $id, $taxonomy);
-//  	 return $lang_term->slug;
-//  }
-//}
-
-function users_redirect(){
-	wp_redirect(site_url());
-	die();
-}
-if(!current_user_can('manage_options')){
-	add_action('admin_init','users_redirect');
-}
 ////////////////////////////REGISTRATION///////////////////////////////////////////////////////////////////////////
 function registration_ajax(){
 //	echo json_encode($_POST['fields']) ;
@@ -175,12 +137,8 @@ add_action('wp_ajax_registration', 'registration_ajax');
 add_action('wp_ajax_nopriv_registration', 'registration_ajax');
 
 
-
-
 ////////////////////////////AUTHORIZATION///////////////////////////////////////////////////////////////////////////
 function myauthorization_callback(){
-//	echo json_encode($_POST['fields']) ;
-
 
 	$login = $_POST['fields']['login'];
 	$pwd = $_POST['fields']['pwd'];
@@ -204,9 +162,7 @@ add_action('wp_ajax_myauthorization', 'myauthorization_callback');
 add_action('wp_ajax_nopriv_myauthorization', 'myauthorization_callback');
 
 
-
 ////////////////////////////////////////////SELECT CITY///////////////////////////////////////////////////////////////
-
 function selectcity_ajax(){
 	$city = $_POST['city'];
 	$post_page = get_permalink(2123);
@@ -220,8 +176,6 @@ function selectcity_ajax(){
 	}
 
 	wp_die();
-
-//	$login = $_POST['fields']['login'];
 
 }
 
@@ -293,7 +247,6 @@ function show_tours_ajax(){
 <?php
 	}
 	wp_reset_postdata(); // сброс
-//	echo json_encode($posts);
 	wp_die();
 
 }
@@ -304,6 +257,42 @@ add_action('wp_ajax_nopriv_show_tours', 'show_tours_ajax');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('wp_ajax_my_action', 'my_action_callback');
+add_action('wp_ajax_nopriv_my_action', 'my_action_callback');
+function my_action_callback() {
+	$whatever = intval( $_POST['whatever'] );
+	echo $whatever + 10;
+	wp_die();
+}
 
 
 
