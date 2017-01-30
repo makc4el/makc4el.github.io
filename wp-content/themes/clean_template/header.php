@@ -6,10 +6,22 @@
 	<meta name="description" content=""/>
 	<meta name="author" content="NikMax"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery_v3.js"></script>
 	<link href="<?php echo get_template_directory_uri(); ?>/css/reset.css" rel="stylesheet"/>
 	<link href="<?php echo get_template_directory_uri(); ?>/css/selectric.css" rel="stylesheet"/>
 	<link href="<?php echo get_template_directory_uri(); ?>/css/layout.css" rel="stylesheet"/>
 	<link href="<?php echo get_template_directory_uri(); ?>/css/mobile.css" rel="stylesheet"/>
+	<!-- Smartsupp Live Chat script -->
+	<script type="text/javascript">
+		var _smartsupp = _smartsupp || {};
+		_smartsupp.key = '6ec1fd9c9276f63fd58bf9b014471c90400c368b';
+		window.smartsupp||(function(d) {
+			var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+			s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+			c.type='text/javascript';c.charset='utf-8';c.async=true;
+			c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+		})(document);
+	</script>
 </head>
 <body>
 <?php

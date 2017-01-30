@@ -16,50 +16,27 @@
 		</ul>
 	</div>
 </section>
-<section class="booking_det">
-	<div class="container">
-		<h1 class="booking_title">Booking details</h1>
-		<div class="booking_container">
-			<p class="booking_det-title">Wonder of England queen</p>
-			<p class="booking_det-range">Mar 01 - Mar 13 2017</p>
-			<div class="booking_det_event">
-				<div class="det_event-city det_event-bl">
-					<p class="event-city-title event-title">Cities:</p>
-					<p class="event-city-text event-text">London - Paris - Leon - Muchen - Berlin</p>
-				</div>
-				<div class="det_event-guest det_event-bl">
-					<p class="event-guest-title event-title">Guests:</p>
-					<p class="event-guest-text event-text">1</p>
-				</div>
-				<div class="det_event-taiting det_event-bl">
-					<p class="event-taiting-title event-title">Raiting:</p>
-					<p class="event-taiting-text event-text">4*</p>
-				</div>
-				<div class="det_event-date det_event-bl">
-					<p class="event-taiting-title event-title">Start date:</p>
-					<p class="event-taiting-text event-text">17.10.2016</p>
-				</div>
-			</div>
-			<p class="booking_det-price">Total price: <span>$3200</span></p>
-		</div>
-	</div>
-</section>
+
 <section class="inform_container">
 	<div class="container">
-		<h1 class="booking_title">Your information</h1><a href="#" class="sing_new">Sign up new account</a>
+		<h1 class="booking_title">Map</h1>
 		<ul class="inform_list">
 			<li class="inform_item">
-				<p class="inform-title">Email</p>
-				<input type="text" placeholder="Enter your email address" class="inform-input"/>
+
+				<select name="city_and_tour" id="city_and_tour">
+						<option value="not">Select city</option>
+					<?php foreach (get_field('tours_and_sity', 2130) as $city){ ?>
+						<option value="<?= $city['city'] ?>"><?= $city['city'] ?></option>
+					<?php } ?>
+				</select>
+
 			</li>
-			<li class="inform_item">
-				<p class="inform-title">Password</p>
-				<input type="text" placeholder="Enter your password" class="inform-input"/>
-			</li>
-			<li class="inform_item inform_item-btn"><a href="#" class="inform-log_link">LOGIN</a></li>
+			
+			
 		</ul>
 	</div>
 </section>
 <main id="main"></main>
 
 <?php get_footer(); ?>
+<script src="<?php echo get_template_directory_uri(); ?>/js/select_tours.js"></script>
