@@ -28,9 +28,6 @@ if(select_ocation && tours_id){
   $("#share_package").click(function (e) {
     e.preventDefault();
 
-    localStorage.removeItem("url_share");
-    localStorage.setItem("url_share", url_share);
-
     var share_links = $("#share_package").siblings();
     share_links.each(function () {
       $( this ).toggle();

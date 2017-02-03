@@ -69,19 +69,19 @@ Description: One tour
 				<li class="package_item package_item-btn-share">
 					<a id="share_package" href="#" class="package-log_link">SHARE THIS PACKAGE</a>
 					<a style="display: none" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink()?>" class="package-log_link">
-						SHARE THIS PACKAGE FACEBOOK
+						FACEBOOK
 					</a>
 					<a style="display: none" target="_blank" href="https://twitter.com/home?status=<?php echo get_permalink()?>" class="package-log_link">
-						SHARE THIS PACKAGE TWITTER
+						TWITTER
 					</a>
 					<a style="display: none" target="_blank" href="https://plus.google.com/share?url=<?php echo get_permalink()?>" class="package-log_link">
-						SHARE THIS PACKAGE Google Plus
+						Google Plus
 					</a>
 					<a style="display: none" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo get_permalink()?>" class="package-log_link">
-						SHARE THIS PACKAGE LinkedIn
+						LinkedIn
 					</a>
 					<a style="display: none" target="_blank" href="https://pinterest.com/pin/create/button/?url=URL_SHARE&media=<?php echo get_permalink()?>" class="package-log_link">
-						SHARE THIS PACKAGE Pinterest
+						Pinterest
 					</a>
 				</li>
 			</ul>
@@ -139,5 +139,7 @@ Description: One tour
 	var url_share= "<?=get_permalink()?>";
 	var id_package = <?=get_the_ID()?>;
 	var url_redirect_start_planing ="<?=get_permalink(2169)?>";
+	localStorage.removeItem("url_share");
+	localStorage.setItem("url_share", url_share);
 </script>
 <?php get_footer(); ?>

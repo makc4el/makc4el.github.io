@@ -268,7 +268,6 @@ add_action('wp_ajax_nopriv_show_tours', 'show_tours_ajax');
 
 
 /////////////////////START PLANING//////////////////////////////////////////////
-
 add_action('wp_ajax_start_planing', 'start_planing');
 add_action('wp_ajax_nopriv_start_planing', 'start_planing');
 function start_planing() {
@@ -276,7 +275,6 @@ function start_planing() {
 	unset($_SESSION['id_package']);
 	$_SESSION['id_package']= $id_package;
 
-//	echo $_SESSION['id_package'];
 	wp_die();
 }
 
