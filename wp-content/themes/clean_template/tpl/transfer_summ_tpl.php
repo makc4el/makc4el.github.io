@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Start planing
+Template Name: Transfer summ
 */
 ?>
 <?php get_header(); ?>
@@ -8,7 +8,6 @@ Template Name: Start planing
 <?php
 $id= $_SESSION['id_package'];
 ?>
-
 
 <section class="way_block-container">
 	<div class="container">
@@ -61,9 +60,7 @@ $id= $_SESSION['id_package'];
 			<ul class="package_list transfer_chose-list">
 				<li class="transform_chose-item transform_nav transform_nav-active"><a class="transform_chose-link">PLANNER</a></li>
 				<li class="transform_chose-item transform_nav"><a class="transform_chose-link">MAP</a></li>
-				<li class="transform_chose-item transform_nav">
-					<a id="summary" href="<?= get_permalink(2199)?>" class="transform_chose-link">SUMMARY</a>
-				</li>
+				<li class="transform_chose-item transform_nav"><a class="transform_chose-link">SUMMARY</a></li>
 				<li class="transform_chose-item transform_chose-item-request"><a class="transform_chose-link">Special request</a></li>
 				<li class="package_item package_item-btn transform_chose-item"><a href="#" class="inform-log_link package-log_link">BOOK ORDER</a></li>
 				<li class="package_item package_item-btn-share">
@@ -73,111 +70,97 @@ $id= $_SESSION['id_package'];
 			</ul>
 		</div>
 	</section>
-	<?php
-	$fields = get_fields($id);
-	foreach ($fields['itinerarys2'] as $key => $item) :
-	?>
-		<?php if($item['acf_fc_layout'] == 'one_day') : ?>
-	<section class="transfer_way">
+	<section class="transfer-summ_text-section">
 		<div class="container">
-			<ul class="transfer-way_list">
-				<li class="transfer-wat_item">
-					<div class="transfer-logo"></div>
-				</li>
-				<li class="transfer-wat_item transfer-way_item-type">
-					<p class="transfer-way_title">TRANSFER TYPE</p>
-					<p class="transfer-way_text">
-						<?=$item['transfer_type']?>
-					</p>
-				</li>
-				<li class="transfer-wat_item transfer-way_item-from">
-					<p class="transfer-way_title">FROM</p>
-					<p class="transfer-way_text">
-						<?=$item['from']?>
-					</p>
-					<p class="transfer-wat_date">
-						<?=$item['from_date']?>
-					</p>
-				</li>
-				<li class="transfer-wat_item transfer-way_item-to">
-					<p class="transfer-way_title">TO</p>
-					<p class="transfer-way_text">
-						<?=$item['to']?>
-					</p>
-					<p class="transfer-wat_date">
-						<?=$item['to_date']?>
-					</p>
-				</li>
-				<li class="transfer-wat_item transfer-way_item-btn">
-					<a href="#" class="transfer-way_btn">DETAILS & ADJUST</a>
-				</li>
-			</ul>
-			<ul class="transfer-way_list">
-				<li class="transfer-wat_item">
-					<div class="transfer-logo"></div>
-				</li>
-				<li class="transfer-wat_item transfer-way_item-type">
-					<p class="transfer-way_title">CITY</p>
-					<p class="transfer-way_text">
-						<?=$item['city']?>
-					</p>
-				</li>
-				<li class="transfer-wat_item transfer-way_item-from">
-					<p class="transfer-way_title">HOTEL</p>
-					<p class="transfer-way_text">
-						<?=$item['hotel']?>
-					</p>
-				</li>
-				<li class="transfer-wat_item transfer-way_item-to">
-					<p class="transfer-way_title">ROOM</p>
-					<p class="transfer-way_text">
-						<?=$item['room']?>
-					</p>
-				</li>
-				<li class="transfer-wat_item transfer-way_item-btn">
-					<p class="transfer-way-path">4 nights (Feb 01 - Feb 05)</p>
-					<div id="slider"></div>
-				</li>
-			</ul>
-		</div>
-	</section>
-	<section class="transfer_seats">
-		<div class="container">
-
-			<?php if($item['sights']){ foreach ($item['sights'] as $k=>$v){ ?>
-			<p class="transfer_seats-title">
-				<?=$v['date']?>
-			</p>
-			<ul class="transfer_seats-list">
-				<?php foreach ($v['repeater'] as $vv){ ?>
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image" style="background: url(<?=$vv['image']?>) no-repeat center; background-size: cover;"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">
-								<?=$vv['time']?>
-							</p>
-							<p class="transfer_seats_object">
-								<?=$vv['description']?>
-							</p>
-						</div>
+			<div class="transfer-summ_content">
+				<div class="transfer-summ_container">
+					<div class="transfer-summ_title-container">
+						<h1 class="transfer-summ_title">
+							<?= get_field("title", $id) ?>
+						</h1>
+						<p class="transfer-summ_text">
+							<?= get_field("description_iterary_on_transfer_summ_page", $id) ?>
+						</p>
+						<p class="transfer-summ_title">Overall Costs</p>
+						<p class="transfer-summ_cost">Price per Person<span>USD <?=get_field('price', $id)?></span></p>
+						<p class="transfer-summ_cost transfer-summ_cost-total">TOTAL PRICE<span>USD 5,072</span></p>
 					</div>
-				</li>
-				<?php } ?>
-			</ul>
-			<?php } } ?>
+					<div class="transfer-summ_image-container">
+						<div src="images/transfer-icon/bound.jpg" class="transfer-summ-images"></div>
+					</div>
+				</div>
+				<div class="transfer-summ_include-container">
+					<ul class="transfer-summ_include">
+						<li class="transfer-summ_item transfer-summ_item-title">Included</li>
+						<?php foreach (get_field("included", $id) as $k=>$v){ ?>
+							<li class="transfer-summ_item">
+								<?=$v['item']?>
+							</li>
+						<?php } ?>
+					</ul>
+					<ul class="transfer-summ_include">
+						<li class="transfer-summ_item transfer-summ_item-title">Excluded</li>
+						<?php foreach (get_field("excluded", $id) as $k=>$v){ ?>
+							<li class="transfer-summ_item transfer-summ_item-none">
+								<?=$v['item']?>
+							</li>
+						<?php } ?>
+					</ul>
+				</div>
+				<div class="transfer-itinerary">
+					<div class="transfer-itinerary_title">ITINERARY</div>
+					<?php
+					$fields = get_fields($id);
+					foreach ($fields['itinerarys2'] as $key => $item) :
+					?>
+					<?php if($item['acf_fc_layout'] == 'one_day') : ?>
+					<ul class="transfer-itinerary_list">
+						<li class="transfer-itinerary_item transfer-itinerary-t">
+							<p class="transfer-itinerary_item_title">
+								<?=$item['from_date']?>
+							</p>
+							<p class="transfer-itinerary_item_time">
+								<span><?=$item['from_date']?></span>
+								<span><?=$item['to_date']?></span>
+							</p>
+						</li>
+						<li class="transfer-itinerary_item transfer-itinerary-tx">
+							<p class="transfer-itinerary_item-text">
+								<?=$item['city']?>
+							</p>
+							<div class="transfer-iti-row">
+								<div class="transfer-iti-col-title"><?=$item['transfer_type']?></div>
+								<div class="transfer-iti-col-text"><?=$item['from']?></div>
+							</div>
+<!--							<div class="transfer-iti-row">-->
+<!--								<div class="transfer-iti-col-title">Road Transfer (Private)</div>-->
+<!--								<div class="transfer-iti-col-text">Novotel Xinqiao London Double Room Double Bed Incl.: Breakfast</div>-->
+<!--							</div>-->
+						</li>
+					</ul>
+					<?php endif; ?>
+					<?php endforeach; ?>
+
+				</div>
+			</div>
 		</div>
 	</section>
-	<?php endif; ?>
-	<?php endforeach; ?>
+	<section class="what-next_section">
+		<div class="container">
+			<div class="what-next">
+				<div class="what-next_text">
+					<h1 class="what-next-title">What’s next?</h1>
+					<p class="what-next-text">- Go to the travel planner <span>to select activities, pick hotels and change durations.</span></p>
+					<p class="what-next-text">- Go to the summary <span>to send yourself a link to the itinerary or to print it.</span></p>
+				</div><a href="#" id="sheckout" class="what-next_text-btn">CHECKOUT</a>
+			</div>
+		</div>
+	</section>
 </main>
 
 <?php get_footer() ?>
 <script>
-	//	share_package2
-	// show SHARE LINK2
 	$(function() {
-
 		var share_url_inner= localStorage.getItem("url_share");
 		console.log(share_url_inner);
 
@@ -201,7 +184,5 @@ $id= $_SESSION['id_package'];
 		$('#location').val(location)
 
 	});
-
-
 </script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/start_planing.js"></script>
