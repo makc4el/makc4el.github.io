@@ -1,5 +1,7 @@
 jQuery(function($){
-// AJAX registration
+
+
+    // AJAX registration
     $('#submit_registration').click(function(e){
         e.preventDefault();
         $('.error_registration').remove();
@@ -68,6 +70,7 @@ jQuery(function($){
                 success:function(data){
                     if( data=='Registration complete.' ) {
                         console.log('SUCCES');
+                        window.location = "/checkout/";
                     } else {
                         var response= JSON.parse(data);
                         for (var i=0; i<response.length; i++){
@@ -144,6 +147,7 @@ jQuery(function($){
                     console.log(data);
                     if( data=='authorization complete.' ) {
                         console.log('SUCCES');
+                        window.location = "/checkout/";
                     } else {
                         var li = document.createElement('li');
                         li.className = "error_authorization";
@@ -163,6 +167,8 @@ jQuery(function($){
         }
 
     });
+
+
     //start PLANING
     $("#start_planing").click(function (e) {
         e.preventDefault();

@@ -152,7 +152,7 @@ $id= $_SESSION['id_package'];
 					<h1 class="what-next-title">What’s next?</h1>
 					<p class="what-next-text">- Go to the travel planner <span>to select activities, pick hotels and change durations.</span></p>
 					<p class="what-next-text">- Go to the summary <span>to send yourself a link to the itinerary or to print it.</span></p>
-				</div><a href="#" id="sheckout" class="what-next_text-btn">CHECKOUT</a>
+				</div><a href="<?=get_permalink(2052)?>" id="sheckout" class="what-next_text-btn">CHECKOUT</a>
 			</div>
 		</div>
 	</section>
