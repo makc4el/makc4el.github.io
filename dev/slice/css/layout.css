@@ -166,6 +166,9 @@ body {
 .open-menu {
   display: none; }
 
+.min-menu {
+  display: none; }
+
 .way_block-container {
   text-align: center; }
 
