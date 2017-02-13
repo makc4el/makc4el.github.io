@@ -1,11 +1,17 @@
 .way_block-container{
 	text-align: center;
-}
-.way_block-container{
 	color:#fff;
 	font-family: 'Lato';
 	font-weight: 300;
 	font-size: 1.2rem;
+	position: relative;
+	z-index: 2;
+}
+.selectric-items li.selected{
+	background: #9c94bf;
+}
+.package_block-item{
+	margin-bottom: 2rem;
 }
 .way_list{
 	width: 100%;

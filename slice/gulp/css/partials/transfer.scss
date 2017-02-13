@@ -5,6 +5,13 @@
 		text-align: left;
 	}
 }
+.ui-datepicker{
+    width: 200px;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+    text-align: center;
+    line-height: 2rem;
+}
 .transfer_title{
     color: white;
     font-family: 'Lato';
@@ -92,4 +99,10 @@
 }
 .transfer-wat_item.transfer-way_item-btn{
     width: 21.8%;
+}
+.transform_nav.transform_nav-min{
+    display: none;
+}
+.package_item-btn-share{
+    width: 20.5%;
 }
