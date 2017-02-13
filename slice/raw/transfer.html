@@ -25,6 +25,20 @@
 	</svg>
 </div>
     <header id="header"><a href="/" class="header_logo"><img src="images/logo.png"/></a>
+      <div class="open-menu"></div>
+      <div class="min-menu">
+        <div class="cancel-menu"></div>
+        <div class="container">
+          <ul class="header_login-list">
+            <li class="header_login-item"><a href="#" class="header_login-link">LOG IN</a></li>
+            <li class="header_login-item"><a href="#" class="header_login-link">SIGN UP</a></li>
+          </ul>
+          <ul class="header_lenguage_list">
+            <li class="header_lenguage-item header_lenguage-item_active"><a href="#" class="heder_lenguage-link">ENG</a></li>
+            <li class="header_lenguage-item"><a href="#" class="heder_lenguage-link">ARAB</a></li>
+          </ul>
+        </div>
+      </div>
       <div class="container">
         <div class="header_search_group"><img src="images/icons/search.svg" class="header_search-btn"/>
           <input type="text" placeholder="Search country"/>
@@ -90,6 +104,9 @@
             <li class="transform_chose-item transform_chose-item-request"><a class="transform_chose-link">Special request</a></li>
             <li class="package_item package_item-btn transform_chose-item"><a href="#" class="inform-log_link package-log_link">BOOK ORDER</a></li>
             <li class="package_item package_item-btn-share transform_chose-item"><a href="#" class="package-log_link">SHARE THIS PACKAGE</a></li>
+            <li class="transform_chose-item transform_nav transform_nav-active transform_nav-min"><a class="transform_chose-link">PLANNER</a></li>
+            <li class="transform_chose-item transform_nav transform_nav-min"><a class="transform_chose-link">MAP</a></li>
+            <li class="transform_chose-item transform_nav transform_nav-min"><a class="transform_chose-link">SUMMARY</a></li>
           </ul>
         </div>
       </section>
@@ -238,6 +255,8 @@
     <script src="js/jquery.selectric.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEbuSUVdIXKHOisMV1RlVQBGeihEJd2C0&amp;callback=initMap"></script>
     <footer id="footer"></footer>
   </body>
 </html>

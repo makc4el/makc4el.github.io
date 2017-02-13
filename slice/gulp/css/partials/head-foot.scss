@@ -7,6 +7,8 @@
 	color: #40396b;
 	font-weight: 300;
 	font-size: 1.4rem;
+	position: relative;
+	z-index: 2;
 }
 .header_logo img{
 	width: 100%;
@@ -120,4 +122,10 @@
 	text-decoration: none;
 	color:#40396b;
 	line-height: 8rem;
+}
+.open-menu{
+	display: none;
+}
+.min-menu{
+	display: none;
 }

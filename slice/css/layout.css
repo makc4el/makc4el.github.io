@@ -54,7 +54,9 @@ body {
   font-family: 'Lato';
   color: #40396b;
   font-weight: 300;
-  font-size: 1.4rem; }
+  font-size: 1.4rem;
+  position: relative;
+  z-index: 2; }
 
 .header_logo img {
   width: 100%;
@@ -163,14 +165,26 @@ body {
   color: #40396b;
   line-height: 8rem; }
 
-.way_block-container {
-  text-align: center; }
+.open-menu {
+  display: none; }
+
+.min-menu {
+  display: none; }
 
 .way_block-container {
+  text-align: center;
   color: #fff;
   font-family: 'Lato';
   font-weight: 300;
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  position: relative;
+  z-index: 2; }
+
+.selectric-items li.selected {
+  background: #9c94bf; }
+
+.package_block-item {
+  margin-bottom: 2rem; }
 
 .way_list {
   width: 100%;
@@ -234,7 +248,7 @@ body {
   width: 100%;
   height: auto;
   background-color: #282560;
-  border: 1px solid #9c94bf;
+  border: 1px solid #282560;
   padding: 1.4rem 1.6rem 1rem 1.6rem; }
 
 .booking_det-title {
@@ -957,6 +971,13 @@ input[type=checkbox]:checked + label:before {
   .transfer_title_container .container {
     text-align: left; }
 
+.ui-datepicker {
+  width: 200px; }
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  text-align: center;
+  line-height: 2rem; }
+
 .transfer_title {
   color: white;
   font-family: 'Lato';
@@ -1044,6 +1065,12 @@ input[type=checkbox]:checked + label:before {
 
 .transfer-wat_item.transfer-way_item-btn {
   width: 21.8%; }
+
+.transform_nav.transform_nav-min {
+  display: none; }
+
+.package_item-btn-share {
+  width: 20.5%; }
 
 .transfer_chose .package_item-date {
   width: 14%; }
@@ -1342,6 +1369,10 @@ input[type=checkbox]:checked + label:before {
   height: 25rem;
   position: relative; }
 
+.transfer-wat_item.transfer-way_item-btn {
+  width: 19.8%;
+  line-height: 1.6; }
+
 .owl-item {
   width: 100%;
   height: 100%;
@@ -1356,6 +1387,9 @@ input[type=checkbox]:checked + label:before {
   height: 100%;
   overflow: hidden; }
 
+.tour-carts_section .container {
+  text-align: center; }
+
 .cart_container {
   background: #fff;
   width: 36rem;
@@ -1364,7 +1398,7 @@ input[type=checkbox]:checked + label:before {
   float: left;
   text-align: left;
   margin-top: 1.5rem;
-  margin-right: 3rem;
+  margin-right: 2.5rem;
   margin-bottom: 1.5rem; }
 
 .cart-title {
@@ -1741,3 +1775,14 @@ p.transfer-summ_title {
   color: #e83966; }
   .what-next-text span {
     color: #000; }
+
+#map_main {
+  width: 100%; }
+
+#map {
+  width: 100%;
+  height: 95vh;
+  height: calc(100vh - 7rem);
+  position: absolute;
+  top: 7rem;
+  left: 0; }

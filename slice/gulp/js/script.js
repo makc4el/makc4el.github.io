@@ -1,10 +1,24 @@
  function Travel(){
  	this.init = function(){
  		this.SelectricInit();
+ 		this.OpenMenu();
+ 		this.CloseMenu();
  	}
 
  	this.SelectricInit = function(){
  		var self = this;
+ 	}
+ 	this.OpenMenu = function(){
+ 		var self = this;
+ 		$('.open-menu').click(function(){
+ 			$('.min-menu').slideDown();
+ 		});
+ 	}
+ 	this.CloseMenu = function(){
+ 		var self = this;
+ 		$('.cancel-menu').click(function(){
+ 			$('.min-menu').slideUp();
+ 		});
  	}
  	this.init();
  }
