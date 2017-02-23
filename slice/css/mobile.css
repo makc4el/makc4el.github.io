@@ -1,9 +1,24 @@
+/*@media only screen and (min-width: 1920px) {
+	.map-content{
+		font-size: 8.7px;
+	}
+}*/
+@media only screen and (min-width: 1440px) {
+  .map-content {
+    font-size: 7.5px;
+    height: 800px;
+    left: 0;
+    right: 0;
+    margin: 0 auto; } }
+
 @media only screen and (max-width: 1150px) {
   .container {
     padding-left: 2rem;
     padding-right: 2rem; }
   .cart_container:nth-child(1n+1) {
-    float: none; } }
+    float: none; }
+  #map_start {
+    padding-top: 18rem; } }
 
 @media only screen and (max-width: 950px) {
   .transfer_seats-item {
@@ -41,6 +56,16 @@
     width: 21.5rem; } }
 
 @media only screen and (max-width: 767px) {
+  .search-box {
+    display: block; }
+  #header > .container {
+    display: none; }
+  .choose_btn {
+    width: 14rem; }
+  .choose_map-title {
+    font-size: 1.6rem; }
+  #header .min-menu {
+    height: auto; }
   .min-menu ul {
     display: block; }
   .open-menu {
@@ -179,7 +204,7 @@
     width: 100%;
     margin-right: 0%; }
   .tour_chose.package_chose .package_item-counter {
-    width: 48%;
+    width: 45% !important;
     margin-right: 1%;
     margin-left: 1%; }
   .inform-log_link {
@@ -293,7 +318,8 @@
     float: none;
     display: block; }
   #header {
-    height: auto; }
+    height: auto;
+    padding-bottom: 1rem; }
   .header_logo-img {
     margin: 1rem 0 1rem 0; }
   .left_bar-search {

@@ -56,7 +56,7 @@ body {
   font-weight: 300;
   font-size: 1.4rem;
   position: relative;
-  z-index: 2; }
+  z-index: 3; }
 
 .header_logo img {
   width: 100%;
@@ -77,6 +77,13 @@ body {
   position: relative;
   width: 100%;
   display: inline-block; }
+
+.search-box {
+  display: none;
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  width: 3rem; }
 
 #header .container {
   text-align: right; }
@@ -1786,3 +1793,179 @@ p.transfer-summ_title {
   position: absolute;
   top: 7rem;
   left: 0; }
+
+.choose_map {
+  background: #0d0d49;
+  height: 8rem;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  padding: 1rem; }
+
+.choose_map-title {
+  font-family: Lato;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: #fff;
+  display: inline-block;
+  float: left;
+  text-align: left;
+  margin-top: 1rem; }
+  .choose_map-title span {
+    display: block;
+    color: #c3bbe3;
+    font-family: Lato;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 1px; }
+
+.choose_btn {
+  float: right;
+  color: #fff;
+  font-family: Lato;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 1.14px;
+  text-decoration: none;
+  display: inline-block;
+  width: 16rem;
+  text-transform: uppercase;
+  height: 5.5rem;
+  background-image: linear-gradient(45deg, #e8359e 0%, #e73355 100%);
+  line-height: 5.5rem;
+  opacity: 1;
+  transition-duration: 0.3s; }
+  .choose_btn:hover {
+    opacity: 0.7;
+    text-align: center; }
+  .choose_btn span {
+    position: relative;
+    display: inline-block; }
+    .choose_btn span:after {
+      content: '';
+      position: absolute;
+      right: -1.9rem;
+      top: 2rem;
+      background: url(../images/icon.png);
+      background-size: 100% 100%;
+      width: 1.7rem;
+      height: 1.3rem; }
+
+#map-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; }
+
+#map_start {
+  background: #282560;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center; }
+  #map_start .container {
+    position: static;
+    width: 100%; }
+
+.map-content {
+  font-size: 0.52vw;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  height: 62vw;
+  width: 100%;
+  left: 0;
+  max-width: 1440px; }
+  .map-content img {
+    opacity: 1;
+    transition-duration: 0.3s; }
+    .map-content img:hover {
+      cursor: pointer; }
+  .map-content img.active {
+    opacity: 0.8; }
+  .map-content span {
+    position: absolute;
+    width: 3.6em;
+    height: 3.6em;
+    background: url(../images/map/white.png) no-repeat center;
+    background-size: 100% 100%;
+    transition-duration: 0.3s; }
+  .map-content span.active {
+    background: url(../images/map/red.png) no-repeat center;
+    background-size: 100% 100%; }
+  .map-content .nam_point {
+    left: 51.8em;
+    top: 48.7em; }
+  .map-content .sam_point {
+    top: 73.4em;
+    left: 65.4em; }
+  .map-content .aus_point {
+    left: 145.7em;
+    top: 79em; }
+  .map-content .eur_point {
+    left: 102.1em;
+    top: 41.4em; }
+  .map-content .asi_point {
+    left: 117.6em;
+    top: 51.7em; }
+  .map-content .afr_point {
+    left: 94.8em;
+    top: 65em; }
+
+.nam {
+  position: absolute;
+  top: 25em;
+  left: 24.8em;
+  width: 60.3em;
+  height: 41.7em; }
+
+.sam {
+  position: absolute;
+  top: 64.7em;
+  left: 58.3em;
+  width: 23.3em;
+  height: 29.3em; }
+
+.eur {
+  position: absolute;
+  left: 85.1em;
+  top: 24.7em;
+  width: 82.8em;
+  height: 30em; }
+
+.asi {
+  left: 99.9em;
+  position: absolute;
+  top: 44.3em;
+  width: 49.3em;
+  height: 30em; }
+
+.aus {
+  left: 134.2em;
+  position: absolute;
+  top: 71.2em;
+  width: 19.6em;
+  height: 16.7em; }
+
+.afr {
+  left: 83.2em;
+  position: absolute;
+  top: 54.2em;
+  width: 26.6em;
+  height: 29.4em; }
+
+.point_text {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  color: white;
+  font-family: Lato;
+  font-size: 1.9em;
+  font-weight: 400;
+  transform: translateX(100%);
+  right: -0.6em;
+  position: absolute;
+  top: 0.3em; }
