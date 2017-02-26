@@ -177,13 +177,6 @@ function show_tours_ajax(){
 		echo "not available tours";
 		wp_die();
 	}
-//	$tour_titles = array();
-//	foreach ($available_tours as $tour){
-//		foreach ($tour as $v){
-//			if ($v['tour'])
-//				$tour_posts[]=$v['tour'];
-//		}
-//	}
 
 	//начало путевки
 	$start_tour = $select_locations[1];
@@ -191,7 +184,7 @@ function show_tours_ajax(){
 		echo "not available tours";
 		wp_die();
 	}
-//	print_r($start_tour);
+
 	$found_tours = array();
 	foreach ($available_tours['tours_and_sity'] as $k=>$v){
 
@@ -213,6 +206,7 @@ function show_tours_ajax(){
 	}
 
 	foreach ($found_tours as $tour){
+
 		?>
 		<div class="cart_container">
 			<div class="cart_img-container">
@@ -249,7 +243,8 @@ function show_tours_ajax(){
 					<?=$tour['top_highlightspreview']?>
 				</p>
 				<a href="#" class="cart-btn">view details</a>
-				<p id="id_tours" style="display: none"><?php foreach ($tour['tour'] as $v){echo $v->ID.",";} ?></p>
+				<p class="is_tours" style="display: none"><?php foreach ($tour['tour'] as $v){echo $v->ID.",";} ?></p>
+				<p class="title_tour" style="display: none"><?=$tour['title_tour']?></p>
 			</div>
 		</div>
 	<?php } ?>
@@ -257,9 +252,10 @@ function show_tours_ajax(){
 		$(".cart-btn").click(function (e) {
 			e.preventDefault();
 			var id_show_tours = $(this).next().text();
+			var title_tour = $(this).next().next().text();
 			localStorage.setItem("id_show_tours", id_show_tours);
+			localStorage.setItem("title_tour", title_tour);
 			window.location = start_paning;
-
 		});
 	</script>
 <?php
@@ -276,9 +272,34 @@ add_action('wp_ajax_nopriv_show_tours', 'show_tours_ajax');
 add_action('wp_ajax_start_planing', 'start_planing');
 add_action('wp_ajax_nopriv_start_planing', 'start_planing');
 function start_planing() {
-	$id_package = intval( $_POST['id_package'] );
-	unset($_SESSION['id_package']);
-	$_SESSION['id_package']= $id_package;
+	$title_tour = $_POST['title_tour'];
+
+	$available_tours = get_fields(2130, 'tours_and_sity');
+	if(!$available_tours){
+		echo "not available tours";
+		wp_die();
+	}
+
+	foreach ($available_tours['tours_and_sity'] as $k=>$v){
+		if($v['title_tour']==$title_tour){
+			
+			$response = array(
+				'title_show_tour'=>$v['title_tour'],
+				'description_1'=>$v['description_1'],
+				'description_2'=>$v['description_2'],
+				'title_top_highlights'=>$v['title_top_highlights'],
+				'top_highlights2'=>$v['top_highlights'],
+				'tour_images'=>$v['tour_images'],
+				'tour_price'=>$v['tour_price'],
+				'title_tour'=>$v['title_tour'],
+				'count_days'=>$v['count_days'],
+				'title_before_description_2'=>$v['title_before_description_2'],
+		);
+		}
+	}
+
+echo json_encode($response);
+
 
 	wp_die();
 }

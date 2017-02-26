@@ -46,26 +46,12 @@
 
 <section class="tour-carts_section">
 	<div class="container" id="tours">
-
-
-
-
-
+		
+		
+		
 	</div>
 </section>
 
-
-
-
-<!--var data = {-->
-<!--action: 'my_action',-->
-<!--whatever: 1234-->
-<!--};-->
-<!---->
-<!--// 'ajaxurl' не определена во фронте, поэтому мы добавили её аналог с помощью wp_localize_script()-->
-<!--jQuery.post( ajaxurl, data, function(response) {-->
-<!--console.log('Получено с сервера: ' + response);-->
-<!--});-->
 <?php get_footer(); ?>
 
 <script>
