@@ -1,0 +1,122 @@
+#map_start{
+    background: #282560;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top:0;
+    left: 0;
+    text-align: center;
+    .container{
+        position: static;
+        width:100%;
+    }
+}
+.map-content{
+    font-size: 0.52vw;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    height: 62vw;
+    width: 100%;
+    left: 0;
+    max-width: 1440px;
+    img{
+        opacity: 1;
+        transition-duration: 0.3s;
+        &:hover{
+            cursor:pointer;
+        };
+    }
+    img.active{
+        opacity: 0.8;
+    }
+    span{
+        position: absolute;
+        width: 3.6em;
+        height: 3.6em;
+        background: url(../images/map/white.png) no-repeat center;
+        background-size: 100% 100%;
+        transition-duration: 0.3s;
+    }
+    span.active{
+        background: url(../images/map/red.png) no-repeat center;
+        background-size: 100% 100%;
+    }
+    .nam_point{
+        left: 51.8em;
+        top: 48.7em;
+    }
+    .sam_point{
+        top: 73.4em;
+        left: 65.4em;
+    }
+    .aus_point{
+        left: 145.7em;
+        top: 79em;
+    }
+    .eur_point{
+        left: 102.1em;
+        top: 41.4em;
+    }
+    .asi_point{
+        left: 117.6em;
+        top: 51.7em;
+    }
+    .afr_point{
+        left: 94.8em;
+        top: 65em;
+    }
+}
+.nam{
+    position: absolute;
+    top: 25em;
+    left: 24.8em;
+    width: 60.3em;
+    height: 41.7em;
+}
+.sam{
+    position: absolute;
+    top: 64.7em;
+    left: 58.3em;
+    width: 23.3em;
+    height: 29.3em;
+}
+.eur{
+    position: absolute;
+    left: 85.1em;
+    top: 24.7em;
+    width: 82.8em;
+    height: 30em;
+}
+.asi{
+    left: 99.9em;
+    position: absolute;
+    top: 44.3em;
+    width: 49.3em;
+    height: 30em;
+}
+.aus{
+    left: 134.2em;
+    position: absolute;
+    top: 71.2em;
+    width: 19.6em;
+    height: 16.7em;
+}
+.afr{
+    left: 83.2em;
+    position: absolute;
+    top: 54.2em;
+    width: 26.6em;
+    height: 29.4em;
+}
+.point_text{
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    color: white;
+    font-family: Lato;
+    font-size: 1.9em;
+    font-weight: 400;
+    transform: translateX(100%);
+    right: -0.6em;
+    position: absolute;
+    top: 0.3em;
+}

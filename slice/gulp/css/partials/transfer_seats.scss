@@ -1,0 +1,108 @@
+.transfer_seats{
+	width: 100%;
+	text-align: center;
+	.container{
+		text-align: left;
+	}
+}
+.transfer_seats-title{
+    color: white;
+    font-family: 'Lato';
+    font-size: 2rem;
+    margin-top: 2.7rem;
+    text-align: left;
+    display: inline-block;
+    margin-bottom: 2.2rem;
+    position: relative;
+}
+.transfer_seats-container{
+	background: #fff;
+	position: relative;
+	height: 11rem;
+	width: 36.1rem;
+	text-align: left;
+	display: inline-block;
+}
+.transfer_seats_time{
+	color: #e73361;
+	font-family: 'Lato';
+	font-size: 1.6rem;
+	margin-bottom: 1.7rem;
+}
+.transfer_seats_object{
+	color: #40396b;
+	font-family: 'Lato';
+	font-size: 1.6rem;
+	font-weight: 400;
+}
+.transfer_seats_edit{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 3.2rem;
+	height: 3.2rem;
+	background: grey;
+}
+.transfer_seats-image{
+	width: 11rem;
+	height: 100%;
+	display: inline-block;
+	float: left;
+	background: url(../images/transfer-icon/rectangle-2-copy-2.png) no-repeat center;
+	background-size: cover;
+}
+.transfer_seats-content{
+	width: 25.1rem;
+	float: left;
+	padding: 1.7rem;
+}
+.transfer_seats-item{
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 2.8rem;
+}
+.transfer_seats-item:nth-child(3n+3){
+	margin-right: 0;
+}
+.transfer_seats-list{
+	margin-bottom: 1rem;
+}
+.transfer-way-path{
+	color: #e73361;
+	font-family: 'Lato';
+	font-size: 1.6rem;
+	font-weight: 400;
+	margin-top: -0.4rem;
+	letter-spacing: 0.025rem;
+}
+#slider{
+	margin-top: 2.8rem;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+	width: 2.4rem;
+	top: -1.2rem;
+	outline: none;
+	height: 2.4rem;
+	border-radius: 50%;
+	background-color: white;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05), 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.ui-widget.ui-widget-content{
+	border: none;
+}
+.ui-widget-header{
+	background: #e73361;
+}
+.ui-slider-horizontal{
+	height: 2px;
+}
+.ui-widget.ui-widget-content{
+	background: #cecece;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+	box-shadow: none;
+}
+.package-log_link{
+	transition-duration: 0.3s;
+}
+/*#cecece*/

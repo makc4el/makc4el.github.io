@@ -1,0 +1,217 @@
+.tour_chose{
+	padding-top: 3.6rem;
+	.package_item-opac{
+		.package_item-title{
+			opacity: 0;
+		}
+	}
+	.package_item-money{
+		width: 9%;
+	}
+	.package_item-money input{
+		background: none;
+	}
+	.package_item-money-last{
+		margin-right: 0;
+	}
+	.package_item-countries:after{
+	    content: 'Edit';
+	    position: absolute;
+	    right: 0;
+	    width: 6.2rem;
+	    bottom: 0.5rem;
+	    height: 3rem;
+	    color: white;
+	    font-family: 'Lato';
+	    font-size: 1.6rem;
+	    font-weight: 400;
+	    border-left: 1px solid #fff;
+	    text-align: center;
+	    line-height: 3rem;
+	}
+}
+.tour-carts_section{
+	text-align: center;
+	width: 100%;
+}
+.cart-cost{
+    color: #f92626;
+    font-family: 'Lato';
+    font-size: 1.85rem;
+    font-weight: 800;
+    letter-spacing: 0.3rem;
+    text-align: right;
+    margin-top: 0.9rem;
+    margin-right: 1rem;
+}
+.cart-days{
+    color: #9893b4;
+    font-family: 'Lato';
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    text-align: right;
+    margin-right: 1.1rem;
+    margin-top: 0.6rem;
+}
+.cart_img-container{
+	width: 100%;
+	height: 25rem;
+	position: relative;
+}
+.transfer-wat_item.transfer-way_item-btn{
+    width: 19.8%;
+    line-height: 1.6;
+}
+.owl-item{
+    width: 100%;
+    height: 100%;
+    background: url(../images/tour/rectangle-7.png) no-repeat center;
+    background-size: cover;
+    display: inline-block;
+    vertical-align: top;
+}
+.cart-img-list{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+	.tour-carts_section .container{
+		text-align: center;
+	}
+.cart_container{
+	background: #fff;
+	width: 36rem;
+	height: 61rem;
+	display: inline-block;
+	float: left;
+	text-align: left;
+	margin-top: 1.5rem;
+	margin-right: 2.5rem;
+	margin-bottom: 1.5rem;
+}
+.cart-title{
+	color: #40396b;
+	font-family: 'Lato';
+	font-size: 2rem;
+	font-weight: 600;
+	text-align: left;
+}
+.cart_container:nth-child(3n+3){
+	margin-right: 0;
+}
+.cart-min-title{
+    color: #7e6dcf;
+    font-family: 'Lato';
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+    margin-bottom: 1.2rem;
+}
+.cart-path{
+    color: #40396b;
+    font-family: 'Lato';
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.45;
+    letter-spacing: 0.02rem;
+}
+.cart-star-text{
+color: #40396b;
+    font-family: 'Lato';
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-top: 1.5rem;
+}
+.cart-btn {
+    color: white;
+    font-family: 'Lato';
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 4.8rem;
+    display: block;
+    margin-right: auto;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-left: auto;
+    text-decoration: none;
+    width: 31.2rem;
+    height: 5rem;
+    margin-top: 2.4rem;
+    background-image: linear-gradient(45deg, #e8359e 0%, #e73355 100%);
+    box-shadow: 0 4px 15px rgba(128, 120, 171, 0.5);
+	&:hover{
+		opacity:0.8;
+	}
+}
+.cart_content-container{
+    width: 100%;
+    padding: 1.3rem 2.35rem;
+    height: auto;
+}
+.cart-cost_conatiner{
+background: url(../images/tour/icon.png) no-repeat center;
+    background-size: 100% 100%;
+    width: 9rem;
+    height: 5.4rem;
+    float: right;
+    margin-top: 2.4rem;
+    position: relative;
+    z-index: 3;
+}
+.star-icon{
+	background: url(../images/tour/icons16px-gray-ic-starf.png) no-repeat center;
+	background-size: 100% 100%;
+	width: 1.6rem;
+	height: 1.6rem;
+	vertical-align: top;
+	display: inline-block;
+}
+.star-gold{
+	background: url(../images/tour/icons16px-color-ic-start.png) no-repeat center;
+	background-size: 100% 100%;
+	margin-right: 0.8rem;
+}
+.cart-star-container{
+	margin-top: 1.2rem;
+}
+.owl-stage-outer{
+	width: 100%;
+	height: 100%;
+}
+.owl-stage{
+	width: 100%;
+	height: 100%;
+}
+.owl-nav{
+	position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    color: #fff;
+}
+.owl-prev{
+	background: url(../images/tour/right.png) no-repeat center;
+	background-size: 100% 100%;
+	width: 3.2rem;
+	height: 3.2rem;
+	float: right;
+	transition-duration: 0.3s;
+	&:hover{
+		opacity:0.8;
+	}
+}
+.owl-next{
+	background: url(../images/tour/left.png) no-repeat center;
+	background-size: 100% 100%;
+	width: 3.2rem;
+	height: 3.2rem;
+	float: right;
+	transition-duration: 0.3s;
+	&:hover{
+		opacity:0.8;
+	}
+}

@@ -1,0 +1,139 @@
+#header{
+	background: #fff;
+	width: 100%;
+	text-align: center;
+	height: auto;
+	font-family: 'Lato';
+	color: #40396b;
+	font-weight: 300;
+	font-size: 1.4rem;
+	position: relative;
+	z-index: 3;
+}
+.header_logo img{
+	width: 100%;
+	height: 100%;
+}
+.header_logo{
+	position: absolute;
+    width: 18rem;
+    height: 5.75rem;
+    display: inline-block;
+    left: 8rem;
+    top: 1.1rem;
+    vertical-align: top;	
+    position: absolute;
+}
+.container{
+	max-width: 1140px;
+	position: relative;
+	width: 100%;
+	display: inline-block;
+}
+
+.search-box{
+	display: none;
+	position: absolute;
+	right: 2rem;
+	top: 2rem;
+	width: 3rem;
+}
+#header .container{
+	text-align: right;
+}
+.header_lenguage-item a{
+	text-decoration: none;
+	color: silver;
+}
+.header_lenguage-item_active a{
+	color: #4a3e85;
+	line-height: 8rem;
+	position: relative;
+	&:after{
+		content:'';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0px;
+		width: 100%;
+		height: 1px;
+		background: #4a3e85;
+	}
+}
+.header_lenguage-item{
+    display: inline-block;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    position: relative;
+}
+.header_lenguage-item:nth-last-child(1){
+	padding-right: 0;
+}
+.header_lenguage-item:not(:nth-child(1)){
+	border-left: 1px solid #4a3e85;
+}
+.header_lenguage_list{
+    vertical-align: top;
+    display: inline-block;
+}
+.header_login-list{
+	vertical-align: top;
+	display: inline-block;
+	margin-right: 1.8rem;
+}
+.header_search_group{
+    display: inline-block;
+    width: 45rem;
+    height: 4rem;
+    margin-top: 2rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid silver;
+    input{
+	    width: 100%;
+	    height: 100%;
+	    padding-left: 3.5rem;
+	    letter-spacing: 0.04rem;
+	    padding-right: 1rem;
+	    border: none;
+	    color:#646172;
+	    	::-webkit-input-placeholder {	
+			color:#646172;
+			}
+			::-moz-placeholder {
+			color:#646172;
+			}
+			:-ms-input-placeholder {
+			color:#646172;
+			}
+			:-moz-placeholder {
+			color:#646172;
+			}
+    }
+}
+.header_search-btn{
+    position: absolute;
+    left: 1.3rem;
+    top: 0.9rem;
+    width: 1.5rem;
+    height: 2rem;
+}
+.header_login-item{
+	margin-left: 3rem;
+	display: inline-block;
+	vertical-align: top;
+}
+.header_login-link{
+	text-decoration: none;
+	color:#40396b;
+	line-height: 8rem;
+}
+.open-menu{
+	display: none;
+}
+.min-menu{
+	display: none;
+}
