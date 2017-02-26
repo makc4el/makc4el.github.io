@@ -1,12 +1,315 @@
+/*@media only screen and (min-width: 1920px) {
+	.map-content{
+		font-size: 8.7px;
+	}
+}*/
+@media only screen and (min-width: 1440px) {
+  .map-content {
+    font-size: 7.5px;
+    height: 800px;
+    left: 0;
+    right: 0;
+    margin: 0 auto; } }
+
+@media only screen and (max-width: 1150px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem; }
+  .cart_container:nth-child(1n+1) {
+    float: none; }
+  #map_start {
+    padding-top: 18rem; } }
+
 @media only screen and (max-width: 950px) {
+  .transfer_seats-item {
+    margin-bottom: 2.8rem; }
   .header_menu-item {
     margin-right: 4rem;
     transition-duration: 0.3s; }
   .heder_login-info {
     margin-right: 5rem;
-    transition-duration: 0.3s; } }
+    transition-duration: 0.3s; }
+  .det_event-date {
+    width: 20%; }
+  .det_event-bl {
+    width: 49%;
+    margin-right: 0;
+    margin-bottom: 1rem; }
+  .det_event-bl:not(:nth-child(2n+2)) {
+    margin-right: 2%; }
+  .cart_container:nth-child(3n+3) {
+    margin-right: 3rem; }
+  .package_item-btn.transform_chose-item {
+    margin-left: 4%; }
+  .transform_chose-item-request {
+    margin-left: 1rem; } }
+
+@media only screen and (max-width: 900px) {
+  .way_item {
+    min-width: 0; }
+  .transfer-way_btn {
+    line-height: 1.2; }
+  .transform_nav a {
+    padding-left: 2rem;
+    padding-right: 2rem; }
+  .package_item-btn-share {
+    width: 21.5rem; } }
 
 @media only screen and (max-width: 767px) {
+  .search-box {
+    display: block; }
+  #header > .container {
+    display: none; }
+  .choose_btn {
+    width: 14rem; }
+  .choose_map-title {
+    font-size: 1.6rem; }
+  #header .min-menu {
+    height: auto; }
+  .min-menu ul {
+    display: block; }
+  .open-menu {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+    background: url(../images/menu.png) no-repeat center;
+    background-size: 100% 100%; }
+  .cancel-menu {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    background: url(../images/cancel.png) no-repeat center;
+    background-size: 100% 100%; }
+  #header .min-menu .container {
+    text-align: left; }
+  .min-menu {
+    display: none;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #fff;
+    padding-top: 5rem; }
+  .min-menu .header_lenguage_list {
+    padding-left: 3rem;
+    margin-left: 0; }
+  .min-menu .header_lenguage-item a {
+    font-size: 2rem; }
+  .min-menu .header_login-link {
+    font-size: 2rem; }
+  .min-menu .header_login-item {
+    margin-left: 0;
+    width: 100%;
+    padding-left: 3rem; }
+  .what-next_text {
+    float: none; }
+  .what-next {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: left; }
+  .what-next_text {
+    padding-right: 0;
+    padding-left: 0; }
+  .transfer-summ_content {
+    padding-left: 2rem;
+    padding-right: 2rem; }
+  .what-next_text-btn {
+    float: none;
+    transform: none;
+    top: auto;
+    right: auto;
+    width: 100%;
+    position: relative;
+    height: 5rem;
+    display: block;
+    margin-top: 2rem; }
+  .transfer-iti-col-text {
+    width: 100%;
+    margin-top: 2rem; }
+  .transfer-iti-col-title {
+    width: 100%; }
+  .transfer-itinerary-tx, .transfer-itinerary-t {
+    width: 100%; }
+  .transfer-summ_include:nth-last-child(1), .transfer-summ_include {
+    padding-right: 2rem;
+    padding-left: 2rem;
+    width: 100%;
+    box-sizing: border-box; }
+  .transfer-summ_image-container {
+    width: 100%;
+    float: none; }
+  .ui-state-active, .ui-widget-content .ui-state-active {
+    border: 1px solid #003eff;
+    background: #007fff; }
+  .transform_nav {
+    display: none; }
+  .transform_nav.transform_nav-min {
+    display: inline-block; }
+    .transform_nav.transform_nav-min .transform_chose-link {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem; }
+  .transform_chose-item-request {
+    margin-left: auto;
+    float: none;
+    margin-bottom: 2rem;
+    padding-top: 0; }
+  .transfer-way_list {
+    margin-bottom: 1rem; }
+  .transfer_way .transfer-way_item-btn {
+    margin-bottom: 0; }
+  .transfer_chose .transfer_chose-list:nth-child(2) {
+    padding: 2rem; }
+  .transfer_chose .package_item-money {
+    margin-top: 0;
+    width: 40%;
+    margin-left: 0; }
+  #transfer .transfer_chose .transfer_chose-list .package_item {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    float: none; }
+  #transfer .package_item:nth-child(3) {
+    width: 55%;
+    margin-right: 5%; }
+  .transfer-wat_item:not(:nth-child(1)) {
+    width: 70%;
+    margin-bottom: 4rem; }
+  .transfer-wat_item {
+    width: 30%; }
+  .transfer-wat_item.transfer-way_item-to {
+    margin-bottom: 4rem;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0; }
+  .transfer-wat_item.transfer-way_item-btn {
+    width: 100%; }
+  .transfer_chose .transfer_chose-list .package_item {
+    margin-bottom: 1.5rem; }
+  .package_list {
+    padding-bottom: 3rem; }
+  .tour_chose.package_chose .package_item.package_item-money.package_item-money-last {
+    margin-right: 0; }
+  .tour_chose.package_chose .package_item-counter {
+    margin-bottom: 0;
+    margin-top: 3rem; }
+  .tour_chose.package_chose .package_item-money {
+    width: 100%;
+    margin-right: 0%; }
+  .tour_chose.package_chose .package_item-counter {
+    width: 45% !important;
+    margin-right: 1%;
+    margin-left: 1%; }
+  .inform-log_link {
+    margin-top: 0; }
+  .inform_list .inform_item.inform_item-btn {
+    height: 5rem; }
+  .inform_list .inform_item.inform_item-select {
+    height: auto; }
+  .inform_reg .inform_item {
+    margin-bottom: 3.5rem; }
+  .package-text, .package_about-text_container {
+    width: 100%;
+    margin-right: 0; }
+  .package_block-item-info, .package_block-item-imgs {
+    width: 100%; }
+  .package_item-btn-share, .package_item-btn {
+    margin-right: 0;
+    width: 100%; }
+  .package_item-money {
+    margin-bottom: 0;
+    margin-top: 3rem;
+    width: 49%;
+    margin-right: 0; }
+  .package_item:nth-child(3) {
+    margin-right: 0; }
+  .package_item-countries {
+    margin-right: 0;
+    width: 100%; }
+  .package_item-counter {
+    width: 49%;
+    margin-right: 2%; }
+  .package_item-date {
+    width: 49%;
+    margin-right: 2%; }
+  .package_about-map_container {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem; }
+  .cred_pass input {
+    padding-right: 5rem; }
+  .booking_section-container .year_inp, .booking_section-container .data_inp {
+    width: 49%; }
+  .booking_section-container .data_inp {
+    margin-right: 2%; }
+  .booking_section-container .secur_inp {
+    width: 100%; }
+  .inform_item-btn {
+    margin-left: 0; }
+  .cred_pass:after {
+    bottom: 2.5rem;
+    transform: translateY(50%); }
+  .way_item span {
+    border: none;
+    font-size: 2rem;
+    line-height: 0.7; }
+  .way_item {
+    width: 100%;
+    display: none; }
+  .way_item .way_text {
+    font-size: 1.6rem; }
+  .way_list {
+    margin-top: 1.5rem; }
+  .way_item:nth-last-child(1) {
+    display: block; }
+  .header_lenguage_list, .header_login-list {
+    display: none; }
+  .header_logo {
+    position: relative;
+    margin: 0 auto;
+    left: auto;
+    margin-bottom: 1rem; }
+  .header_search_group {
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0; }
+  .inform_item {
+    margin-right: 0;
+    width: 100%;
+    height: auto;
+    margin-bottom: 3rem; }
+  .inform_list {
+    padding-bottom: 2.7rem;
+    margin-bottom: 3rem; }
+  .inform_item-btn {
+    height: 5rem;
+    margin-top: 0; }
+  .event-city-title {
+    float: left;
+    width: 25%; }
+  .event-city-text {
+    float: left;
+    width: 75%; }
+  .det_event-bl:not(:nth-child(2n+2)) {
+    margin-right: 0; }
+  .booking_det_event .det_event-taiting, .booking_det_event .det_event-guest {
+    width: 49%; }
+  .booking_det_event .det_event-guest {
+    margin-right: 2%; }
+  .booking_det_event .det_event-date, .booking_det_event .det_event-city {
+    width: 100%;
+    margin-right: 0; }
   .heder_login-info,
   .left_bar-title,
   .left_bar-banner-link {
@@ -15,7 +318,8 @@
     float: none;
     display: block; }
   #header {
-    height: auto; }
+    height: auto;
+    padding-bottom: 1rem; }
   .header_logo-img {
     margin: 1rem 0 1rem 0; }
   .left_bar-search {
@@ -241,3 +545,35 @@
     font-size: 14px; }
   .header-controls_item-link img {
     height: 2.8rem; } }
+
+@media only screen and (max-width: 600px) {
+  .transfer_seats-item {
+    margin-right: 0;
+    width: 100%; }
+  .package_block-item-info_item {
+    width: 100%;
+    margin-right: 0; } }
+
+@media only screen and (max-width: 420px) {
+  .tour-carts_section {
+    overflow: hidden; }
+  .cart_container {
+    margin-right: 0; }
+  .pay_var-item-now {
+    width: 35%;
+    margin-right: 5%;
+    float: left; }
+  .pay_var-item-letter {
+    width: 60%;
+    float: left;
+    margin-right: 0; }
+  .pay_var-list {
+    height: 14rem; }
+  .request_container {
+    width: 100%;
+    margin-top: 5rem;
+    margin-bottom: 5rem; }
+  .request-btn {
+    width: 85%;
+    margin-top: 5rem;
+    margin-bottom: 4rem; } }

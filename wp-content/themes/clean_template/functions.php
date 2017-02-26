@@ -36,34 +36,11 @@ if ( function_exists('register_sidebar') ) {
 //}
 //add_filter('upload_mimes', 'enable_extended_upload');
 
-//FOR CLEAN CACHE ONE POST
-//add_action( 'save_post', 'action_function_name_11', 10, 3 );
-//function action_function_name_11( $post_id, $post, $update ) {
-//	global $wpdb;
-//	$post_url = (get_permalink( $post_id ));
-//	$post_url = md5(substr($post_url, 7));
-//	$query="DELETE FROM cache WHERE link = '".$post_url."';";
-//	$wpdb->query($query);
-//}
-
-// add_action( 'wp_enqueue_scripts', 'my_scripts_method2' );
-// function my_scripts_method2(){
-//   wp_deregister_script( 'jquery' );
-//   wp_deregister_script( 'jquery-migrate' );
-// }
-
-// Ban Update WP, plugins, themes
-//require_once('models/ban-update.php');
-
-
-function register_my_session()
-{
-	if( !session_id() )
-	{
+function register_my_session(){
+	if( !session_id() ) {
 		session_start();
 	}
 }
-
 add_action('init', 'register_my_session');
 
 
@@ -184,81 +161,109 @@ function selectcity_ajax(){
 			array_unshift($v['tour'], $post_page);
 			echo json_encode($v['tour']);
 		}
-
 	}
-
 	wp_die();
-
 }
-
 add_action('wp_ajax_selectcity', 'selectcity_ajax');
 add_action('wp_ajax_nopriv_selectcity', 'selectcity_ajax');
 
 
 ////////////////////////////////////////////SHOW TOURS///////////////////////////////////////////////////////////////
-
 function show_tours_ajax(){
-	$tours_id = $_POST['tours_id'];
+	$select_locations = $_POST['select_locations'];
+	$select_locations = explode(",", $select_locations);
+	$available_tours = get_fields(2130, 'tours_and_sity');
+	if(!$available_tours){
+		echo "not available tours";
+		wp_die();
+	}
+//	$tour_titles = array();
+//	foreach ($available_tours as $tour){
+//		foreach ($tour as $v){
+//			if ($v['tour'])
+//				$tour_posts[]=$v['tour'];
+//		}
+//	}
 
-	$args = array(
-		'numberposts' => -1,
-		'order'       => 'DESC',
-		'include'     => $tours_id,
-		'exclude'     => array(),
-		'post_type'   => 'post',
-	);
+	//начало путевки
+	$start_tour = $select_locations[1];
+	if(!$start_tour){
+		echo "not available tours";
+		wp_die();
+	}
+//	print_r($start_tour);
+	$found_tours = array();
+	foreach ($available_tours['tours_and_sity'] as $k=>$v){
 
-	$posts = get_posts( $args );
-	foreach($posts as $post){ setup_postdata($post);
-		$id = $post->ID;
+		foreach ($v['cities'] as $kk=>$vv){
+			$address = $vv['city']['address'];
+			$str=strpos($address, ",");
+			$city=substr($address, 0, $str);
+			if(stripos('Лондон', $city)!==false){
+				$found_tours[]=$v;
+
+
+			}
+		}
+	}
+
+	if(count($found_tours)==0){
+		echo "not available tours";
+		wp_die();
+	}
+
+	foreach ($found_tours as $tour){
 		?>
 		<div class="cart_container">
 			<div class="cart_img-container">
 				<div class="cart-cost_conatiner">
-					<p class="cart-cost">
-						<?=get_field('price', $id)?>
-					</p>
-					<p class="cart-days">
-						<?=get_field('count_days', $id)?> DAYS
-					</p>
+					<p class="cart-cost"><?=$tour['tour_price']?>$</p>
+					<p class="cart-days"><?=$tour['count_days']?></p>
 				</div>
 				<div class="cart-img-list">
-					<?php foreach (get_field('images', $id) as $k=>$v){ ?>
-						<div class="owl-item"></div>
-						<div class="owl-item" style="background: url(<?=$v['image']?>) no-repeat center;background-size: cover;"></div>
+					<?php foreach ($tour['preview_gallery'] as $img){?>
+						<div class="owl-item" style="background: url(<?=$img['image']?>) no-repeat center;background-size: cover;"></div>
 					<?php } ?>
 				</div>
 			</div>
 			<div class="cart_content-container">
-				<p class="cart-title">
-					<?=get_field('title', $id)?>
-				</p>
-				<p class="cart-star-text">
-					<?=get_field('description_after_title_preview', $id)?>
-				</p>
+				<p class="cart-title"><?=$tour['title_tour']?></p>
+				<p class="cart-star-text"><?=$tour['short_description_preview']?></p>
 				<div class="cart-star-container">
-					<?php $count_gold=get_field('rating_preview', $id); for($i=0; $i<5; $i++){ ?>
-						<span class="star-icon <?php if($i<$count_gold){ echo "star-gold";} ?>"></span>
-					<?php } ?>
+					<span class="star-icon star-gold"></span>
+					<span class="star-icon star-gold"></span>
+					<span class="star-icon star-gold"></span>
+					<span class="star-icon star-gold"></span>
+					<span class="star-icon"></span>
 				</div>
 				<p class="cart-top cart-min-title">
-					<?=get_field('title_top_places_preview', $id)?>
+					<?=$tour['title_top_places_preview']?>
 				</p>
 				<p class="cart-path">
-					<?=get_field('description_top_places_preview', $id)?>
+					<?=$tour['top_places_preview']?>
 				</p>
 				<p class="cart-highloghts cart-min-title">
-					<?=get_field('title_top_highlightspreview', $id)?>
+					<?=$tour['title_top_highlightspreview']?>
 				</p>
 				<p class="cart-path">
-					<?=get_field('description_top_highlightspreview', $id)?>
+					<?=$tour['top_highlightspreview']?>
 				</p>
-				<a href="<?= get_permalink($id) ?>" class="cart-btn view_tour">view details</a>
+				<a href="#" class="cart-btn">view details</a>
+				<p id="id_tours" style="display: none"><?php foreach ($tour['tour'] as $v){echo $v->ID.",";} ?></p>
 			</div>
 		</div>
+	<?php } ?>
+	<script>
+		$(".cart-btn").click(function (e) {
+			e.preventDefault();
+			var id_show_tours = $(this).next().text();
+			localStorage.setItem("id_show_tours", id_show_tours);
+			window.location = start_paning;
+
+		});
+	</script>
 <?php
-	}
-	wp_reset_postdata(); // сброс
+
 	wp_die();
 
 }
@@ -321,4 +326,10 @@ function my_action_callback() {
 
 
 
-
+//
+//function my_acf_init() {
+//
+//	acf_update_setting('google_api_key', 'AIzaSyBTsaGllt7sdCMr3CLUDPYBhVc4LVgA1AI');
+//}
+//
+//add_action('acf/init', 'my_acf_init');

@@ -32,7 +32,8 @@
 <script>
 	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 	var path = "<?php echo get_template_directory_uri(); ?>/";
-	
+	var page_available_tours = "<?php echo get_permalink('2123'); ?>";
+	var start_paning = "<?php echo get_permalink('2169'); ?>";
 </script>
 <script type="text/javascript" >
 	jQuery(document).ready(function($) {
@@ -48,8 +49,11 @@
 	});
 </script>
 
+<script src="<?php echo get_template_directory_uri(); ?>/js/owl.carousel.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.selectric.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
+
 <script src="<?php echo get_template_directory_uri(); ?>/js/ajax.js"></script>
 <footer id="footer"></footer>
 <?php wp_footer();  ?>

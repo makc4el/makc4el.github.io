@@ -14,8 +14,8 @@
 if( ! class_exists('acf_field_google_map') ) :
 
 class acf_field_google_map extends acf_field {
-	
-	
+
+
 	/*
 	*  __construct
 	*
@@ -28,9 +28,9 @@ class acf_field_google_map extends acf_field {
 	*  @param	n/a
 	*  @return	n/a
 	*/
-	
+
 	function __construct() {
-		
+
 		// vars
 		$this->name = 'google_map';
 		$this->label = __("Google Map",'acf');
@@ -51,13 +51,13 @@ class acf_field_google_map extends acf_field {
 			'locating'			=> __("Locating",'acf'),
 			'browser_support'	=> __("Sorry, this browser does not support geolocation",'acf'),
 		);
-		
-		
+
+
 		// do not delete!
     	parent::__construct();
 	}
-	
-	
+
+
 	/*
 	*  render_field()
 	*
@@ -69,85 +69,85 @@ class acf_field_google_map extends acf_field {
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-	
+
 	function render_field( $field ) {
-		
+
 		// validate value
 		if( empty($field['value']) ) {
-			
+
 			$field['value'] = array();
-			
+
 		}
-		
-		
+
+
 		// value
 		$field['value'] = acf_parse_args($field['value'], array(
 			'address'	=> '',
 			'lat'		=> '',
 			'lng'		=> ''
 		));
-		
-		
+
+
 		// default options
 		foreach( $this->default_values as $k => $v ) {
-		
+
 			if( empty($field[ $k ]) ) {
-			
+
 				$field[ $k ] = $v;
-				
+
 			}
-				
+
 		}
-		
-		
+
+
 		// vars
 		$atts = array(
 			'id'			=> $field['id'],
 			'class'			=> "acf-google-map {$field['class']}",
-			'data-id'		=> $field['id'] . '-' . uniqid(), 
+			'data-id'		=> $field['id'] . '-' . uniqid(),
 			'data-lat'		=> $field['center_lat'],
 			'data-lng'		=> $field['center_lng'],
 			'data-zoom'		=> $field['zoom'],
 		);
-		
-		
+
+
 		// has value
 		if( $field['value']['address'] ) {
-		
+
 			$atts['class'] .= ' -value';
-			
+
 		}
-		
+
 ?>
 <div <?php acf_esc_attr_e($atts); ?>>
-	
+
 	<div class="acf-hidden">
 		<?php foreach( $field['value'] as $k => $v ): ?>
 			<input type="hidden" class="input-<?php echo $k; ?>" name="<?php echo esc_attr($field['name']); ?>[<?php echo $k; ?>]" value="<?php echo esc_attr( $v ); ?>" />
 		<?php endforeach; ?>
 	</div>
-	
+
 	<div class="title acf-soh">
-		
+
 		<div class="actions acf-soh-target">
 			<a href="#" data-name="search" class="acf-icon -search grey" title="<?php _e("Search", 'acf'); ?>"></a>
 			<a href="#" data-name="clear" class="acf-icon -cancel grey" title="<?php _e("Clear location", 'acf'); ?>"></a>
 			<a href="#" data-name="locate" class="acf-icon -location grey" title="<?php _e("Find current location", 'acf'); ?>"></a>
 		</div>
-		
+
 		<input class="search" type="text" placeholder="<?php _e("Search for address...",'acf'); ?>" value="<?php echo $field['value']['address']; ?>" />
 		<i class="acf-loading"></i>
-				
+
 	</div>
-	
+
 	<div class="canvas" style="height: <?php echo $field['height']; ?>px"></div>
-	
+
 </div>
 <?php
-		
+
 	}
-	
-		
+
+
 	/*
 	*  render_field_settings()
 	*
@@ -160,9 +160,9 @@ class acf_field_google_map extends acf_field {
 	*
 	*  @param	$field	- an array holding all the field's data
 	*/
-	
+
 	function render_field_settings( $field ) {
-		
+
 		// center_lat
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Center','acf'),
@@ -172,8 +172,8 @@ class acf_field_google_map extends acf_field {
 			'prepend'		=> 'lat',
 			'placeholder'	=> $this->default_values['center_lat']
 		));
-		
-		
+
+
 		// center_lng
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Center','acf'),
@@ -186,8 +186,8 @@ class acf_field_google_map extends acf_field {
 				'data-append' => 'center_lat'
 			)
 		));
-		
-		
+
+
 		// zoom
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Zoom','acf'),
@@ -196,8 +196,8 @@ class acf_field_google_map extends acf_field {
 			'name'			=> 'zoom',
 			'placeholder'	=> $this->default_values['zoom']
 		));
-		
-		
+
+
 		// allow_null
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Height','acf'),
@@ -207,10 +207,10 @@ class acf_field_google_map extends acf_field {
 			'append'		=> 'px',
 			'placeholder'	=> $this->default_values['height']
 		));
-		
+
 	}
-	
-	
+
+
 	/*
 	*  validate_value
 	*
@@ -223,30 +223,30 @@ class acf_field_google_map extends acf_field {
 	*  @param	$post_id (int)
 	*  @return	$post_id (int)
 	*/
-	
+
 	function validate_value( $valid, $value, $field, $input ){
-		
+
 		// bail early if not required
 		if( ! $field['required'] ) {
-			
+
 			return $valid;
-			
+
 		}
-		
-		
+
+
 		if( empty($value) || empty($value['lat']) || empty($value['lng']) ) {
-			
+
 			return false;
-			
+
 		}
-		
-		
+
+
 		// return
 		return $valid;
-		
+
 	}
-	
-	
+
+
 	/*
 	*  update_value()
 	*
@@ -262,16 +262,16 @@ class acf_field_google_map extends acf_field {
 	*
 	*  @return	$value - the modified value
 	*/
-	
+
 	function update_value( $value, $post_id, $field ) {
-	
+
 		if( empty($value) || empty($value['lat']) || empty($value['lng']) ) {
-			
+
 			return false;
-			
+
 		}
-		
-		
+
+
 		// return
 		return $value;
 	}

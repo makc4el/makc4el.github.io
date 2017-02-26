@@ -1,4 +1,5 @@
 ( function( window, undefined ) {
+	alert()
 	"use strict";
 
 	/**
