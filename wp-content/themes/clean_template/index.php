@@ -46,11 +46,38 @@
 
 <section class="tour-carts_section">
 	<div class="container" id="tours">
-
-
-
-
-
+		
+		
+		
 	</div>
 </section>
+
 <?php get_footer(); ?>
+
+<script>
+	var select_location = localStorage.getItem('CityName');
+		$('#locations').val(select_location);
+
+	var data = {
+		'action': 'show_tours',
+		'select_locations' : select_location
+	};
+
+	$.ajax({
+		url:ajaxurl, // обработчик
+		data:data, // данные
+		type:'POST', // тип запроса
+		success:function(data){
+
+			var container = $('#tours');
+			console.log(data);
+			container.append(data);
+			// var r= JSON.parse(data);
+			// window.location = redirect_to;
+		}
+	});
+
+
+
+
+</script>
