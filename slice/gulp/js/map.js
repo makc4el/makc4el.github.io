@@ -10,30 +10,29 @@ var Marker,
     CityName = [],
     infowindow,
     nameCounter = 0,
-    name,
+    name, 
     geocoder,
     city;
-initMap = function(){
+var Valid = true;
+var CountrList = [];
+initMap = function(){ 
         map = new google.maps.Map(document.getElementById('map'), {
         center: myPos,
         zoom: 4,
         styles: []
     });
-}
+}       
 initMarker = function(lat,lng){
-
-
-
     var latlng = new google.maps.LatLng(lat, lng);
     geocoder.geocode({'latLng': latlng}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-      console.log(results[0]['formatted_address'].split(',')[results[0]['formatted_address'].split(',').length-1])
         if (results[1]) {
+        Valid = true;
          //formatted address
          name = results[0].formatted_address;
         //find country name
              for (var i=0; i<results[0].address_components.length; i++) {
-            for (var b=0;b<results[0].address_components[i].types.length;b++) {
+                for (var b=0;b<results[0].address_components[i].types.length;b++) {
 
             //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
                 if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
@@ -46,7 +45,8 @@ initMarker = function(lat,lng){
         //city data
         name = city.short_name + " " + city.long_name;
 
-
+        CountrList.push(name);
+        console.log(CountrList);
 
 
 
@@ -65,6 +65,7 @@ initMarker = function(lat,lng){
       content: name,
     });
     infowindow.open(map, Marker);
+
     google.maps.event.addListener(Marker, 'dragend', function(e) {
         var MarkerLat,
             MarkerLng;
@@ -76,11 +77,14 @@ initMarker = function(lat,lng){
         }
     });
             } else {
-          alert("No results found");
+          Valid = false; 
         }
       } else {
-        alert("Geocoder failed due to: " + status);
+        Valid = false;
       }
+        if (Valid){
+        flightPath(lat,lng);
+        }
     });
 }
 MapClick = function(){
@@ -94,7 +98,7 @@ MapClick = function(){
 }
 chengeMarkerCoordinate = function(lat,lng){
         initMarker(lat,lng);
-        flightPath(lat,lng);
+
 }
 flightPathClean = function(){
     flightPlanCoordinates = [];
@@ -107,7 +111,7 @@ flightPath = function(PathLat,PathLng){
         element.lat = PathLat;
         element.lng = PathLng;
         flightPlanCoordinates.push(element);
-        if(markeArr.length > 1){
+        if(markeArr.length > 0){
             LinePath = new google.maps.Polyline({
                 path: flightPlanCoordinates,
                 geodesic: true,
