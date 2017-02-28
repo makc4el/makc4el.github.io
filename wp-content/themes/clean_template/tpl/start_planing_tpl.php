@@ -5,11 +5,6 @@ Template Name: Start planing
 ?>
 <?php get_header(); ?>
 
-<?php
-$id= $_SESSION['id_package'];
-?>
-
-
 <section class="way_block-container">
 	<div class="container">
 		<ul class="way_list">
@@ -70,10 +65,6 @@ $id= $_SESSION['id_package'];
 								<p class="package_block-item-info-text" id="description2"></p>
 								<p class="package_block-item-info-top-title" id="title_top_highlights"></p>
 								<ul class="package_block-item-info_list" id="top_highlights">
-<!--									<li class="package_block-item-info_item item-info-museum"><span class="package_block-item-info-item-text">Grand Buddha of Leshan</span></li>-->
-<!--									<li class="package_block-item-info_item item-info-smile"><span class="package_block-item-info-item-text">The French Concession</span></li>-->
-<!--									<li class="package_block-item-info_item item-info-animal"><span class="package_block-item-info-item-text">The Summer Palace</span></li>-->
-<!--									<li class="package_block-item-info_item item-info-city"><span class="package_block-item-info-item-text">Big city zoo</span></li>-->
 								</ul>
 								<a href="#" class="view-link">VIEW DETAILS ABOUT LONDON</a>
 							</div>
