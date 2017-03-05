@@ -10,15 +10,15 @@
  	}
  	this.goToCountr = function(){
  		var self = this;
- 		$('.choose_btn').click(function(e){
- 			e.preventDefault();
- 			self.coontinentsArr = [];
- 			$('img.active').each(function(key, value){
- 				self.coontinentsArr.push($(value).data('continent'));
- 			});
- 			localStorage.setItem('coontinents', self.coontinentsArr);
- 			window.location.href = "map-country.html";
- 		});
+ 		// $('.choose_btn').click(function(e){
+ 		// 	e.preventDefault();
+ 		// 	self.coontinentsArr = [];
+ 		// 	$('img.active').each(function(key, value){
+ 		// 		self.coontinentsArr.push($(value).data('continent'));
+ 		// 	});
+ 		// 	localStorage.setItem('coontinents', self.coontinentsArr);
+ 		// 	window.location.href = "map-country.html";
+ 		// });
  	}
  	this.openSearch = function(){
  		var self = this;
