@@ -13,8 +13,7 @@ if(!$id_tour){
 $fields = get_fields($id_tour);
 $fields = $fields['content'];
 foreach ($fields as $key => $item) {
-if($item['acf_fc_layout'] == 'tab_summary'){
-
+if($item['acf_fc_layout'] == 'tab_planner'){
 ?>
 <section class="way_block-container">
 	<div class="container">
