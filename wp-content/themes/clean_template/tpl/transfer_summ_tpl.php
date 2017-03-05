@@ -7,6 +7,7 @@ Template Name: Transfer summ
 
 <?php
 $id= $_SESSION['id_package'];
+var_dump($id);
 ?>
 
 <section class="way_block-container">

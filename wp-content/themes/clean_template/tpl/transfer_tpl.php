@@ -5,6 +5,17 @@ Template Name: Transfer
 ?>
 
 <?php get_header(); ?>
+<?php
+$id_tour = intval($_GET['id']);
+if(!$id_tour){
+	return;
+}
+$fields = get_fields($id_tour);
+$fields = $fields['content'];
+foreach ($fields as $key => $item) {
+if($item['acf_fc_layout'] == 'tab_planner'){
+
+?>
 <section class="way_block-container">
 	<div class="container">
 		<ul class="way_list">
@@ -24,8 +35,12 @@ Template Name: Transfer
 <main id="transfer">
 	<section class="transfer_title_container">
 		<div class="container">
-			<h1 class="transfer_title"></h1>
-			<p class="transfer_date">Mar 01 - Mar 13 2017 </p>
+			<h1 class="transfer_title">
+				<?=$item['title']?>
+			</h1>
+			<p class="transfer_date">
+				<?=$item['date']?>
+			</p>
 		</div>
 	</section>
 	<section id="before_html" class="package_chose transfer_chose">
@@ -59,47 +74,81 @@ Template Name: Transfer
 			</ul>
 		</div>
 	</section>
-
-	<!--<section class="transfer_way">
+<?php foreach ($item['one_city'] as $k=>$v){ ?>
+	<section class="transfer_way">
 		<div class="container">
 			<ul class="transfer-way_list">
 				<li class="transfer-wat_item">
-					<div class="transfer-logo"></div>
+					<div class="transfer-logo" style="background: url(<?=$v['icon']?>) no-repeat center;background-size: 100% 100%;"></div>
 				</li>
 				<li class="transfer-wat_item transfer-way_item-type">
-					<p class="transfer-way_title">TRANSFER TYPE</p>
-					<p class="transfer-way_text">Transfer</p>
+					<p class="transfer-way_title">
+						<?=$v['title_transfer_type']?>
+					</p>
+					<p class="transfer-way_text">
+						<?=$v['transfer_type']?>
+					</p>
 				</li>
 				<li class="transfer-wat_item transfer-way_item-from">
-					<p class="transfer-way_title">FROM</p>
-					<p class="transfer-way_text">Beijing Capital Airport</p>
-					<p class="transfer-wat_date">21 Dec, 12:00 PM</p>
+					<p class="transfer-way_title">
+						<?=$v['title_from']?>
+					</p>
+					<p class="transfer-way_text">
+						<?=$v['from']?>
+					</p>
+					<p class="transfer-wat_date">
+						<?=$v['date_from']?>
+					</p>
 				</li>
 				<li class="transfer-wat_item transfer-way_item-to">
-					<p class="transfer-way_title">TO</p>
-					<p class="transfer-way_text">Beijing New Future Hotel</p>
-					<p class="transfer-wat_date">22 Dec, 13:00 AM</p>
+					<p class="transfer-way_title">
+						<?=$v['title_to']?>
+					</p>
+					<p class="transfer-way_text">
+						<?=$v['to']?>
+					</p>
+					<p class="transfer-wat_date">
+						<?=$v['date_to']?>
+					</p>
 				</li>
-				<li class="transfer-wat_item transfer-way_item-btn"><a href="#" class="transfer-way_btn">DETAILS & ADJUST</a></li>
+				<li class="transfer-wat_item transfer-way_item-btn">
+					<a href="#" class="transfer-way_btn">
+						<?=$v['title_details_adjust']?>
+					</a>
+				</li>
 			</ul>
 			<ul class="transfer-way_list">
 				<li class="transfer-wat_item">
-					<div class="transfer-logo"></div>
+					<div class="transfer-logo" style="background: url(<?=$v['icon2']?>) no-repeat center;background-size: 100% 100%;"></div>
 				</li>
 				<li class="transfer-wat_item transfer-way_item-type">
-					<p class="transfer-way_title">CITY</p>
-					<p class="transfer-way_text">London</p>
+					<p class="transfer-way_title">
+						<?=$v['title_city']?>
+					</p>
+					<p class="transfer-way_text">
+						<?=$v['city']?>
+					</p>
 				</li>
 				<li class="transfer-wat_item transfer-way_item-from">
-					<p class="transfer-way_title">HOTEL</p>
-					<p class="transfer-way_text">London hotel 3*</p>
+					<p class="transfer-way_title">
+						<?=$v['title_hotel']?>
+					</p>
+					<p class="transfer-way_text">
+						<?=$v['hotel']?>
+					</p>
 				</li>
 				<li class="transfer-wat_item transfer-way_item-to">
-					<p class="transfer-way_title">ROOM</p>
-					<p class="transfer-way_text">Standart double room</p>
+					<p class="transfer-way_title">
+						<?=$v['title_room']?>
+					</p>
+					<p class="transfer-way_text">
+						<?=$v['room']?>
+					</p>
 				</li>
 				<li class="transfer-wat_item transfer-way_item-btn">
-					<p class="transfer-way-path">4 nights (Feb 01 - Feb 05)</p>
+					<p class="transfer-way-path">
+						<?=$v['description_aftr_count_nights']?>
+					</p>
 					<div id="slider"></div>
 				</li>
 			</ul>
@@ -107,107 +156,32 @@ Template Name: Transfer
 	</section>
 	<section class="transfer_seats">
 		<div class="container">
-			<p class="transfer_seats-title">Dec 01, Wed</p>
-			<ul class="transfer_seats-list">
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">08:30 - 15:30</p>
-							<p class="transfer_seats_object">Beijing Kung Fu Show</p>
-							<div class="transfer_seats_edit"></div>
+		<?php foreach ($v['highlights_one_day'] as $kk=>$vv){ ?>
+				<p class="transfer_seats-title">
+					<?=$vv['date']?>
+				</p>
+				<ul class="transfer_seats-list">
+					<?php foreach ($vv['description_highlights'] as $kkk=>$vvv){ ?>
+					<li class="transfer_seats-item">
+						<div class="transfer_seats-container">
+							<div class="transfer_seats-image" style="background: url(<?=$vvv['images']?>) no-repeat center;
+    background-size: cover;"></div>
+							<div class="transfer_seats-content">
+								<p class="transfer_seats_time">
+									<?=$vvv['hours']?>
+								</p>
+								<p class="transfer_seats_object"><?=$vvv['description']?></p>
+								<div class="transfer_seats_edit"></div>
+							</div>
 						</div>
-					</div>
-				</li>
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">08:30 - 15:30</p>
-							<p class="transfer_seats_object">Spain Cathedra</p>
-							<div class="transfer_seats_edit"></div>
-						</div>
-					</div>
-				</li>
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">08:30 - 15:30</p>
-							<p class="transfer_seats_object">Beijing Kung Fu Show</p>
-							<div class="transfer_seats_edit"></div>
-						</div>
-					</div>
-				</li>
-			</ul>
-			<p class="transfer_seats-title">Dec 01, Wed</p>
-			<ul class="transfer_seats-list">
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">08:30 - 15:30</p>
-							<p class="transfer_seats_object">Beijing Kung Fu Show</p>
-							<div class="transfer_seats_edit"></div>
-						</div>
-					</div>
-				</li>
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">08:30 - 15:30</p>
-							<p class="transfer_seats_object">Spain Cathedra</p>
-							<div class="transfer_seats_edit"></div>
-						</div>
-					</div>
-				</li>
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">08:30 - 15:30</p>
-							<p class="transfer_seats_object">Beijing Kung Fu Show</p>
-							<div class="transfer_seats_edit"></div>
-						</div>
-					</div>
-				</li>
-			</ul>
-			<p class="transfer_seats-title">Dec 01, Wed</p>
-			<ul class="transfer_seats-list">
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">08:30 - 15:30</p>
-							<p class="transfer_seats_object">Beijing Kung Fu Show</p>
-							<div class="transfer_seats_edit"></div>
-						</div>
-					</div>
-				</li>
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">08:30 - 15:30</p>
-							<p class="transfer_seats_object">Spain Cathedra</p>
-							<div class="transfer_seats_edit"></div>
-						</div>
-					</div>
-				</li>
-				<li class="transfer_seats-item">
-					<div class="transfer_seats-container">
-						<div class="transfer_seats-image"></div>
-						<div class="transfer_seats-content">
-							<p class="transfer_seats_time">08:30 - 15:30</p>
-							<p class="transfer_seats_object">Beijing Kung Fu Show</p>
-							<div class="transfer_seats_edit"></div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</section>-->
+					</li>
+					<?php } ?>
+				</ul>
+
+			</div>
+		<?php } ?>
+	</section>
+	<?php } ?>
 </main>
+<?php }} ?>
 <?php get_footer(); ?>
-<script src="<?php echo get_template_directory_uri(); ?>/js/transfer.js"></script>
