@@ -70,14 +70,16 @@
 		success:function(data){
 
 			var container = $('#tours');
-			console.log(data);
+//			console.log(data);
 			container.append(data);
 			// var r= JSON.parse(data);
-			// window.location = redirect_to;
+
 		}
 	});
 
 
 
+
+	
 
 </script>

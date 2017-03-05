@@ -18,10 +18,6 @@ function Travel(){
       });
       localStorage.setItem('coontinents', self.coontinentsArr);
       localStorage.setItem('CityName', CityName);
-
-
-
-
       window.location.href = page_available_tours;
     });
   }

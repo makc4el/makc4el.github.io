@@ -24,16 +24,16 @@ Template Name: Transfer
 <main id="transfer">
 	<section class="transfer_title_container">
 		<div class="container">
-			<h1 class="transfer_title">Wonder of England queen</h1>
+			<h1 class="transfer_title"></h1>
 			<p class="transfer_date">Mar 01 - Mar 13 2017 </p>
 		</div>
 	</section>
-	<section class="package_chose transfer_chose">
+	<section id="before_html" class="package_chose transfer_chose">
 		<div class="container">
 			<ul class="package_list transfer_chose-list">
 				<li class="package_item package_item-countries">
 					<p class="package_item-title">Countries</p>
-					<input type="text" value="England - Germany - France" readonly="readonly" class="package_item_text"/>
+					<input type="text" id="countries" value="" readonly="readonly" class="package_item_text"/>
 				</li>
 				<li class="package_item package_item-counter">
 					<p class="package_item-title">Guests</p>
@@ -59,7 +59,8 @@ Template Name: Transfer
 			</ul>
 		</div>
 	</section>
-	<section class="transfer_way">
+
+	<!--<section class="transfer_way">
 		<div class="container">
 			<ul class="transfer-way_list">
 				<li class="transfer-wat_item">
@@ -206,6 +207,7 @@ Template Name: Transfer
 				</li>
 			</ul>
 		</div>
-	</section>
+	</section>-->
 </main>
 <?php get_footer(); ?>
+<script src="<?php echo get_template_directory_uri(); ?>/js/transfer.js"></script>

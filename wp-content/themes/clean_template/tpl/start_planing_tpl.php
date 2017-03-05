@@ -22,6 +22,7 @@ Template Name: Start planing
 	</div>
 </section>
 <main id="transfer">
+<main id="transfer">
 	<main id="package">
 		<section class="package_about">
 			<div class="container">
@@ -42,7 +43,7 @@ Template Name: Start planing
 					<li class="transform_chose-item transform_nav transform_nav-active"><a class="transform_chose-link">PLANNER</a></li>
 					<li class="transform_chose-item transform_nav"><a class="transform_chose-link">MAP</a></li>
 					<li class="transform_chose-item transform_nav">
-						<a id="summary" href="<?= get_permalink(2199)?>" class="transform_chose-link">SUMMARY</a>
+						<a id="summary" href="<?= get_permalink(2086)?>" class="transform_chose-link">SUMMARY</a>
 					</li>
 					<li class="transform_chose-item transform_chose-item-request"><a class="transform_chose-link">Special request</a></li>
 					<li class="package_item package_item-btn transform_chose-item"><a href="#" class="inform-log_link package-log_link">BOOK ORDER</a></li>

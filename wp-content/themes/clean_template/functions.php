@@ -169,99 +169,86 @@ add_action('wp_ajax_nopriv_selectcity', 'selectcity_ajax');
 
 
 ////////////////////////////////////////////SHOW TOURS///////////////////////////////////////////////////////////////
-function show_tours_ajax(){
+function show_tours_ajax()
+{
 	$select_locations = $_POST['select_locations'];
 	$select_locations = explode(",", $select_locations);
-	$available_tours = get_fields(2130, 'tours_and_sity');
-	if(!$available_tours){
+	$available_tours = get_posts();
+
+	if (!$available_tours) {
 		echo "not available tours";
 		wp_die();
 	}
+
+	foreach ($available_tours as $k=>$v){
+		$id_available_tours[]=$v->ID;
+	}
+
+	$html = '';
+foreach ($id_available_tours as $v){
+
+	$fields = get_fields($v);
+	$id_tour = $v;
+	$fields = $fields['content'];
+
+	foreach ($fields as $key => $item) {
+		
+		if($item['acf_fc_layout'] == 'preview'){
+			$gallery = '';
+			foreach ($item['gallery'] as $k=>$v){
+				$gallery.='<div class="owl-item" style="background: url('.$v['image'].') no-repeat center;background-size: cover;"></div>';
+			}
+
+			$stars = '';
+			for ($i=0; $i<5; $i++){
+				if($item['rating_number_of_stars']<=$i){
+					$stars.='<span class="star-icon star-gold"></span>';
+				}
+				$stars.='<span class="star-icon "></span>';
+
+			}
+
+			$html.= '<div class="cart_container">
+          <div class="cart_img-container">
+            <div class="cart-cost_conatiner">
+              <p class="cart-cost">'.$item['price'].'$</p>
+              <p class="cart-days">'.$item['number_of_days'] .' '.$item['title_days'].'</p>
+            </div>
+            <div class="cart-img-list">'.$gallery.'</div>
+          </div>
+          <div class="cart_content-container">
+            <p class="cart-title">'.$item['title'].'</p>
+            <p class="cart-star-text">'.$item['description_after_title'].'</p>
+            <div class="cart-star-container">'.$stars.'</div>
+            <p class="cart-top cart-min-title">'.$item['title_top_places'].'</p>
+            <p class="cart-path">'.$item['top_places'].'</p>
+            <p class="cart-highloghts cart-min-title">'.$item['title_top_highlights'].'</p>
+            <p class="cart-path">'.$item['top_highlights'].'</p>
+            <a href="#" data-idtour="'.$id_tour.'" class="cart-btn">'.$item['title_button_view_details'].'</a>
+          </div>
+        </div>';
+		}
+	}
+}
+
+
 
 	//начало путевки
 	$start_tour = $select_locations[1];
-	if(!$start_tour){
+	if (!$start_tour) {
 		echo "not available tours";
 		wp_die();
+
 	}
 
-	$found_tours = array();
-	foreach ($available_tours['tours_and_sity'] as $k=>$v){
-
-		foreach ($v['cities'] as $kk=>$vv){
-			$address = $vv['city']['address'];
-			$str=strpos($address, ",");
-			$city=substr($address, 0, $str);
-			if(stripos('Лондон', $city)!==false){
-				$found_tours[]=$v;
+	$html.="<script>$( '.cart-btn' ).click(function(e) {
+		e.preventDefault();
+		localStorage.setItem('id_tour', $(this).data('idtour'));
+		window.location = start_paning;
+	});</script>";
 
 
-			}
-		}
-	}
-
-	if(count($found_tours)==0){
-		echo "not available tours";
-		wp_die();
-	}
-
-	foreach ($found_tours as $tour){
-
-		?>
-		<div class="cart_container">
-			<div class="cart_img-container">
-				<div class="cart-cost_conatiner">
-					<p class="cart-cost"><?=$tour['tour_price']?>$</p>
-					<p class="cart-days"><?=$tour['count_days']?></p>
-				</div>
-				<div class="cart-img-list">
-					<?php foreach ($tour['preview_gallery'] as $img){?>
-						<div class="owl-item" style="background: url(<?=$img['image']?>) no-repeat center;background-size: cover;"></div>
-					<?php } ?>
-				</div>
-			</div>
-			<div class="cart_content-container">
-				<p class="cart-title"><?=$tour['title_tour']?></p>
-				<p class="cart-star-text"><?=$tour['short_description_preview']?></p>
-				<div class="cart-star-container">
-					<span class="star-icon star-gold"></span>
-					<span class="star-icon star-gold"></span>
-					<span class="star-icon star-gold"></span>
-					<span class="star-icon star-gold"></span>
-					<span class="star-icon"></span>
-				</div>
-				<p class="cart-top cart-min-title">
-					<?=$tour['title_top_places_preview']?>
-				</p>
-				<p class="cart-path">
-					<?=$tour['top_places_preview']?>
-				</p>
-				<p class="cart-highloghts cart-min-title">
-					<?=$tour['title_top_highlightspreview']?>
-				</p>
-				<p class="cart-path">
-					<?=$tour['top_highlightspreview']?>
-				</p>
-				<a href="#" class="cart-btn">view details</a>
-				<p class="is_tours" style="display: none"><?php foreach ($tour['tour'] as $v){echo $v->ID.",";} ?></p>
-				<p class="title_tour" style="display: none"><?=$tour['title_tour']?></p>
-			</div>
-		</div>
-	<?php } ?>
-	<script>
-		$(".cart-btn").click(function (e) {
-			e.preventDefault();
-			var id_show_tours = $(this).next().text();
-			var title_tour = $(this).next().next().text();
-			localStorage.setItem("id_show_tours", id_show_tours);
-			localStorage.setItem("title_tour", title_tour);
-			window.location = start_paning;
-		});
-	</script>
-<?php
-
-	wp_die();
-
+	echo $html ;
 }
 
 add_action('wp_ajax_show_tours', 'show_tours_ajax');
@@ -272,6 +259,29 @@ add_action('wp_ajax_nopriv_show_tours', 'show_tours_ajax');
 add_action('wp_ajax_start_planing', 'start_planing');
 add_action('wp_ajax_nopriv_start_planing', 'start_planing');
 function start_planing() {
+	$id_tour = $_POST['id_tour'];
+	$fields = get_fields($id_tour);
+	$fields = $fields['content'];
+	print_r($fields);
+	foreach ($fields as $key => $item) {
+		if($item['acf_fc_layout'] == 'a_general_description_of_the_whole_tour'){
+			//TODO
+			//file:///C:/wamp64/www/travel.lc/slice/package.html
+		}
+	}
+	
+
+
+	wp_die();
+}
+
+
+
+
+/////////////////////transfer//////////////////////////////////////////////
+add_action('wp_ajax_transfer', 'transfer');
+add_action('wp_ajax_nopriv_transfer', 'transfer');
+function transfer() {
 	$title_tour = $_POST['title_tour'];
 
 	$available_tours = get_fields(2130, 'tours_and_sity');
@@ -282,18 +292,214 @@ function start_planing() {
 
 	foreach ($available_tours['tours_and_sity'] as $k=>$v){
 		if($v['title_tour']==$title_tour){
-			
+			foreach ($v['tour'] as $kk => $vv){
+				$tours[] =get_fields($vv->ID) ;
+			}
+$html="";
+			foreach ($tours as $tour){
+print_r($tour['city_name_first_tour']);
+
+
+
+
+
+					$html= '<section class="transfer_way">
+						<div class="container">
+							<ul class="transfer-way_list">
+								<li class="transfer-wat_item">
+									<div class="transfer-logo"></div>
+								</li>
+								<li class="transfer-wat_item transfer-way_item-type">
+									<p class="transfer-way_title">TRANSFER TYPE</p>
+									<p class="transfer-way_text">Transfer</p>
+								</li>
+								<li class="transfer-wat_item transfer-way_item-from">
+									<p class="transfer-way_title">FROM</p>
+									<p class="transfer-way_text">'.$tour['city_name_first_tour'].'</p>
+									<p class="transfer-wat_date">21 Dec, 12:00 PM</p>
+								</li>
+								<li class="transfer-wat_item transfer-way_item-to">
+									<p class="transfer-way_title">TO</p>
+									<p class="transfer-way_text">Beijing New Future Hotel</p>
+									<p class="transfer-wat_date">22 Dec, 13:00 AM</p>
+								</li>
+								<li class="transfer-wat_item transfer-way_item-btn">
+								<a href="#" class="transfer-way_btn">DETAILS & ADJUST</a>
+								</li>
+							</ul>
+							<ul class="transfer-way_list">
+								<li class="transfer-wat_item">
+									<div class="transfer-logo"></div>
+								</li>
+								<li class="transfer-wat_item transfer-way_item-type">
+									<p class="transfer-way_title">CITY</p>
+									<p class="transfer-way_text">London</p>
+								</li>
+								<li class="transfer-wat_item transfer-way_item-from">
+									<p class="transfer-way_title">HOTEL</p>
+									<p class="transfer-way_text">London hotel 3*</p>
+								</li>
+								<li class="transfer-wat_item transfer-way_item-to">
+									<p class="transfer-way_title">ROOM</p>
+									<p class="transfer-way_text">Standart double room</p>
+								</li>
+								<li class="transfer-wat_item transfer-way_item-btn">
+									<p class="transfer-way-path">4 nights (Feb 01 - Feb 05)</p>
+									<div id="slider"></div>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section class="transfer_seats">
+						<div class="container">
+							<p class="transfer_seats-title">Dec 01, Wed</p>
+							<ul class="transfer_seats-list">
+								<li class="transfer_seats-item">
+									<div class="transfer_seats-container">
+										<div class="transfer_seats-image"></div>
+										<div class="transfer_seats-content">
+											<p class="transfer_seats_time">08:30 - 15:30</p>
+											<p class="transfer_seats_object">Beijing Kung Fu Show</p>
+											<div class="transfer_seats_edit"></div>
+										</div>
+									</div>
+								</li>
+								<li class="transfer_seats-item">
+									<div class="transfer_seats-container">
+										<div class="transfer_seats-image"></div>
+										<div class="transfer_seats-content">
+											<p class="transfer_seats_time">08:30 - 15:30</p>
+											<p class="transfer_seats_object">Spain Cathedra</p>
+											<div class="transfer_seats_edit"></div>
+										</div>
+									</div>
+								</li>
+								<li class="transfer_seats-item">
+									<div class="transfer_seats-container">
+										<div class="transfer_seats-image"></div>
+										<div class="transfer_seats-content">
+											<p class="transfer_seats_time">08:30 - 15:30</p>
+											<p class="transfer_seats_object">Beijing Kung Fu Show</p>
+											<div class="transfer_seats_edit"></div>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<p class="transfer_seats-title">Dec 01, Wed</p>
+							<ul class="transfer_seats-list">
+								<li class="transfer_seats-item">
+									<div class="transfer_seats-container">
+										<div class="transfer_seats-image"></div>
+										<div class="transfer_seats-content">
+											<p class="transfer_seats_time">08:30 - 15:30</p>
+											<p class="transfer_seats_object">Beijing Kung Fu Show</p>
+											<div class="transfer_seats_edit"></div>
+										</div>
+									</div>
+								</li>
+								<li class="transfer_seats-item">
+									<div class="transfer_seats-container">
+										<div class="transfer_seats-image"></div>
+										<div class="transfer_seats-content">
+											<p class="transfer_seats_time">08:30 - 15:30</p>
+											<p class="transfer_seats_object">Spain Cathedra</p>
+											<div class="transfer_seats_edit"></div>
+										</div>
+									</div>
+								</li>
+								<li class="transfer_seats-item">
+									<div class="transfer_seats-container">
+										<div class="transfer_seats-image"></div>
+										<div class="transfer_seats-content">
+											<p class="transfer_seats_time">08:30 - 15:30</p>
+											<p class="transfer_seats_object">Beijing Kung Fu Show</p>
+											<div class="transfer_seats_edit"></div>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<p class="transfer_seats-title">Dec 01, Wed</p>
+							<ul class="transfer_seats-list">
+								<li class="transfer_seats-item">
+									<div class="transfer_seats-container">
+										<div class="transfer_seats-image"></div>
+										<div class="transfer_seats-content">
+											<p class="transfer_seats_time">08:30 - 15:30</p>
+											<p class="transfer_seats_object">Beijing Kung Fu Show</p>
+											<div class="transfer_seats_edit"></div>
+										</div>
+									</div>
+								</li>
+								<li class="transfer_seats-item">
+									<div class="transfer_seats-container">
+										<div class="transfer_seats-image"></div>
+										<div class="transfer_seats-content">
+											<p class="transfer_seats_time">08:30 - 15:30</p>
+											<p class="transfer_seats_object">Spain Cathedra</p>
+											<div class="transfer_seats_edit"></div>
+										</div>
+									</div>
+								</li>
+								<li class="transfer_seats-item">
+									<div class="transfer_seats-container">
+										<div class="transfer_seats-image"></div>
+										<div class="transfer_seats-content">
+											<p class="transfer_seats_time">08:30 - 15:30</p>
+											<p class="transfer_seats_object">Beijing Kung Fu Show</p>
+											<div class="transfer_seats_edit"></div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</section>';
+
+
+
+
+
+
+//					print_r($v);
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			$response = array(
-				'title_show_tour'=>$v['title_tour'],
-				'description_1'=>$v['description_1'],
-				'description_2'=>$v['description_2'],
-				'title_top_highlights'=>$v['title_top_highlights'],
-				'top_highlights2'=>$v['top_highlights'],
-				'tour_images'=>$v['tour_images'],
+				'tours_html'=>$html,
 				'tour_price'=>$v['tour_price'],
-				'title_tour'=>$v['title_tour'],
+				'price_per_person'=>$v['price_per_perso'],
 				'count_days'=>$v['count_days'],
-				'title_before_description_2'=>$v['title_before_description_2'],
 		);
 		}
 	}
