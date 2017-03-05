@@ -13,7 +13,7 @@ if(!$id_tour){
 $fields = get_fields($id_tour);
 $fields = $fields['content'];
 foreach ($fields as $key => $item) {
-if($item['acf_fc_layout'] == 'tab_planner'){
+if($item['acf_fc_layout'] == 'tab_summary'){
 
 ?>
 <section class="way_block-container">
@@ -67,7 +67,7 @@ if($item['acf_fc_layout'] == 'tab_planner'){
 			<ul class="package_list transfer_chose-list">
 				<li class="transform_chose-item transform_nav transform_nav-active"><a class="transform_chose-link">PLANNER</a></li>
 				<li class="transform_chose-item transform_nav"><a class="transform_chose-link">MAP</a></li>
-				<li class="transform_chose-item transform_nav"><a class="transform_chose-link">SUMMARY</a></li>
+				<li class="transform_chose-item transform_nav"><a href="<?=get_permalink(2199)."?id=".$id_tour?>" class="transform_chose-link">SUMMARY</a></li>
 				<li class="transform_chose-item transform_chose-item-request"><a class="transform_chose-link">Special request</a></li>
 				<li class="package_item package_item-btn transform_chose-item"><a href="<?=get_permalink(2088)?>" class="inform-log_link package-log_link">BOOK ORDER</a></li>
 				<li class="package_item package_item-btn-share transform_chose-item"><a href="#" class="package-log_link">SHARE THIS PACKAGE</a></li>
