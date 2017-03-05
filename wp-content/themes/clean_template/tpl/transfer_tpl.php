@@ -64,7 +64,7 @@ if($item['acf_fc_layout'] == 'tab_planner'){
 				</li>
 			</ul>
 			<ul class="package_list transfer_chose-list">
-				<li class="transform_chose-item transform_nav transform_nav-active"><a class="transform_chose-link">PLANNER</a></li>
+				<li class="transform_chose-item transform_nav transform_nav-active"><a href="<?=get_permalink(2086)."?id=".$id_tour?>" class="transform_chose-link">PLANNER</a></li>
 				<li class="transform_chose-item transform_nav"><a class="transform_chose-link">MAP</a></li>
 				<li class="transform_chose-item transform_nav"><a href="<?=get_permalink(2199)."?id=".$id_tour?>" class="transform_chose-link">SUMMARY</a></li>
 				<li class="transform_chose-item transform_chose-item-request"><a class="transform_chose-link">Special request</a></li>
