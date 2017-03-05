@@ -28,25 +28,14 @@ initMarker = function(lat,lng){
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[1]) {
         Valid = true;
-         //formatted address
-         name = results[0].formatted_address;
-        //find country name
-             for (var i=0; i<results[0].address_components.length; i++) {
-                for (var b=0;b<results[0].address_components[i].types.length;b++) {
+        for(i = 0;i < results[0].address_components.length;i++){
+            if(results[0].address_components[i]['types'][0] == 'locality'){
+                console.log(results[0].address_components[i]['long_name']);
+                name =  results[0].address_components[i]['long_name'];
+                CountrList.push(name);
 
-            //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
-                if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
-                    //this is the object you are looking for
-                    city= results[0].address_components[i];
-                    break;
-                }
-            }
-        }
         //city data
-        name = city.short_name + " " + city.long_name;
 
-        CountrList.push(name);
-        console.log(CountrList);
 
 
 
@@ -56,13 +45,25 @@ initMarker = function(lat,lng){
         Marker = new google.maps.Marker({
         position: coordinates,
         draggable : true,
-        // animation: google.maps.Animation.BOUNCE,
+        shadowStyle: 1,
+        padding: 0,
+        backgroundColor: 'rgb(57,57,57)',
+        borderRadius: 5,
+        arrowSize: 10,
+        borderWidth: 1,
+        borderColor: '#2c2c2c',
+        disableAutoPan: true,
+        hideCloseButton: true,
+        arrowPosition: 30,
+        backgroundClassName: 'transparent',
+        arrowStyle: 2,
         map: map,
         icon: iconUrld
     });
+    var InfoContent = '<div class="MyInfo">'+name+'</div>'
     markeArr.push(Marker);
       infowindow = new google.maps.InfoWindow({
-      content: name,
+      content: InfoContent,
     });
     infowindow.open(map, Marker);
 
@@ -84,6 +85,11 @@ initMarker = function(lat,lng){
       }
         if (Valid){
         flightPath(lat,lng);
+        }
+                    }
+            else{
+                // return 0;
+            }
         }
     });
 }
@@ -134,4 +140,7 @@ TaskManager = function(){
 }
 $(document).ready(function(){
     TaskManager();
+    setInterval(function(){
+        $('.gm-style-iw').prev().hide();
+    },50);
 });
