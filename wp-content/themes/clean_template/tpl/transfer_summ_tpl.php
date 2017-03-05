@@ -4,9 +4,17 @@ Template Name: Transfer summ
 */
 ?>
 <?php get_header(); ?>
-
 <?php
-$id= $_SESSION['id_package'];
+$id_tour = intval($_GET['id']);
+if(!$id_tour){
+	return;
+}
+$fields = get_fields($id_tour);
+$fields = $fields['content'];
+foreach ($fields as $key => $item) {
+if($item['acf_fc_layout'] == 'tab_summary'){
+
+
 ?>
 
 <section class="way_block-container">
@@ -29,10 +37,10 @@ $id= $_SESSION['id_package'];
 	<section class="transfer_title_container">
 		<div class="container">
 			<h1 class="transfer_title">
-				<?= get_field("title", $id) ?>
+				<?=$item['title']?>
 			</h1>
 			<p class="transfer_date">
-				<?= get_field("date", $id) ?>
+				<?=$item['date']?>
 			</p>
 		</div>
 	</section>
@@ -76,23 +84,31 @@ $id= $_SESSION['id_package'];
 				<div class="transfer-summ_container">
 					<div class="transfer-summ_title-container">
 						<h1 class="transfer-summ_title">
-							<?= get_field("title", $id) ?>
+							<?=$item['title']?>
 						</h1>
 						<p class="transfer-summ_text">
-							<?= get_field("description_iterary_on_transfer_summ_page", $id) ?>
+							<?=$item['description_after_title']?>
 						</p>
-						<p class="transfer-summ_title">Overall Costs</p>
-						<p class="transfer-summ_cost">Price per Person<span>USD <?=get_field('price', $id)?></span></p>
-						<p class="transfer-summ_cost transfer-summ_cost-total">TOTAL PRICE<span>USD 5,072</span></p>
+						<p class="transfer-summ_title">
+							<?=$item['title_overal_costs']?>
+						</p>
+						<p class="transfer-summ_cost">
+							<?=$item['title_price_per_person']?>
+							<span>USD <?=$item['price_per_person']?></span>
+						</p>
+						<p class="transfer-summ_cost transfer-summ_cost-total">
+							TOTAL PRICE
+							<span>USD <?=$item['total_price']?></span>
+						</p>
 					</div>
 					<div class="transfer-summ_image-container">
-						<div src="images/transfer-icon/bound.jpg" class="transfer-summ-images"></div>
+						<div src="<?=$item['image']?>" class="transfer-summ-images"></div>
 					</div>
 				</div>
 				<div class="transfer-summ_include-container">
 					<ul class="transfer-summ_include">
 						<li class="transfer-summ_item transfer-summ_item-title">Included</li>
-						<?php foreach (get_field("included", $id) as $k=>$v){ ?>
+						<?php foreach ($item["included"] as $k=>$v){ ?>
 							<li class="transfer-summ_item">
 								<?=$v['item']?>
 							</li>
@@ -100,7 +116,7 @@ $id= $_SESSION['id_package'];
 					</ul>
 					<ul class="transfer-summ_include">
 						<li class="transfer-summ_item transfer-summ_item-title">Excluded</li>
-						<?php foreach (get_field("excluded", $id) as $k=>$v){ ?>
+						<?php foreach ($item["excluded"] as $k=>$v){ ?>
 							<li class="transfer-summ_item transfer-summ_item-none">
 								<?=$v['item']?>
 							</li>
@@ -108,38 +124,34 @@ $id= $_SESSION['id_package'];
 					</ul>
 				</div>
 				<div class="transfer-itinerary">
-					<div class="transfer-itinerary_title">ITINERARY</div>
+					<div class="transfer-itinerary_title">
+						<?=$item['title_itineraries']?>
+					</div>
 					<?php
-					$fields = get_fields($id);
-					foreach ($fields['itinerarys2'] as $key => $item) :
+					foreach ($item['itineraries'] as $k => $v) {
 					?>
-					<?php if($item['acf_fc_layout'] == 'one_day') : ?>
-					<ul class="transfer-itinerary_list">
-						<li class="transfer-itinerary_item transfer-itinerary-t">
-							<p class="transfer-itinerary_item_title">
-								<?=$item['from_date']?>
-							</p>
-							<p class="transfer-itinerary_item_time">
-								<span><?=$item['from_date']?></span>
-								<span><?=$item['to_date']?></span>
-							</p>
-						</li>
-						<li class="transfer-itinerary_item transfer-itinerary-tx">
-							<p class="transfer-itinerary_item-text">
-								<?=$item['city']?>
-							</p>
-							<div class="transfer-iti-row">
-								<div class="transfer-iti-col-title"><?=$item['transfer_type']?></div>
-								<div class="transfer-iti-col-text"><?=$item['from']?></div>
-							</div>
-<!--							<div class="transfer-iti-row">-->
-<!--								<div class="transfer-iti-col-title">Road Transfer (Private)</div>-->
-<!--								<div class="transfer-iti-col-text">Novotel Xinqiao London Double Room Double Bed Incl.: Breakfast</div>-->
-<!--							</div>-->
-						</li>
-					</ul>
-					<?php endif; ?>
-					<?php endforeach; ?>
+						<ul class="transfer-itinerary_list">
+							<li class="transfer-itinerary_item transfer-itinerary-t">
+								<p class="transfer-itinerary_item_title">
+									<?=$v['date']?>
+								</p>
+								<p class="transfer-itinerary_item_time">
+									<span><?=$v['hours_start']?></span><span><?=$v['hours_end']?></span>
+								</p>
+							</li>
+							<li class="transfer-itinerary_item transfer-itinerary-tx">
+								<p class="transfer-itinerary_item-text">
+									<?=$v['title_arriving']?>
+								</p>
+							<?php foreach ($v['arriving'] as $kk=>$vv){ ?>
+								<div class="transfer-iti-row">
+									<div class="transfer-iti-col-title"><?=$vv['title']?></div>
+									<div class="transfer-iti-col-text"><?=$vv['description']?></div>
+								</div>
+								<?php } ?>
+							</li>
+						</ul>
+					<?php } ?>
 
 				</div>
 			</div>
@@ -157,11 +169,11 @@ $id= $_SESSION['id_package'];
 		</div>
 	</section>
 </main>
-
+<?php }} ?>
 <?php get_footer() ?>
 <script>
 	$(function() {
-		var share_url_inner= localStorage.getItem("url_share");
+		var share_url_inner= window.location.href;
 		console.log(share_url_inner);
 
 		$("#share_package2").parent().append('<a style="display: none" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u='+share_url_inner+'" class="package-log_link"> FACEBOOK </a>');
@@ -185,4 +197,3 @@ $id= $_SESSION['id_package'];
 
 	});
 </script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/start_planing.js"></script>

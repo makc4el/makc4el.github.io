@@ -169,159 +169,80 @@ add_action('wp_ajax_nopriv_selectcity', 'selectcity_ajax');
 
 
 ////////////////////////////////////////////SHOW TOURS///////////////////////////////////////////////////////////////
-function show_tours_ajax(){
+function show_tours_ajax()
+{
 	$select_locations = $_POST['select_locations'];
 	$select_locations = explode(",", $select_locations);
-	$available_tours = get_fields(2130, 'tours_and_sity');
-	if(!$available_tours){
+	$available_tours = get_posts();
+
+	if (!$available_tours) {
 		echo "not available tours";
 		wp_die();
 	}
+
+	foreach ($available_tours as $k=>$v){
+		$id_available_tours[]=$v->ID;
+	}
+
+	$html = '';
+foreach ($id_available_tours as $v){
+
+	$fields = get_fields($v);
+	$id_tour = $v;
+	$fields = $fields['content'];
+
+	foreach ($fields as $key => $item) {
+		
+		if($item['acf_fc_layout'] == 'preview'){
+			$gallery = '';
+			foreach ($item['gallery'] as $k=>$v){
+				$gallery.='<div class="owl-item" style="background: url('.$v['image'].') no-repeat center;background-size: cover;"></div>';
+			}
+
+			$stars = '';
+			for ($i=0; $i<5; $i++){
+				if($item['rating_number_of_stars']<=$i){
+					$stars.='<span class="star-icon star-gold"></span>';
+				}
+				$stars.='<span class="star-icon "></span>';
+
+			}
+
+			$html.= '<div class="cart_container">
+          <div class="cart_img-container">
+            <div class="cart-cost_conatiner">
+              <p class="cart-cost">'.$item['price'].'$</p>
+              <p class="cart-days">'.$item['number_of_days'] .' '.$item['title_days'].'</p>
+            </div>
+            <div class="cart-img-list">'.$gallery.'</div>
+          </div>
+          <div class="cart_content-container">
+            <p class="cart-title">'.$item['title'].'</p>
+            <p class="cart-star-text">'.$item['description_after_title'].'</p>
+            <div class="cart-star-container">'.$stars.'</div>
+            <p class="cart-top cart-min-title">'.$item['title_top_places'].'</p>
+            <p class="cart-path">'.$item['top_places'].'</p>
+            <p class="cart-highloghts cart-min-title">'.$item['title_top_highlights'].'</p>
+            <p class="cart-path">'.$item['top_highlights'].'</p>
+            <a href="'.get_permalink(2169).'?id='.$id_tour.'" data-idtour="'.$id_tour.'" class="cart-btn">'.$item['title_button_view_details'].'</a>
+          </div>
+        </div>';
+		}
+	}
+}
 
 	//начало путевки
 	$start_tour = $select_locations[1];
-	if(!$start_tour){
+	if (!$start_tour) {
 		echo "not available tours";
 		wp_die();
+
 	}
-
-	$found_tours = array();
-	foreach ($available_tours['tours_and_sity'] as $k=>$v){
-
-		foreach ($v['cities'] as $kk=>$vv){
-			$address = $vv['city']['address'];
-			$str=strpos($address, ",");
-			$city=substr($address, 0, $str);
-			if(stripos('Лондон', $city)!==false){
-				$found_tours[]=$v;
-
-
-			}
-		}
-	}
-
-	if(count($found_tours)==0){
-		echo "not available tours";
-		wp_die();
-	}
-
-	foreach ($found_tours as $tour){
-
-		?>
-		<div class="cart_container">
-			<div class="cart_img-container">
-				<div class="cart-cost_conatiner">
-					<p class="cart-cost"><?=$tour['tour_price']?>$</p>
-					<p class="cart-days"><?=$tour['count_days']?></p>
-				</div>
-				<div class="cart-img-list">
-					<?php foreach ($tour['preview_gallery'] as $img){?>
-						<div class="owl-item" style="background: url(<?=$img['image']?>) no-repeat center;background-size: cover;"></div>
-					<?php } ?>
-				</div>
-			</div>
-			<div class="cart_content-container">
-				<p class="cart-title"><?=$tour['title_tour']?></p>
-				<p class="cart-star-text"><?=$tour['short_description_preview']?></p>
-				<div class="cart-star-container">
-					<span class="star-icon star-gold"></span>
-					<span class="star-icon star-gold"></span>
-					<span class="star-icon star-gold"></span>
-					<span class="star-icon star-gold"></span>
-					<span class="star-icon"></span>
-				</div>
-				<p class="cart-top cart-min-title">
-					<?=$tour['title_top_places_preview']?>
-				</p>
-				<p class="cart-path">
-					<?=$tour['top_places_preview']?>
-				</p>
-				<p class="cart-highloghts cart-min-title">
-					<?=$tour['title_top_highlightspreview']?>
-				</p>
-				<p class="cart-path">
-					<?=$tour['top_highlightspreview']?>
-				</p>
-				<a href="#" class="cart-btn">view details</a>
-				<p class="is_tours" style="display: none"><?php foreach ($tour['tour'] as $v){echo $v->ID.",";} ?></p>
-				<p class="title_tour" style="display: none"><?=$tour['title_tour']?></p>
-			</div>
-		</div>
-	<?php } ?>
-	<script>
-		$(".cart-btn").click(function (e) {
-			e.preventDefault();
-			var id_show_tours = $(this).next().text();
-			var title_tour = $(this).next().next().text();
-			localStorage.setItem("id_show_tours", id_show_tours);
-			localStorage.setItem("title_tour", title_tour);
-			window.location = start_paning;
-		});
-	</script>
-<?php
-
-	wp_die();
-
+	echo $html ;
 }
 
 add_action('wp_ajax_show_tours', 'show_tours_ajax');
 add_action('wp_ajax_nopriv_show_tours', 'show_tours_ajax');
-
-
-/////////////////////START PLANING//////////////////////////////////////////////
-add_action('wp_ajax_start_planing', 'start_planing');
-add_action('wp_ajax_nopriv_start_planing', 'start_planing');
-function start_planing() {
-	$title_tour = $_POST['title_tour'];
-
-	$available_tours = get_fields(2130, 'tours_and_sity');
-	if(!$available_tours){
-		echo "not available tours";
-		wp_die();
-	}
-
-	foreach ($available_tours['tours_and_sity'] as $k=>$v){
-		if($v['title_tour']==$title_tour){
-			
-			$response = array(
-				'title_show_tour'=>$v['title_tour'],
-				'description_1'=>$v['description_1'],
-				'description_2'=>$v['description_2'],
-				'title_top_highlights'=>$v['title_top_highlights'],
-				'top_highlights2'=>$v['top_highlights'],
-				'tour_images'=>$v['tour_images'],
-				'tour_price'=>$v['tour_price'],
-				'title_tour'=>$v['title_tour'],
-				'count_days'=>$v['count_days'],
-				'title_before_description_2'=>$v['title_before_description_2'],
-		);
-		}
-	}
-
-echo json_encode($response);
-
-
-	wp_die();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

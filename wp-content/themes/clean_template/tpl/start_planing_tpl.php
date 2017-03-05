@@ -4,6 +4,16 @@ Template Name: Start planing
 */
 ?>
 <?php get_header(); ?>
+<?php
+	$id_tour = intval($_GET['id']);
+if(!$id_tour){
+	return;
+}
+$fields = get_fields($id_tour);
+$fields = $fields['content'];
+foreach ($fields as $key => $item) {
+if($item['acf_fc_layout'] == 'a_general_description_of_the_whole_tour'){
+?>
 
 <section class="way_block-container">
 	<div class="container">
@@ -22,13 +32,19 @@ Template Name: Start planing
 	</div>
 </section>
 <main id="transfer">
+<main id="transfer">
 	<main id="package">
 		<section class="package_about">
 			<div class="container">
 				<div class="package_about-text_container">
-					<h1 class="package-title" id="title_tour"></h1>
-<!--					<p class="package-date">Mar 01 - Mar 13 2017</p>-->
+					<h1 class="package-title" id="title_tour">
+						<?=$item['title']?>
+					</h1>
+					<p class="package-date" id="date">
+						<?=$item['date']?>
+					</p>
 					<p class="package-text" id="description1">
+						<?=$item['first_description']?>
 					</p>
 				</div>
 				<div class="package_about-map_container">
@@ -41,51 +57,68 @@ Template Name: Start planing
 				<ul class="package_list transfer_chose-list">
 					<li class="transform_chose-item transform_nav transform_nav-active"><a class="transform_chose-link">PLANNER</a></li>
 					<li class="transform_chose-item transform_nav"><a class="transform_chose-link">MAP</a></li>
-					<li class="transform_chose-item transform_nav">
-						<a id="summary" href="<?= get_permalink(2199)?>" class="transform_chose-link">SUMMARY</a>
+					<li class="transform_chose-item transform_nav"`x>
+						<a id="summary" href="<?= get_permalink(2086).'?id='.$id_tour?>" class="transform_chose-link">SUMMARY</a>
 					</li>
 					<li class="transform_chose-item transform_chose-item-request"><a class="transform_chose-link">Special request</a></li>
 					<li class="package_item package_item-btn transform_chose-item"><a href="#" class="inform-log_link package-log_link">BOOK ORDER</a></li>
-<!--					<li class="package_item package_item-btn-share">-->
-<!--						<a id="share_package2" href="#" class="package-log_link">SHARE THIS PACKAGE</a>-->
-<!---->
-<!--					</li>-->
+					<li class="package_item package_item-btn-share">
+						<a id="share_package2" href="#" class="package-log_link">SHARE THIS PACKAGE</a>
+					</li>
 				</ul>
 			</div>
 		</section>
 		<section class="package_block">
 			<div class="container">
 				<ul class="package_block-list">
-					<li class="package_block-item">
-						<div class="package_block-item_content">
-							<div class="package_block-item-info">
-								<p class="package_block-item-info-title" id="title_before_description_2">
 
-								</p>
-								<p class="package_block-item-info-text" id="description2"></p>
-								<p class="package_block-item-info-top-title" id="title_top_highlights"></p>
-								<ul class="package_block-item-info_list" id="top_highlights">
-								</ul>
-								<a href="#" class="view-link">VIEW DETAILS ABOUT LONDON</a>
+					<?php foreach ($item['description_of_the_city'] as $k=>$v){?>
+						<li class="package_block-item">
+							<div class="package_block-item_content">
+								<div class="package_block-item-info">
+									<p class="package_block-item-info-title">
+									<?=$v['count_days_and_city_name']?>
+									</p>
+									<p class="package_block-item-info-text">
+										<?=$v['description']?>
+									</p>
+									<p class="package_block-item-info-top-title">
+										<?=$v['title_top_highlights']?>
+									</p>
+									<ul class="package_block-item-info_list">
+										<?php foreach ($v['top_highlights'] as $vv){?>
+										<li class="package_block-item-info_item item-info-museum">
+											<span class="package_block-item-info-item-text">
+												<?=$vv['icon']?>
+												<?=$vv['description']?>
+											</span>
+										</li>
+									<?php } ?>
+									</ul>
+									<a href="#" class="view-link">VIEW DETAILS ABOUT LONDON</a>
+								</div>
+								<div class="package_block-item-imgs">
+									<?php foreach ($v['images'] as $vv){?>
+										<div class="package_block-item-img" style="background: url('<?=$vv['image']?>') no-repeat center;background-size: cover;"></div>
+									<?php } ?>
+								</div>
 							</div>
-							<div class="package_block-item-imgs" id="images_tour">
+						</li>
+					<?php } ?>
 
-							</div>
-						</div>
-					</li>
+
 				</ul>
 			</div>
 		</section>
 	</main>
 </main>
-
+<?php }} ?>
 <?php get_footer() ?>
 <script>
 	//	share_package2
 	// show SHARE LINK2
 	$(function() {
-		var share_url_inner= localStorage.getItem("url_share");
-		console.log(share_url_inner);
+		var share_url_inner= window.location.href;
 		$("#share_package2").parent().append('<a style="display: none" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u='+share_url_inner+'" class="package-log_link"> FACEBOOK </a>');
 		$("#share_package2").parent().append('<a style="display: none" target="_blank" href="https://twitter.com/home?status='+share_url_inner+'" class="package-log_link"> TWITTER</a>');
 		$("#share_package2").parent().append('<a style="display: none" target="_blank" href="https://plus.google.com/share?url='+share_url_inner+'" class="package-log_link"> Google Plus </a>');
