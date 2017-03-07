@@ -184,3 +184,13 @@ if($item['acf_fc_layout'] == 'tab_planner'){
 </main>
 <?php }} ?>
 <?php get_footer(); ?>
+<script>
+	var guests = localStorage.getItem('guests');
+	var select_location = localStorage.getItem('CityName');
+	$('#countries').val(select_location);
+
+	if(localStorage.getItem('guests') !== null) {
+		$('#spinner1').val(guests)
+	}
+
+</script>

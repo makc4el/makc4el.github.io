@@ -64,22 +64,14 @@
 	};
 
 	$.ajax({
-		url:ajaxurl, // обработчик
-		data:data, // данные
-		type:'POST', // тип запроса
+		url:ajaxurl,
+		data:data,
+		type:'POST',
 		success:function(data){
 
 			var container = $('#tours');
-//			console.log(data);
 			container.append(data);
-			// var r= JSON.parse(data);
-
 		}
 	});
-
-
-
-
-	
 
 </script>

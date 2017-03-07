@@ -49,7 +49,7 @@ if($item['acf_fc_layout'] == 'tab_summary'){
 			<ul class="package_list transfer_chose-list">
 				<li class="package_item package_item-countries">
 					<p class="package_item-title">Countries</p>
-					<input type="text" value="England - Germany - France" readonly="readonly" class="package_item_text"/>
+					<input type="text" id="countries" readonly="readonly" class="package_item_text"/>
 				</li>
 				<li class="package_item package_item-counter">
 					<p class="package_item-title">Guests</p>
@@ -66,11 +66,21 @@ if($item['acf_fc_layout'] == 'tab_summary'){
 				</li>
 			</ul>
 			<ul class="package_list transfer_chose-list">
-				<li class="transform_chose-item transform_nav transform_nav-active"><a class="transform_chose-link">PLANNER</a></li>
-				<li class="transform_chose-item transform_nav"><a class="transform_chose-link">MAP</a></li>
-				<li class="transform_chose-item transform_nav"><a class="transform_chose-link">SUMMARY</a></li>
-				<li class="transform_chose-item transform_chose-item-request"><a class="transform_chose-link">Special request</a></li>
-				<li class="package_item package_item-btn transform_chose-item"><a href="#" class="inform-log_link package-log_link">BOOK ORDER</a></li>
+				<li class="transform_chose-item transform_nav ">
+					<a href="<?=get_permalink(2086)."?id=".$id_tour?>" class="transform_chose-link">PLANNER</a>
+				</li>
+				<li class="transform_chose-item transform_nav">
+					<a class="transform_chose-link">MAP</a>
+				</li>
+				<li class="transform_chose-item transform_nav transform_nav-active">
+					<a href="<?=get_permalink(2199)."?id=".$id_tour?>" class="transform_chose-link">SUMMARY</a>
+				</li>
+				<li class="transform_chose-item transform_chose-item-request">
+					<a class="transform_chose-link">Special request</a>
+				</li>
+				<li class="package_item package_item-btn transform_chose-item">
+					<a href="<?=get_permalink(2088)?>" class="inform-log_link package-log_link">BOOK ORDER</a>
+				</li>
 				<li class="package_item package_item-btn-share">
 					<a id="share_package2" href="#" class="package-log_link">SHARE THIS PACKAGE</a>
 
@@ -191,9 +201,9 @@ if($item['acf_fc_layout'] == 'tab_summary'){
 			});
 
 		});
+		var select_location = localStorage.getItem('CityName');
+		$('#countries').val(select_location);
 
-		var location= localStorage.getItem("locations");
-		$('#location').val(location)
 
 	});
 </script>

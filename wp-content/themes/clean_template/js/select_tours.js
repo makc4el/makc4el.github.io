@@ -34,7 +34,7 @@ jQuery(function($){
             var redirect_to=tours[0];
             tours.shift();
             localStorage.setItem("tours_id", JSON.stringify(tours));
-            localStorage.setItem("locations", location);
+              localStorage.setItem("locations", location);
             window.location = redirect_to;
 
           }
@@ -48,5 +48,8 @@ jQuery(function($){
     });
 
   });
+
+
+
 
 });

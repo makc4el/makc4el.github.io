@@ -55,7 +55,9 @@ if($item['acf_fc_layout'] == 'a_general_description_of_the_whole_tour'){
 		<section class="package_chose">
 			<div class="container">
 				<ul class="package_list transfer_chose-list">
-					<li class="transform_chose-item transform_nav transform_nav-active"><a class="transform_chose-link">PLANNER</a></li>
+					<li class="transform_chose-item transform_nav transform_nav-active">
+						<a href="<?=get_permalink(2086)."?id=".$id_tour?>" class="transform_chose-link">PLANNER</a>
+					</li>
 					<li class="transform_chose-item transform_nav"><a class="transform_chose-link">MAP</a></li>
 					<li class="transform_chose-item transform_nav"`x>
 						<a id="summary" href="<?= get_permalink(2086).'?id='.$id_tour?>" class="transform_chose-link">SUMMARY</a>

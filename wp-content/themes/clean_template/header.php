@@ -1,3 +1,12 @@
+<?php
+
+if( isset( $_GET['logout'] ) ) {
+	wp_logout();
+	wp_redirect(home_url());
+}
+?>
+
+
 <html>
 <head>
 	<title>Travel</title>
@@ -52,8 +61,19 @@ if ( ! current_user_can( 'manage_options' ) ) {
 			<input type="text" placeholder="Search country"/>
 		</div>
 		<ul class="header_login-list">
-			<li class="header_login-item"><a href="<?= get_permalink(2054) ?>" class="header_login-link">LOG IN</a></li>
-			<li class="header_login-item"><a href="<?= get_permalink(2052) ?>" class="header_login-link">SIGN UP</a></li>
+			<?php if ( !is_user_logged_in() ) { ?>
+				<li class="header_login-item">
+					<a href="<?= get_permalink(2054) ?>" class="header_login-link">LOG IN</a>
+				</li>
+				<li class="header_login-item">
+					<a href="<?= get_permalink(2052) ?>" class="header_login-link">SIGN UP</a>
+				</li>
+			<?php }else{ ?>
+				<li class="header_login-item">
+					<a href="<?php echo $_SERVER['REQUEST_URI'].'?logout=true'; ?>" class="header_login-link">Log out</a>
+				</li>
+			<?php } ?>
+
 		</ul>
 		<ul class="header_lenguage_list">
 			<li class="header_lenguage-item header_lenguage-item_active">

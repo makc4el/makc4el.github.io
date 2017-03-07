@@ -169,7 +169,7 @@ jQuery(function($){
     });
 
 
-    //start PLANING
+/*    //start PLANING
     $("#start_planing").click(function (e) {
         e.preventDefault();
         localStorage.removeItem("id_package");
@@ -190,7 +190,7 @@ jQuery(function($){
 
 
 
-    });
+    });*/
 
 
 });
