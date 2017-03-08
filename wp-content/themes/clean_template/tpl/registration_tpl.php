@@ -107,5 +107,10 @@ Template Name: Registration
 		
 	</div>
 </section>
-
+<script>
+	var redirect = localStorage.getItem('redirect');
+	if(redirect!==null){
+		window.location = redirect;
+	}
+</script>
 <?php get_footer(); ?>
