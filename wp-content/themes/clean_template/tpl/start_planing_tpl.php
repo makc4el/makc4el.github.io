@@ -63,7 +63,9 @@ if($item['acf_fc_layout'] == 'a_general_description_of_the_whole_tour'){
 						<a id="summary" href="<?= get_permalink(2086).'?id='.$id_tour?>" class="transform_chose-link">SUMMARY</a>
 					</li>
 					<li class="transform_chose-item transform_chose-item-request"><a class="transform_chose-link">Special request</a></li>
-					<li class="package_item package_item-btn transform_chose-item"><a href="#" class="inform-log_link package-log_link">BOOK ORDER</a></li>
+					<li class="package_item package_item-btn transform_chose-item">
+						<a href="<?=get_permalink(2205)."?id=".$id_tour?>" class="inform-log_link package-log_link">BOOK ORDER</a>
+					</li>
 					<li class="package_item package_item-btn-share">
 						<a id="share_package2" href="#" class="package-log_link">SHARE THIS PACKAGE</a>
 					</li>
@@ -97,7 +99,7 @@ if($item['acf_fc_layout'] == 'a_general_description_of_the_whole_tour'){
 										</li>
 									<?php } ?>
 									</ul>
-									<a href="#" class="view-link">VIEW DETAILS ABOUT LONDON</a>
+<!--									<a href="#" class="view-link">VIEW DETAILS ABOUT LONDON</a>-->
 								</div>
 								<div class="package_block-item-imgs">
 									<?php foreach ($v['images'] as $vv){?>

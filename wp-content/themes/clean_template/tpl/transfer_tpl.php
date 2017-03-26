@@ -53,15 +53,12 @@ if($item['acf_fc_layout'] == 'tab_planner'){
 					<p class="package_item-title">Guests</p>
 					<input type="text" value="1" id="spinner1" readonly="readonly" class="package_item_text"/>
 				</li>
-				<li class="package_item package_item-date">
-					<p class="package_item-title">Start date</p>
-					<input type="text" placeholder="date" id="datepicker" class="package_item_text"/>
-					<label for="datepicker" class="package_item_text-label"></label>
-				</li>
-				<li class="package_item package_item-money">
-					<p class="package_item-title">Budget</p>
-					<input type="text" value="$3200" readonly="readonly" class="package_item_text"/>
-				</li>
+<!--				<li class="package_item package_item-date">-->
+<!--					<p class="package_item-title">Start date</p>-->
+<!--					<input type="text" placeholder="date" id="datepicker" class="package_item_text"/>-->
+<!--					<label for="datepicker" class="package_item_text-label"></label>-->
+<!--				</li>-->
+<!--				Countries-->
 			</ul>
 			<ul class="package_list transfer_chose-list">
 				<li class="transform_chose-item transform_nav transform_nav-active">
@@ -189,7 +186,7 @@ if($item['acf_fc_layout'] == 'tab_planner'){
 <?php get_footer(); ?>
 <script>
 	var guests = localStorage.getItem('guests');
-	var select_location = localStorage.inform-log_link package-log_linkgetItem('CityName');
+	var select_location = localStorage.getItem('CityName');
 	$('#countries').val(select_location);
 
 	if(localStorage.getItem('guests') !== null) {

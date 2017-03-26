@@ -24,31 +24,31 @@
 				<p class="package_item-title">Countries</p>
 				<input type="text" value="" readonly="readonly" class="package_item_text" id="locations"/>
 			</li>
-			<li class="package_item package_item-money">
-				<p class="package_item-title">Duration</p>
-				<input type="text" value="0" readonly="readonly" class="package_item_text"/>
-			</li>
+<!--			<li class="package_item package_item-money">-->
+<!--				<p class="package_item-title">Duration</p>-->
+<!--				<input type="text" value="0" readonly="readonly" class="package_item_text"/>-->
+<!--			</li>-->
 			<li class="package_item package_item-counter">
 				<p class="package_item-title">Guests</p>
 				<input type="text" value="0" id="spinner1" readonly="readonly" class="package_item_text"/>
 			</li>
-			<li class="package_item package_item-counter">
-				<p class="package_item-title">Raiting</p>
-				<input type="text" value="1*" id="spinner2" readonly="readonly" class="package_item_text"/>
-			</li>
-			<li class="package_item package_item-money package_item-money-last">
-				<p class="package_item-title">Budget</p>
-				<input type="text" value="$3200" readonly="readonly" class="package_item_text"/>
-			</li>
+<!--			<li class="package_item package_item-counter">-->
+<!--				<p class="package_item-title">Raiting</p>-->
+<!--				<input type="text" value="1*" id="spinner2" readonly="readonly" class="package_item_text"/>-->
+<!--			</li>-->
+<!--			<li class="package_item package_item-money package_item-money-last">-->
+<!--				<p class="package_item-title">Budget</p>-->
+<!--				<input type="text" value="$3200" readonly="readonly" class="package_item_text"/>-->
+<!--			</li>-->
 		</ul>
 	</div>
 </section>
 
 <section class="tour-carts_section">
 	<div class="container" id="tours">
-		
-		
-		
+
+
+
 	</div>
 </section>
 
