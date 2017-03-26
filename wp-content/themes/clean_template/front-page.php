@@ -29,5 +29,5 @@
 
 <?php get_footer(); ?>
 <script src="<?php echo get_template_directory_uri(); ?>/js/map.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuvy6s0SgbE353quCmrP5yvyXg6EwxoP8&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDruxYYr6FOGtihXaXbkkD6rGPq8LQ2pM&callback=initMap"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/select_tours.js"></script>
