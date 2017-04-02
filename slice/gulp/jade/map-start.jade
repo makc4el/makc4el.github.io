@@ -1,27 +1,28 @@
 main#map_start
 	.container
 		.map-content
-			img.nam.active(src='images/map/AMN.png',data-continent="NORTH AMERICA")
-			span.nam_point.active
+			img.nam(src='images/map/AMN.png',data-continent="NORTH AMERICA",data-coord="-15.961329081596647,-59.501953125")
+			span.nam_point
 				p.point_text NORTH&nbsp;AMERICA 
-			img.sam(src='images/map/SAM.png',data-continent="SOUTH AMERICA")
+			img.sam(src='images/map/SAM.png',data-continent="SOUTH AMERICA",data-coord="39.50404070558415,-98.876953125")
 			span.sam_point
 				p.point_text SOUTH&nbsp;AMERICA
-			img.aus(src='images/map/AUS.png',data-continent="AUSTRALIA")
+			img.aus(src='images/map/AUS.png',data-continent="AUSTRALIA",data-coord="-29.535229562948444,136.845703125")
 			span.aus_point
 				p.point_text AUSTRALIA
-			img.eur(src='images/map/EUR.png',data-continent="EUROPE")
+			img.eur(src='images/map/EUR.png',data-continent="EUROPE",data-coord="40.58058466412762,90.439453125")
 			span.eur_point
 				p.point_text EUROPE 
-			img.asi(src='images/map/ASI.png',data-continent="ASIA")
+			img.asi(src='images/map/ASI.png',data-continent="ASIA",data-coord="52.05249047600099,31.376953125")
 			span.asi_point
 				p.point_text ASIA
-			img.afr(src='images/map/AFR.png',data-continent="AFRICA")
+			img.afr(src='images/map/AFR.png',data-continent="AFRICA",data-coord="8.059229627200192,23.994140625")
 			span.afr_point
 				p.point_text AFRICA
 	.choose_map
 		.container
-			h1.choose_map-title England / Gerany / France
+			h1.choose_map-title.choose_coontinents 
+				p Please select a continent
 				span countries
-			a.choose_btn(href="map.html") 
+			a.choose_btn.coontinents_btn(href="map.html") 
 				span next

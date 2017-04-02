@@ -16,6 +16,7 @@
     <link href="css/jquery-ui.min.css" rel="stylesheet"/>
     <link href="css/layout.css" rel="stylesheet"/>
     <link href="css/mobile.css" rel="stylesheet"/>
+    <script src="js/jquery_v3.js"></script>
   </head>
   <body><div class="svg_all">
 	<svg xmlns="http://www.w3.org/2000/svg">
@@ -71,27 +72,26 @@
     </section>
     <main id="map_start">
       <div class="container">
-        <div class="map-content"><img src="images/map/AMN.png" data-continent="NORTH AMERICA" class="nam active"/><span class="nam_point active">
-            <p class="point_text">NORTH&nbsp;AMERICA </p></span><img src="images/map/SAM.png" data-continent="SOUTH AMERICA" class="sam"/><span class="sam_point">
-            <p class="point_text">SOUTH&nbsp;AMERICA</p></span><img src="images/map/AUS.png" data-continent="AUSTRALIA" class="aus"/><span class="aus_point">
-            <p class="point_text">AUSTRALIA</p></span><img src="images/map/EUR.png" data-continent="EUROPE" class="eur"/><span class="eur_point">
-            <p class="point_text">EUROPE </p></span><img src="images/map/ASI.png" data-continent="ASIA" class="asi"/><span class="asi_point">
-            <p class="point_text">ASIA</p></span><img src="images/map/AFR.png" data-continent="AFRICA" class="afr"/><span class="afr_point">
+        <div class="map-content"><img src="images/map/AMN.png" data-continent="NORTH AMERICA" data-coord="-15.961329081596647,-59.501953125" class="nam"/><span class="nam_point">
+            <p class="point_text">NORTH&nbsp;AMERICA </p></span><img src="images/map/SAM.png" data-continent="SOUTH AMERICA" data-coord="39.50404070558415,-98.876953125" class="sam"/><span class="sam_point">
+            <p class="point_text">SOUTH&nbsp;AMERICA</p></span><img src="images/map/AUS.png" data-continent="AUSTRALIA" data-coord="-29.535229562948444,136.845703125" class="aus"/><span class="aus_point">
+            <p class="point_text">AUSTRALIA</p></span><img src="images/map/EUR.png" data-continent="EUROPE" data-coord="40.58058466412762,90.439453125" class="eur"/><span class="eur_point">
+            <p class="point_text">EUROPE </p></span><img src="images/map/ASI.png" data-continent="ASIA" data-coord="52.05249047600099,31.376953125" class="asi"/><span class="asi_point">
+            <p class="point_text">ASIA</p></span><img src="images/map/AFR.png" data-continent="AFRICA" data-coord="8.059229627200192,23.994140625" class="afr"/><span class="afr_point">
             <p class="point_text">AFRICA</p></span></div>
       </div>
       <div class="choose_map">
         <div class="container">
-          <h1 class="choose_map-title">England / Gerany / France<span>countries</span></h1><a href="map.html" class="choose_btn"> <span>next</span></a>
+          <h1 class="choose_map-title choose_coontinents"> 
+            <p>Please select a continent</p><span>countries</span>
+          </h1><a href="map.html" class="choose_btn coontinents_btn"> <span>next</span></a>
         </div>
       </div>
     </main>
-    <script src="js/jquery_v3.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.selectric.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp3GKY3W6bIAhFFOCg9zoRix-fl7IUgz0&amp;callback=initMap"></script>
     <footer id="footer"></footer>
   </body>
 </html>

@@ -1,5 +1,7 @@
  function Travel(){
  	this.coontinentsArr = [];
+ 	this.OutputString = '' ;
+ 	var StorageCoord;
  	this.init = function(){
  		this.SelectricInit();
  		this.OpenMenu();
@@ -10,15 +12,33 @@
  	}
  	this.goToCountr = function(){
  		var self = this;
- 		// $('.choose_btn').click(function(e){
- 		// 	e.preventDefault();
- 		// 	self.coontinentsArr = [];
- 		// 	$('img.active').each(function(key, value){
- 		// 		self.coontinentsArr.push($(value).data('continent'));
- 		// 	});
- 		// 	localStorage.setItem('coontinents', self.coontinentsArr);
- 		// 	window.location.href = "map-country.html";
- 		// });
+ 		$('.coontinents_btn').click(function(e){
+ 			e.preventDefault();
+ 			self.getSelectContinents();
+			localStorage.setItem('coontinents', self.coontinentsArr);
+			window.location.href = "map-country.html";
+ 		});
+ 	}
+ 	this.getSelectContinents = function() {
+ 		var self = this;
+ 		self.OutputString = '';
+		self.coontinentsArr = [];
+		$('img.active').each(function(key, value){
+			self.coontinentsArr.push($(value).data('continent'));
+			localStorage.setItem('coord',$(value).data('coord'));
+		});
+		for(var i = 0; i < self.coontinentsArr.length; i++){
+			if(i > 0){
+				self.OutputString += " / " + self.coontinentsArr[i];
+				console.log(self.OutputString );
+			}
+			else{
+				self.OutputString = self.coontinentsArr[i];
+			}
+		}
+		$('.choose_coontinents p').eq(0).text(self.OutputString);
+		// console.log(self.coontinentsArr);
+
  	}
  	this.openSearch = function(){
  		var self = this;
@@ -47,19 +67,21 @@
  			console.log(this);
  			$(this).toggleClass('active');
  			$(this).next('span').toggleClass('active');
+ 			self.getSelectContinents();
  		});
  		$('.map-content span').click(function(){
  			console.log(this);
  			$(this).toggleClass('active');
  			$(this).prev('img').toggleClass('active');
+ 			self.getSelectContinents();
  		});
  	}
  	this.init();
  }
-
-
+// .choose_coontinents
+var Travel1 = false;
 $(document).ready(function(){
-	var Travel1 = new Travel();
+	Travel1 = new Travel();
  	$('select').selectric({
  		nativeOnMobile: false,
  		arrowButtonMarkup: '<span class="left-bar-btn" ><img clas="header-serach-icon" src="images/icons/arr.svg"/></span>' 		

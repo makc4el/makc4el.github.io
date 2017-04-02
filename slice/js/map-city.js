@@ -1,12 +1,32 @@
  var colors = ['#6659a3','transparent'];
-      var randomColor = ['#33cc33','#0066ff','#cc33ff','#ffcc66','#cc0000'];
+      var randomColor = ['#34d6b6','#5f9cfd','#fb9d77'];
       var map;
       var counter = 0;
       var CountryCounter = 0;
-      var StorageCoontinents = localStorage.getItem('coontinents').split(',');
+      var StorageCoontinents = localStorage.getItem('country').split(',');
       var StorageCountry ;
       var CountryArr = [];
       var CountryTransferArray = [];
+      var Marker,
+          map,
+          markerCounter = 0,
+          flightPlanCoordinates = [],
+          myPos = {lat: 46.635417, lng: 32.616867},
+          markeArr = [],
+          LinePathArr = [],
+          InfoBoxArr = [],
+          service,
+          geocoder,
+          CityName = [],
+          infowindow,
+          nameCounter = 0,
+          name, 
+          geocoder,
+          city;
+          var MarkerCounter = 0;
+      var CountrList = [];
+      var ArrCity = [];
+      var CountryArr = [];
 
       var countriesCon = [
           {country:"Afghanistan", continent:"ASIA"},
@@ -189,7 +209,7 @@
           {country:"Qatar",continent:"ASIA"},
           {country:"Reunion",continent:"AFRICA"},
           {country:"Romania",continent:"EUROPE"},
-          {country:"Russia",continent:"EUROPE"},
+          {country:"Russia",continent:"ASIA"},
           {country:"Rwanda",continent:"AFRICA"},
           {country:"Saint Helena",continent:"AFRICA"},
           {country:"Saint Kitts and Nevis",continent:"NORTH AMERICA"},
@@ -255,18 +275,18 @@
           {country:"Zimbabwe",continent:"AFRICA"}
           ];
 
-      function initialize() {
+      function initMap() {
         var myOptions = {
-            scrollwheel: false,
+           // scrollwheel: false,
             navigationControl: false,
             mapTypeControl: false,
-            scaleControl: false,
+            //scaleControl: false,
             draggable: true,
             disableDoubleClickZoom: true,
-            zoom: 4,
+            zoom: 6,
             center: new google.maps.LatLng(localStorage.getItem('coord').split(',')[0], localStorage.getItem('coord').split(',')[1]),
-          styles: [ {
-    "stylers": [
+          styles: [{
+            "stylers": [
             {
             "color": "#ffffff"
             },
@@ -577,11 +597,11 @@
             "color": "#3d3d3d"
             }
             ]}
-          ],
+                ],
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        map = new google.maps.Map(document.getElementById('map-canvas'),
+        map = new google.maps.Map(document.getElementById('map-city'),
             myOptions);
 
         // Initialize JSONP request
@@ -603,14 +623,16 @@
         var rows = data['rows'];
         var Coontinents = 0;
         var Find
-        // console.log(data['rows']);
-        console.log(data);
         for (var i in rows) {
-          console.log(rows[i][0]);
           if (rows[i][0] != 'Antarctica') {
-            for(v = 0; v < countriesCon.length; v++){
-              if(countriesCon[v]['country'] == rows[i][0]){
-                  Coontinents = countriesCon[v]['continent'];
+            var Draw = false;
+            for(v = 0; v < StorageCoontinents.length; v++){
+              if(StorageCoontinents[v] == rows[i][0]){
+                  Coontinents = StorageCoontinents[v];
+                  Draw = true;
+              }
+              else{
+
               } 
             }
             // if(.indexOf(Coontinents)){}
@@ -624,81 +646,10 @@
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
-            console.log(StorageCoontinents.indexOf(Coontinents));
-            console.log(rows[i][0]);
-            if(StorageCoontinents.indexOf(Coontinents) != -1){
-              var country = new google.maps.Polygon({
-                paths: newCoordinates,
-                strokeColor: '#fff',
-                strokeOpacity: 1,
-                strokeWeight: 1,
-                fillColor: colors[1],
-                fillOpacity: 1,
-                name: rows[i][0],
-                chose : false,
-              });
-              google.maps.event.addListener(country, 'click', function() {
-                // var randomnumber = Math.floor(Math.random() * 3);
-                console.log($(this));
-                console.log($(this)[0].name);
-                if(!$(this)[0].chose){
-                    if(CountryCounter>=5){
-                        return 0;
-                    }
-                    CountryCounter++;
-                    CountryArr.push($(this)[0].name);
-                 // this.setOptions({fillOpacity: 1});
-                    $(this)[0].chose = true;
-                    // this.setOptions({fillColor: randomColor[counter],fillOpacity:1});
-                    this.setOptions({fillColor: getRandomColor(),fillOpacity:1});
-                    counter++;
-                    if(counter>2){
-                        counter = 0;
-                    }
-                }
-                else{
-                  console.log($(this)[0].name);
-                    CountryCounter--;
-                    this.setOptions({fillColor: 'transparent'});
-                    $(this)[0].chose = false;
-                    for(var i = 0; i< CountryArr.length; i++){
-                      if(CountryArr[i] == $(this)[0].name){
-                        CountryArr[i] = " ";
-                      }
-                    }
-                }
-                var c = 0;
-                CountryTransferArray = [];
-                for(var i = 0; i < CountryArr.length; i++){
-                  if(CountryArr[i] != " "){
-                    CountryTransferArray[c] = CountryArr[i];
-                    c++;
-                  }
-                }
-                var elem = " ";
-                for(var n = 0;n<CountryTransferArray.length;n++){
-                  if (n!=0){
-                    elem = $('.choose_map-title').text();
-                  }
-                  if(n == 0){
-                    $('.choose_map-title').text(' '+elem+CountryTransferArray[n]);
-                  }
-                  else{
-                      $('.choose_map-title').text(elem+' / '+CountryTransferArray[n]);
-                  }
-
-                  // if(n!=0){
-                  // }
-                  // if(n!=CountryTransferArray.length-1){
-                  // }
-                  // $('.choose_map-title').text(elem+CountryArr[i]);
-                }
-              });
-            }
-            else{
+            if(!Draw){
             var country = new google.maps.Polygon({
               paths: newCoordinates,
-              strokeColor: colors[1],
+              strokeColor: colors[0],
               strokeOpacity: 1,
               strokeWeight: 1,
               fillColor: colors[0],
@@ -706,25 +657,14 @@
               name: rows[i][0],
               chose : false,
               });
-            }
             google.maps.event.addListener(country, 'mouseover', function() {
             });
             google.maps.event.addListener(country, 'mouseout', function() {
             });
             country.setMap(map);
+            }
           }
         }
-      }
-
-      randomColor
-
-      function getRandomColor() {
-          var letters = '0123456789ABCDEF';
-          var color = '#';
-          for (var i = 0; i < 6; i++ ) {
-              color += letters[Math.floor(Math.random() * 16)];
-          }
-          return color;
       }
 
       function constructNewCoordinates(polygon) {
@@ -739,18 +679,237 @@
        google.maps.event.addDomListener(window, 'dblclick', function(){
         return 0;
        });
-      google.maps.event.addDomListener(window, 'load', initialize);
+      // google.maps.event.addDomListener(window, 'load', initMap);
 
       $('.choose_country__list').click(function(e) {
         e.preventDefault();
         var c = 0;
           for(var i = 0; i < CountryArr.length; i++){
-            console.log(CountryArr[i]);
             if(CountryArr[i] != " "){
               CountryTransferArray[c] = CountryArr[i];
               c++;
             }
           }
           localStorage.setItem('country',CountryTransferArray);
-          window.location = 'map-city.html'
+          window.location = 'map.html'
       });
+
+
+
+
+findCity = function(marker){
+    var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+              console.log(marker);
+            for(i = 0;i < results[0].address_components.length;i++){
+                if(results[0].address_components[i]['types'][0] == 'locality'){
+                    name =  results[0].address_components[i]['long_name'];
+                    CityName.push(name);
+                    setInfoBox(name,marker);
+                    flightPath(marker.position.lat(), marker.position.lng());
+                    MarkerCounter++;
+                    return 0;
+                }
+                else if(results[0].address_components[i]['types'][0] == "administrative_area_level_2"){
+                    name =  results[0].address_components[i]['short_name'];
+                    CityName.push(name);
+                    setInfoBox(name,marker);
+                    flightPath(marker.position.lat(), marker.position.lng());
+                    MarkerCounter++;
+                    return 0;
+                } 
+            }
+        }
+        else{
+            console.log(marker);
+            marker.setMap(null);
+            return 0;
+        }
+    }
+    else{
+            console.log(marker);
+            marker.setMap(null);
+            return 0; 
+    }
+    });
+}
+
+initMarker = function(lat,lng){
+    var coordinates = {lat: lat, lng: lng};
+    var iconUrld = 'marker.png';
+        Marker = new google.maps.Marker({
+        position: coordinates,
+        draggable : true,
+        shadowStyle: 1,
+        padding: 0,
+        backgroundColor: 'rgb(57,57,57)',
+        borderRadius: 5,
+        arrowSize: 10,
+        borderWidth: 1,
+        borderColor: '#2c2c2c',
+        disableAutoPan: true,
+        hideCloseButton: true,
+        arrowPosition: 30,
+        backgroundClassName: 'transparent',
+        arrowStyle: 2,
+        map: map,
+        icon: iconUrld
+    });
+        console.log(Marker);
+    markeArr.push(Marker);
+    CountryArr.push(Marker);
+    findCity(Marker);
+    google.maps.event.addListener(Marker, 'dragend', function(e) {
+        var MarkerLat,
+            MarkerLng;
+        flightPathClean();
+        for(var i = 0;i<markeArr.length;i++){
+            MarkerLat = markeArr[i]['position'].lat();
+            MarkerLng = markeArr[i]['position'].lng();
+            flightPath(MarkerLat,MarkerLng);
+            refindCity(markeArr[i]);
+        }
+    });
+}
+
+
+finalGet = function(){
+    CityName = [];
+    for(var i = 0;i<markeArr.length;i++){
+        finalGetCity(markeArr[i]);
+    }
+}
+
+ finalGetCity = function(marker){
+    var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+                for(i = 0;i < results[0].address_components.length;i++){
+                    if(results[0].address_components[i]['types'][0] == 'locality'){
+                        name =  results[0].address_components[i]['long_name'];
+                        CityName.push(name);
+                        localStorage.setItem("CityName", CityName);
+                        return 0;
+                    }
+                    else if(results[0].address_components[i]['types'][0] == "administrative_area_level_2"){
+                        name =  results[0].address_components[i]['short_name'];
+                        CityName.push(name);
+                        localStorage.setItem("CityName", CityName);
+                        return 0;
+                    }
+                }
+            }
+            else{
+                return 0;
+            }
+        }
+    });
+ }
+
+
+MapClick = function(){
+    var lat,
+        lang;
+    google.maps.event.addListener(map, "click", function(event) {
+        lat = event.latLng.lat();
+        lng = event.latLng.lng();
+        if(MarkerCounter < 7){
+            initMarker(lat,lng);
+        }
+    });
+}
+
+
+
+ refindCity = function(marker){
+    var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+                for(i = 0;i < results[0].address_components.length;i++){
+                    if(results[0].address_components[i]['types'][0] == 'locality'){
+                        name =  results[0].address_components[i]['long_name'];
+                        resetInfoBox(marker,name);
+                        return 0;
+                    }
+                    else if(results[0].address_components[i]['types'][0] == "administrative_area_level_2"){
+                        name =  results[0].address_components[i]['short_name'];
+                        resetInfoBox(marker,name);
+                        return 0;
+                    }
+                }
+            }
+            else{
+                return 0;
+            }
+        }
+    });
+ }
+
+resetInfoBox = function(Marker,name){
+    var InfoContent = '<div class="MyInfo">'+name+'</div>';
+      infowindow = new google.maps.InfoWindow({
+      content: InfoContent,
+    });
+    infowindow.open(map, Marker);
+}
+flightPathClean = function(){
+    flightPlanCoordinates = [];
+    for(var i = 0;i <LinePathArr.length;i++){
+        LinePathArr[i].setMap(null);
+    }
+}
+setInfoBox = function(name,Marker){
+    var InfoContent = '<div class="MyInfo">'+name+'</div>';
+      infowindow = new google.maps.InfoWindow({
+      content: InfoContent,
+    });
+    infowindow.open(map, Marker);
+}
+flightPath = function(PathLat,PathLng){
+        element = {};
+        element.lat = PathLat;
+        element.lng = PathLng;
+        flightPlanCoordinates.push(element);
+        if(markeArr.length > 0){
+            LinePath = new google.maps.Polyline({
+                path: flightPlanCoordinates,
+                geodesic: true,
+                strokeColor: '#fff ',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+            LinePathArr.push(LinePath);
+            LinePath.setMap(map);
+        }
+}
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+  }
+
+NextStep = function(){
+    $('.choose_btn').click(function(event){
+        event.preventDefault();
+        finalGet();
+    });
+}
+
+TaskManager = function(){
+    initMap();
+    MapClick();
+    initialize();
+}
+$(document).ready(function(){
+    TaskManager();
+    NextStep();
+    setInterval(function(){
+        $('.gm-style-iw').prev().hide();
+    },50);
+     $('.choose_btn').click(function(e){
+      e.preventDefault();
+      localStorage.setItem('StorageCountry',CityName);
+  });
+}); 

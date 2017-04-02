@@ -17,6 +17,15 @@ var Marker,
     var MarkerCounter = 0;
 var CountrList = [];
 var ArrCity = [];
+var CountryArr = [];
+
+
+ var colors = ['#6659a3','transparent'];
+      var randomColor = ['#34d6b6','#5f9cfd','#fb9d77'];
+      var counter = 0;
+      var CountryCounter = 0;
+      var StorageCoontinents = localStorage.getItem('coontinents').split(',');
+      var StorageCountry ;
 
 initMap = function(){ 
         map = new google.maps.Map(document.getElementById('map'), {
@@ -340,6 +349,9 @@ initMap = function(){
     });
 }  
 
+
+
+
 findCity = function(marker){
     var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
     geocoder.geocode({'latLng': latlng}, function(results, status) {
@@ -373,7 +385,7 @@ findCity = function(marker){
 
 initMarker = function(lat,lng){
     var coordinates = {lat: lat, lng: lng};
-    var iconUrld = 'images/marker.png';
+    var iconUrld = 'marker.png';
         Marker = new google.maps.Marker({
         position: coordinates,
         draggable : true,
@@ -393,13 +405,13 @@ initMarker = function(lat,lng){
         icon: iconUrld
     });
     markeArr.push(Marker);
+    CountryArr.push(Marker);
+    console.log(CountryArr);
     findCity(Marker);
     google.maps.event.addListener(Marker, 'dragend', function(e) {
         var MarkerLat,
             MarkerLng;
         flightPathClean();
-        console.log(markeArr.length);
-        console.log(markeArr);
         for(var i = 0;i<markeArr.length;i++){
             MarkerLat = markeArr[i]['position'].lat();
             MarkerLng = markeArr[i]['position'].lng();
@@ -542,4 +554,9 @@ $(document).ready(function(){
     setInterval(function(){
         $('.gm-style-iw').prev().hide();
     },50);
+     $('.choose_btn').click(function(e){
+      e.preventDefault();
+      console.log(CityName);
+      localStorage.setItem('StorageCountry',CityName);
+  });
 }); 

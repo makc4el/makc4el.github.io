@@ -1871,7 +1871,8 @@ p.transfer-summ_title {
   background: url(../images/board.png) no-repeat center;
   background-size: 100% 100%;
   height: 55px;
-  margin-left: -33px; }
+  margin-left: -33px;
+  overflow: hidden !important; }
 
 .gm-style-iw ~ div {
   display: none !important; }
@@ -1883,6 +1884,14 @@ p.transfer-summ_title {
   padding-right: 5px;
   text-align: center;
   font-weight: 500; }
+
+#map-city {
+  width: 100%;
+  height: 95vh;
+  height: calc(100vh - 7rem);
+  position: absolute;
+  top: 7rem;
+  left: 0; }
 
 #map_start {
   background: #282560;
