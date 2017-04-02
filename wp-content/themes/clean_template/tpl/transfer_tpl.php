@@ -53,22 +53,22 @@ if($item['acf_fc_layout'] == 'tab_planner'){
 					<p class="package_item-title">Guests</p>
 					<input type="text" value="1" id="spinner1" readonly="readonly" class="package_item_text"/>
 				</li>
-				<li class="package_item package_item-date">
-					<p class="package_item-title">Start date</p>
-					<input type="text" placeholder="date" id="datepicker" class="package_item_text"/>
-					<label for="datepicker" class="package_item_text-label"></label>
-				</li>
-				<li class="package_item package_item-money">
-					<p class="package_item-title">Budget</p>
-					<input type="text" value="$3200" readonly="readonly" class="package_item_text"/>
-				</li>
+<!--				<li class="package_item package_item-date">-->
+<!--					<p class="package_item-title">Start date</p>-->
+<!--					<input type="text" placeholder="date" id="datepicker" class="package_item_text"/>-->
+<!--					<label for="datepicker" class="package_item_text-label"></label>-->
+<!--				</li>-->
+<!--				Countries-->
 			</ul>
 			<ul class="package_list transfer_chose-list">
-				<li class="transform_chose-item transform_nav transform_nav-active"><a href="<?=get_permalink(2086)."?id=".$id_tour?>" class="transform_chose-link">PLANNER</a></li>
+				<li class="transform_chose-item transform_nav transform_nav-active">
+					<a href="<?=get_permalink(2086)."?id=".$id_tour?>" class="transform_chose-link">PLANNER</a></li>
 				<li class="transform_chose-item transform_nav"><a class="transform_chose-link">MAP</a></li>
 				<li class="transform_chose-item transform_nav"><a href="<?=get_permalink(2199)."?id=".$id_tour?>" class="transform_chose-link">SUMMARY</a></li>
 				<li class="transform_chose-item transform_chose-item-request"><a class="transform_chose-link">Special request</a></li>
-				<li class="package_item package_item-btn transform_chose-item"><a href="<?=get_permalink(2088)?>" class="inform-log_link package-log_link">BOOK ORDER</a></li>
+				<li class="package_item package_item-btn transform_chose-item">
+					<a href="<?=get_permalink(2205)."?id=".$id_tour?>" class="inform-log_link package-log_link">BOOK ORDER</a>
+				</li>
 				<li class="package_item package_item-btn-share transform_chose-item"><a href="#" class="package-log_link">SHARE THIS PACKAGE</a></li>
 			</ul>
 		</div>
@@ -184,3 +184,13 @@ if($item['acf_fc_layout'] == 'tab_planner'){
 </main>
 <?php }} ?>
 <?php get_footer(); ?>
+<script>
+	var guests = localStorage.getItem('guests');
+	var select_location = localStorage.getItem('CityName');
+	$('#countries').val(select_location);
+
+	if(localStorage.getItem('guests') !== null) {
+		$('#spinner1').val(guests)
+	}
+
+</script>

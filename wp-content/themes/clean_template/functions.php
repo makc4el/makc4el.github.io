@@ -1,4 +1,6 @@
 <?php
+
+
 // Включаем поддержку миниатюр
 add_theme_support('post-thumbnails');
 
@@ -232,6 +234,14 @@ foreach ($id_available_tours as $v){
 }
 
 	//начало путевки
+	$html.="<script>
+$('.cart-btn').click(function(e){
+		e.preventDefault();
+		var guests=$('#spinner1').val();
+		localStorage.setItem('guests', guests);
+		window.location.href = $(this).attr('href');
+	});
+	</script>";
 	$start_tour = $select_locations[1];
 	if (!$start_tour) {
 		echo "not available tours";
@@ -245,33 +255,7 @@ add_action('wp_ajax_show_tours', 'show_tours_ajax');
 add_action('wp_ajax_nopriv_show_tours', 'show_tours_ajax');
 
 
-
-
-
-
-
-
-
-
-add_action('wp_ajax_my_action', 'my_action_callback');
-add_action('wp_ajax_nopriv_my_action', 'my_action_callback');
-function my_action_callback() {
-	$whatever = intval( $_POST['whatever'] );
-	echo $whatever + 10;
-	wp_die();
-}
-
-
-
-
-
-
-
-
-//
 //function my_acf_init() {
-//
 //	acf_update_setting('google_api_key', 'AIzaSyBTsaGllt7sdCMr3CLUDPYBhVc4LVgA1AI');
 //}
-//
 //add_action('acf/init', 'my_acf_init');

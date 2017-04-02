@@ -1,5 +1,6 @@
 
 <?php
+
 //languages switch
 //do_action('wpml_add_language_selector');
 ?>
@@ -34,19 +35,6 @@
 	var path = "<?php echo get_template_directory_uri(); ?>/";
 	var page_available_tours = "<?php echo get_permalink('2123'); ?>";
 	var start_paning = "<?php echo get_permalink('2169'); ?>";
-</script>
-<script type="text/javascript" >
-	jQuery(document).ready(function($) {
-		var data = {
-			action: 'my_action',
-			whatever: 1234
-		};
-
-		// 'ajaxurl' не определена во фронте, поэтому мы добавили её аналог с помощью wp_localize_script()
-		jQuery.post( ajaxurl, data, function(response) {
-			console.log('Получено с сервера: ' + response);
-		});
-	});
 </script>
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/owl.carousel.min.js"></script>

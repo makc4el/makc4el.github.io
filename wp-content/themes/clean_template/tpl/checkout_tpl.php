@@ -3,7 +3,35 @@
 Template Name: Checkout
 */
 ?>
+
 <?php get_header(); ?>
+
+
+
+<?php
+$id_tour = intval($_GET['id']);
+if(!$id_tour){
+	return;
+}
+$fields = get_fields($id_tour);
+$fields = $fields['content'];
+
+?>
+<script>
+	var id_tour = "<?= $id_tour ?>";
+	localStorage.setItem('id_tour', id_tour);
+</script>
+<?php if ( !is_user_logged_in() ) { ?>
+
+	<script>
+		var log_in_url = "<?= get_permalink(2054) ?>";
+		var redirect = "<?= get_permalink(2205) ?>";
+		window.location = log_in_url;
+		localStorage.setItem('redirect', redirect);
+	</script>
+
+<?php } ?>
+
 <section class="way_block-container">
 	<div class="container">
 		<ul class="way_list">
@@ -35,10 +63,6 @@ Template Name: Checkout
 					<p class="event-guest-title event-title">Guests:</p>
 					<p class="event-guest-text event-text">1</p>
 				</div>
-				<div class="det_event-taiting det_event-bl">
-					<p class="event-taiting-title event-title">Raiting:</p>
-					<p class="event-taiting-text event-text">4*</p>
-				</div>
 				<div class="det_event-date det_event-bl">
 					<p class="event-taiting-title event-title">Start date:</p>
 					<p class="event-taiting-text event-text">17.10.2016</p>
@@ -48,71 +72,27 @@ Template Name: Checkout
 		</div>
 	</div>
 </section>
-<section class="pay_var">
-	<div class="container">
-		<h1 class="pay_var-title">How would you like to pay?</h1>
-		<ul class="pay_var-list">
-			<li class="pay_var-item pay_var-item-now">
-				<div class="pay_var-block">
-					<input id="pay_now" type="checkbox"/>
-					<label for="pay_now" class="pay_var-label"></label>
-					<p class="pay_var-text">Pay now</p>
-				</div>
-			</li>
-			<li class="pay_var-item pay_var-item-letter">
-				<div class="pay_var-block">
-					<input id="pay_letter" type="checkbox"/>
-					<label for="pay_letter" class="pay_var-label"></label>
-					<p class="pay_var-text">Pay later</p>
-					<p class="pay_var_text-date">Pay later on January 11, 2017</p>
-					<p class="pay_var_text-date pay_var_text-date_min">Your card must be valid until 01/2017 </p>
-				</div>
-			</li>
-		</ul>
-	</div>
-</section>
+
 <section class="inform_container booking_section-container">
 	<div class="container">
-		<h1 class="booking_title booking_container-title">All card information is fully encrypted, secure and protected</h1>
 		<div class="inform_list-container">
-			<p class="inform_block-title">We accept the folowing payment methods</p>
-			<ul class="inform_list">
-				<li class="inform_item inform_item-select">
-					<p class="inform-title">Select payment method</p>
-					<select value="Please, select one" class="inform-input_select-country">
-						<option value="UK">UK</option>
-						<option value="USA">USA</option>
-						<option value="Saudi Arabia">Saudi Arabia</option>
-					</select>
-				</li>
-				<li class="inform_item cred_pass">
-					<p class="inform-title">Credit/debid card #</p>
-					<input type="text" placeholder="Enter your number card" class="inform-input"/>
-				</li>
-				<li class="inform_item inform_item-btn">
-					<p class="inform-title">Card holder name</p>
-					<input type="text" placeholder="Enter the name holder" class="inform-input"/>
-				</li>
-				<li class="inform_item data_inp inform_item-select">
-					<p class="inform-title">Explire date</p>
-					<select value="Select month" class="inform-input_select-country">
-						<option value="UK">UK</option>
-						<option value="USA">USA</option>
-						<option value="Saudi Arabia">Saudi Arabia</option>
-					</select>
-				</li>
-				<li class="inform_item year_inp">
-					<p class="inform-title">|</p>
-					<input type="text" placeholder="Enter year" class="inform-input"/>
-				</li>
-				<li class="inform_item cred_pass secur_inp">
-					<p class="inform-title">Card security code</p>
-					<input type="text" placeholder="Enter the security code" class="inform-input"/>
-				</li>
-				<li class="inform_item inform_item-btn"><a href="#" class="inform-log_link">BOOK AND PAY NOW</a></li>
-			</ul>
+
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_xclick">
+				<input type="hidden" name="business" value="accounts@dultravels-online.ch111">
+				<input type="hidden" name="lc" value="USD">
+				<input type="hidden" name="item_name" value="<?= get_the_title($id_tour)?>">
+				<input type="hidden" name="amount" value="0">
+				<input type="hidden" name="currency_code" value="USD">
+				<input type="hidden" name="button_subtype" value="services">
+				<input type="hidden" name="no_note" value="0">
+				<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+				<input type="image" src="https://www.paypalobjects.com/ru_RU/RU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal">
+				<img alt="" border="0" src="https://www.paypalobjects.com/ru_RU/i/scr/pixel.gif" width="1" height="1">
+			</form>
 		</div>
 	</div>
+
 </section>
 
 <?php get_footer() ?>
