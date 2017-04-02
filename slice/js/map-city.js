@@ -710,6 +710,7 @@ findCity = function(marker){
                     setInfoBox(name,marker);
                     flightPath(marker.position.lat(), marker.position.lng());
                     MarkerCounter++;
+                    arrToStr(CityName);
                     return 0;
                 }
                 else if(results[0].address_components[i]['types'][0] == "administrative_area_level_2"){
@@ -718,6 +719,7 @@ findCity = function(marker){
                     setInfoBox(name,marker);
                     flightPath(marker.position.lat(), marker.position.lng());
                     MarkerCounter++;
+                    arrToStr(CityName);
                     return 0;
                 } 
             }
@@ -734,6 +736,20 @@ findCity = function(marker){
             return 0; 
     }
     });
+}
+
+arrToStr = function(Arr) {
+  var myString =' ';
+  for(var i=0;i<Arr.length;i++){
+    if(!i){
+      myString = Arr[i];
+    }
+    else{
+      myString+= ' / ' + Arr[i];
+    }
+  }
+  $('.choose_map-title').text(' ')
+    $('.choose_map-title').prepend(myString + '<span>countries</span>');
 }
 
 initMarker = function(lat,lng){
